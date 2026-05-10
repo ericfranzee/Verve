@@ -3,7 +3,10 @@ package server
 import (
 	"log"
 	"net/http"
+	"time"
 
+	"github.com/ericfranzee/Verve/services/orchestrator/internal/circuit"
+	"github.com/ericfranzee/Verve/services/orchestrator/internal/session"
 	"github.com/gorilla/websocket"
 )
 
@@ -15,11 +18,15 @@ var upgrader = websocket.Upgrader{
 
 type WSServer struct {
 	clients map[*websocket.Conn]bool
+	sessionMgr *session.SessionManager
+	intentBreaker *circuit.CircuitBreaker
 }
 
 func NewWSServer() *WSServer {
 	return &WSServer{
 		clients: make(map[*websocket.Conn]bool),
+		sessionMgr: session.NewSessionManager(),
+		intentBreaker: circuit.NewCircuitBreaker("IntentEngine", 5, time.Minute, 30*time.Second),
 	}
 }
 
@@ -30,6 +37,14 @@ func (s *WSServer) HandleConnections(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	defer ws.Close()
+
+	sessionID := r.URL.Query().Get("session_id")
+	if sessionID != "" {
+		_, err := s.sessionMgr.RecoverSession(sessionID)
+		if err != nil {
+			log.Printf("Error recovering session: %v", err)
+		}
+	}
 
 	s.clients[ws] = true
 	log.Printf("Client connected. Total clients: %d", len(s.clients))
@@ -44,6 +59,12 @@ func (s *WSServer) HandleConnections(w http.ResponseWriter, r *http.Request) {
 		}
 
 		log.Printf("Received message: %v", msg)
+
+		// Stub intent engine call through circuit breaker
+		_, _ = s.intentBreaker.Execute(func() (interface{}, error) {
+			// Simulate Intent Engine API call
+			return nil, nil
+		})
 
 		// Echo message back for now
 		err = ws.WriteJSON(msg)

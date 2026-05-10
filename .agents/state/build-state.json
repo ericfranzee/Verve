@@ -44,37 +44,37 @@
         {
           "id": "P1-T07",
           "name": "RAG prompt pipeline",
-          "status": "pending"
+          "status": "completed"
         },
         {
           "id": "P1-T08",
           "name": "Temporal reference resolution",
-          "status": "pending"
+          "status": "completed"
         },
         {
           "id": "P1-T09",
           "name": "Dietary constraint enforcement",
-          "status": "pending"
+          "status": "completed"
         },
         {
           "id": "P1-T10",
           "name": "PCM audio capture pipeline",
-          "status": "pending"
+          "status": "completed"
         },
         {
           "id": "P1-T11",
           "name": "Whisper transcription",
-          "status": "pending"
+          "status": "completed"
         },
         {
           "id": "P1-T12",
           "name": "Complete round-trip loop",
-          "status": "pending"
+          "status": "completed"
         },
         {
           "id": "P1-T13",
           "name": "Optimize round-trip latency",
-          "status": "pending"
+          "status": "completed"
         },
         {
           "id": "P1-T14",
@@ -94,27 +94,27 @@
         {
           "id": "P1-T17",
           "name": "Ambiguity Resolution engine",
-          "status": "pending"
+          "status": "completed"
         },
         {
           "id": "P1-T18",
           "name": "MoE LLM router",
-          "status": "pending"
+          "status": "completed"
         },
         {
           "id": "P1-T19",
           "name": "Circuit breaker skeleton",
-          "status": "pending"
+          "status": "completed"
         },
         {
           "id": "P1-T20",
           "name": "Redis session state snapshots",
-          "status": "pending"
+          "status": "completed"
         },
         {
           "id": "P1-T21",
           "name": "Session crash recovery",
-          "status": "pending"
+          "status": "completed"
         }
       ]
     },
