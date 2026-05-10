@@ -38,6 +38,51 @@ The central brain of the Verve agentic build system. Reads build manifest, deter
 
 ---
 
+## Cold Start Initialization Protocol
+
+When `@verve-conductor start` is invoked and `.agents/state/build-state.json` has no completed tasks (fresh project), the conductor MUST execute the following sequence **autonomously** without asking clarifying questions:
+
+### Step 1: Initialize State
+- Read `.agents/manifest.json` to confirm project structure and skill registry.
+- Read `verve-memory` skill → create `.agents/state/build-state.json` if it doesn't exist.
+- Read `verve-cognitive-load` skill → internalize the 300-line rule and 4-file context budget.
+- Set `current_phase = 1`, status = `"in_progress"`.
+
+### Step 2: Generate Phase 1 Plan
+- Read `verve-planner` skill → generate `.agents/plans/phase-1-plan.md`.
+- The planner decomposes Phase 1 ("Invisible Intelligence") into 21 tasks with dependencies.
+- Populate the `tasks` array in `build-state.json` with all 21 tasks as `"pending"`.
+
+### Step 3: Execute First Task
+- Identify the first task with no unmet dependencies (typically `P1-T03`: mono-repo scaffold).
+- Read the appropriate builder skill for that task's layer.
+- Execute the task, writing code files to the project.
+- Run `verve-verifier` checks on the output.
+- Checkpoint via `verve-memory`.
+- Proceed to the next pending task.
+
+### Step 4: Continue the Loop
+- Repeat Step 3 for each subsequent task, respecting dependency order.
+- After every task: verify → checkpoint → next.
+- When all 21 tasks are complete → run Phase 1 acceptance gate.
+- Present phase gate report → await user approval before Phase 2.
+
+**The agent does NOT stop to ask questions unless:**
+- A task fails verification 3 times (escalate to user)
+- A structural ambiguity in the docs cannot be resolved (escalate with specific question)
+- A phase gate fails (present report, await user decision)
+
+**The agent DOES autonomously:**
+- Create directories and files
+- Generate plans
+- Execute tasks in dependency order
+- Write code following the builder skills
+- Verify output
+- Checkpoint progress
+- Move to the next task
+
+---
+
 ## The Orchestration Loop
 
 ```
