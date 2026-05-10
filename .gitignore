@@ -1,0 +1,14 @@
+# Python
+venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+services/intent-engine/venv/
+
+# Node.js
+node_modules/
+dist/
+
+# Go
+services/orchestrator/orchestrator

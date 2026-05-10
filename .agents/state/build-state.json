@@ -10,7 +10,113 @@
       "name": "Invisible Intelligence",
       "status": "pending",
       "weeks": "1-4",
-      "tasks": []
+      "tasks": [
+        {
+          "id": "P1-T01",
+          "name": "Go Orchestrator skeleton",
+          "status": "completed"
+        },
+        {
+          "id": "P1-T02",
+          "name": "Python FastAPI Intent Engine",
+          "status": "completed"
+        },
+        {
+          "id": "P1-T03",
+          "name": "Mono-repo scaffold",
+          "status": "completed"
+        },
+        {
+          "id": "P1-T04",
+          "name": "SQLite-VEC integration",
+          "status": "completed"
+        },
+        {
+          "id": "P1-T05",
+          "name": "CRUD for local embeddings",
+          "status": "completed"
+        },
+        {
+          "id": "P1-T06",
+          "name": "SQLCipher encryption",
+          "status": "completed"
+        },
+        {
+          "id": "P1-T07",
+          "name": "RAG prompt pipeline",
+          "status": "completed"
+        },
+        {
+          "id": "P1-T08",
+          "name": "Temporal reference resolution",
+          "status": "completed"
+        },
+        {
+          "id": "P1-T09",
+          "name": "Dietary constraint enforcement",
+          "status": "completed"
+        },
+        {
+          "id": "P1-T10",
+          "name": "PCM audio capture pipeline",
+          "status": "completed"
+        },
+        {
+          "id": "P1-T11",
+          "name": "Whisper transcription",
+          "status": "completed"
+        },
+        {
+          "id": "P1-T12",
+          "name": "Complete round-trip loop",
+          "status": "completed"
+        },
+        {
+          "id": "P1-T13",
+          "name": "Optimize round-trip latency",
+          "status": "completed"
+        },
+        {
+          "id": "P1-T14",
+          "name": "Trust Ladder data access enforcement",
+          "status": "completed"
+        },
+        {
+          "id": "P1-T15",
+          "name": "Temporal decay pruning",
+          "status": "completed"
+        },
+        {
+          "id": "P1-T16",
+          "name": "DB corruption recovery",
+          "status": "completed"
+        },
+        {
+          "id": "P1-T17",
+          "name": "Ambiguity Resolution engine",
+          "status": "completed"
+        },
+        {
+          "id": "P1-T18",
+          "name": "MoE LLM router",
+          "status": "completed"
+        },
+        {
+          "id": "P1-T19",
+          "name": "Circuit breaker skeleton",
+          "status": "completed"
+        },
+        {
+          "id": "P1-T20",
+          "name": "Redis session state snapshots",
+          "status": "completed"
+        },
+        {
+          "id": "P1-T21",
+          "name": "Session crash recovery",
+          "status": "completed"
+        }
+      ]
     },
     "2": {
       "name": "Visual Stage",
