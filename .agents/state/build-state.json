@@ -29,17 +29,17 @@
         {
           "id": "P1-T04",
           "name": "SQLite-VEC integration",
-          "status": "pending"
+          "status": "completed"
         },
         {
           "id": "P1-T05",
           "name": "CRUD for local embeddings",
-          "status": "pending"
+          "status": "completed"
         },
         {
           "id": "P1-T06",
           "name": "SQLCipher encryption",
-          "status": "pending"
+          "status": "completed"
         },
         {
           "id": "P1-T07",
@@ -79,17 +79,17 @@
         {
           "id": "P1-T14",
           "name": "Trust Ladder data access enforcement",
-          "status": "pending"
+          "status": "completed"
         },
         {
           "id": "P1-T15",
           "name": "Temporal decay pruning",
-          "status": "pending"
+          "status": "completed"
         },
         {
           "id": "P1-T16",
           "name": "DB corruption recovery",
-          "status": "pending"
+          "status": "completed"
         },
         {
           "id": "P1-T17",
