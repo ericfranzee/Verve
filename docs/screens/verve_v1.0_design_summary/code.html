@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&amp;family=JetBrains+Mono:wght@400;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        body {
+            background-color: #000000;
+            color: #dfe3e2;
+            font-family: 'Inter', sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+        .mono {
+            font-family: 'JetBrains Mono', monospace;
+        }
+        .pulse-wave {
+            stroke-dasharray: 1000;
+            stroke-dashoffset: 0;
+        }
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "on-tertiary-fixed-variant": "#733512",
+                      "tertiary-container": "#a96039",
+                      "primary-fixed-dim": "#76d6d5",
+                      "on-background": "#dfe3e2",
+                      "on-secondary-fixed": "#00210c",
+                      "surface-variant": "#313635",
+                      "on-tertiary": "#552000",
+                      "text-primary": "#FFFFFF",
+                      "surface-container-highest": "#313635",
+                      "surface-container-high": "#262b2b",
+                      "aura-teal": "#008080",
+                      "background": "#000000",
+                      "on-primary-fixed": "#002020",
+                      "surface-tint": "#76d6d5",
+                      "vital-emerald": "#50C878",
+                      "on-surface": "#dfe3e2",
+                      "surface-container-lowest": "#0a0f0f",
+                      "surface-container-low": "#181c1c",
+                      "on-error": "#690005",
+                      "secondary-fixed": "#83fba5",
+                      "surface-dim": "#101414",
+                      "on-primary-container": "#e3fffe",
+                      "tertiary": "#ffb692",
+                      "surface-bright": "#353a3a",
+                      "outline": "#879392",
+                      "on-error-container": "#ffdad6",
+                      "inverse-primary": "#006a6a",
+                      "secondary-container": "#25a55a",
+                      "on-secondary-fixed-variant": "#005227",
+                      "inverse-on-surface": "#2c3131",
+                      "outline-variant": "#3e4949",
+                      "tertiary-fixed": "#ffdbcb",
+                      "on-primary": "#003737",
+                      "inverse-surface": "#dfe3e2",
+                      "primary-fixed": "#93f2f2",
+                      "on-secondary-container": "#003115",
+                      "primary-container": "#008080",
+                      "error": "#ffb4ab",
+                      "surface": "#101414",
+                      "on-secondary": "#003919",
+                      "on-tertiary-container": "#fff9f7",
+                      "error-container": "#93000a",
+                      "primary": "#76d6d5",
+                      "on-primary-fixed-variant": "#004f4f",
+                      "tertiary-fixed-dim": "#ffb692",
+                      "on-surface-variant": "#bdc9c8",
+                      "surface-container": "#1c2020",
+                      "on-tertiary-fixed": "#341100",
+                      "secondary-fixed-dim": "#66dd8b",
+                      "secondary": "#66dd8b",
+                      "nexus-amber": "#FFBF00"
+              },
+              "borderRadius": {
+                      "DEFAULT": "1rem",
+                      "lg": "2rem",
+                      "xl": "3rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "container-max": "300px",
+                      "gutter": "1rem",
+                      "title-margin-top": "2rem",
+                      "tagline-margin-top": "0.5rem",
+                      "section-gap": "3rem"
+              },
+              "fontFamily": {
+                      "label-sm": ["Inter"],
+                      "brand-tagline": ["Inter"],
+                      "headline-lg": ["Inter"],
+                      "brand-title": ["Inter"],
+                      "body-md": ["Inter"],
+                      "mono": ["JetBrains Mono"]
+              },
+              "fontSize": {
+                      "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05rem", "fontWeight": "500"}],
+                      "brand-tagline": ["12.8px", {"lineHeight": "1.5", "letterSpacing": "0.2rem", "fontWeight": "400"}],
+                      "headline-lg": ["24px", {"lineHeight": "32px", "fontWeight": "300"}],
+                      "brand-title": ["32px", {"lineHeight": "1.2", "letterSpacing": "0.5rem", "fontWeight": "300"}],
+                      "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+              }
+            },
+          },
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background selection:bg-aura-teal selection:text-white overflow-x-hidden">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 flex justify-center items-center h-16 px-gutter bg-background">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-primary" data-icon="bubble_chart">bubble_chart</span>
+<h1 class="font-brand-title text-brand-title text-primary tracking-[0.5rem]">VERVE</h1>
+</div>
+</header>
+<main class="max-w-[300px] mx-auto pt-24 pb-32 flex flex-col gap-section-gap">
+<!-- Document Header -->
+<section class="text-center">
+<div class="mono text-[10px] text-aura-teal uppercase tracking-[0.3em] mb-2">Build Manifest 01.00</div>
+<h2 class="font-headline-lg text-headline-lg text-text-primary">DESIGN SUMMARY</h2>
+<div class="h-[1px] w-12 bg-vital-emerald mx-auto mt-6"></div>
+</section>
+<!-- Brand Manifesto -->
+<section class="flex flex-col gap-4">
+<div class="flex items-center gap-2">
+<span class="text-aura-teal mono text-[10px]">01</span>
+<span class="uppercase font-label-sm text-label-sm tracking-widest text-on-surface-variant">Manifesto</span>
+</div>
+<div class="space-y-6">
+<p class="font-body-md text-body-md text-on-surface leading-relaxed italic">
+                    "Cognitive Relief is the elimination of friction through architectural silence."
+                </p>
+<div class="p-4 bg-surface-container-low border-l border-aura-teal">
+<p class="mono text-[11px] leading-relaxed text-on-surface-variant">
+                        The Zero-Click Canvas treats the interface as a void. Information is not presented; it is summoned. High-fidelity intelligence manifests as organic forms that recede when their purpose is served.
+                    </p>
+</div>
+</div>
+</section>
+<!-- The Core Mark (The Pulse & The Valley) -->
+<section class="flex flex-col gap-6">
+<div class="flex items-center gap-2">
+<span class="text-aura-teal mono text-[10px]">02</span>
+<span class="uppercase font-label-sm text-label-sm tracking-widest text-on-surface-variant">The Core Mark</span>
+</div>
+<div class="relative h-32 w-full flex items-center justify-center bg-surface-container-lowest overflow-hidden">
+<svg class="absolute w-full h-full" fill="none" viewbox="0 0 300 120" xmlns="http://www.w3.org/2000/svg">
+<path class="pulse-wave" d="M0 60H110C115 60 120 75 130 90C140 105 160 105 170 90C180 75 185 60 190 60H300" stroke="#008080" stroke-linecap="round" stroke-width="8"></path>
+<circle cx="150" cy="98" fill="#50C878" r="12"></circle>
+</svg>
+</div>
+<div class="mono text-[10px] text-on-surface-variant text-center space-y-1">
+<p>FIG. A: THE PULSE &amp; VALLEY INTERFACE</p>
+<p class="text-[8px] opacity-50">STRICT 8PX AURA TEAL STROKE / VITAL EMERALD NEXUS</p>
+</div>
+</section>
+<!-- Visual Synapse (Progression) -->
+<section class="flex flex-col gap-6">
+<div class="flex items-center gap-2">
+<span class="text-aura-teal mono text-[10px]">03</span>
+<span class="uppercase font-label-sm text-label-sm tracking-widest text-on-surface-variant">The Visual Synapse</span>
+</div>
+<div class="space-y-4">
+<!-- State 1 -->
+<div class="flex gap-4 items-start">
+<div class="mono text-[10px] text-vital-emerald pt-1">00</div>
+<div class="flex-1">
+<div class="font-label-sm text-label-sm text-text-primary uppercase mb-1">The Void</div>
+<p class="text-[11px] text-on-surface-variant">Pure OLED #000000. Presence without light.</p>
+</div>
+</div>
+<!-- State 2 -->
+<div class="flex gap-4 items-start">
+<div class="mono text-[10px] text-vital-emerald pt-1">01</div>
+<div class="flex-1">
+<div class="font-label-sm text-label-sm text-text-primary uppercase mb-1">The Hero Card</div>
+<p class="text-[11px] text-on-surface-variant">Tonal emergence at 12% luminance. 121212 base.</p>
+</div>
+</div>
+<!-- State 3 -->
+<div class="flex gap-4 items-start">
+<div class="mono text-[10px] text-vital-emerald pt-1">02</div>
+<div class="flex-1">
+<div class="font-label-sm text-label-sm text-text-primary uppercase mb-1">The Proposal</div>
+<p class="text-[11px] text-on-surface-variant">High-fidelity typography cluster. Aura Teal focal point.</p>
+</div>
+</div>
+<!-- State 4 -->
+<div class="flex gap-4 items-start">
+<div class="mono text-[10px] text-vital-emerald pt-1">03</div>
+<div class="flex-1">
+<div class="font-label-sm text-label-sm text-text-primary uppercase mb-1">Bio-Handshake</div>
+<p class="text-[11px] text-on-surface-variant">Vital Emerald confirmation. Transaction complete.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Technical Pillars -->
+<section class="flex flex-col gap-6">
+<div class="flex items-center gap-2">
+<span class="text-aura-teal mono text-[10px]">04</span>
+<span class="uppercase font-label-sm text-label-sm tracking-widest text-on-surface-variant">Technical Pillars</span>
+</div>
+<div class="grid grid-cols-1 gap-px bg-surface-variant/20">
+<div class="p-4 bg-background border-b border-surface-variant/30">
+<div class="mono text-vital-emerald text-[11px] mb-1">SQLITE-VEC</div>
+<p class="text-[10px] text-on-surface-variant">Edge-local vector embedding for sub-10ms semantic retrieval.</p>
+</div>
+<div class="p-4 bg-background border-b border-surface-variant/30">
+<div class="mono text-vital-emerald text-[11px] mb-1">ADAPTIVE FIDELITY</div>
+<p class="text-[10px] text-on-surface-variant">Dynamic render scaling based on user focus-depth metrics.</p>
+</div>
+<div class="p-4 bg-background">
+<div class="mono text-vital-emerald text-[11px] mb-1">BIO-HANDSHAKE</div>
+<p class="text-[10px] text-on-surface-variant">Encrypted biometric verification layer for one-tap execution.</p>
+</div>
+</div>
+</section>
+<!-- Visual Tokens -->
+<section class="flex flex-col gap-6">
+<div class="flex items-center gap-2">
+<span class="text-aura-teal mono text-[10px]">05</span>
+<span class="uppercase font-label-sm text-label-sm tracking-widest text-on-surface-variant">Visual Tokens</span>
+</div>
+<!-- Color Grid -->
+<div class="grid grid-cols-2 gap-2">
+<div class="h-16 bg-aura-teal rounded flex flex-col justify-end p-2">
+<span class="mono text-[8px] text-white uppercase">Aura Teal</span>
+<span class="mono text-[8px] text-white/50">#008080</span>
+</div>
+<div class="h-16 bg-vital-emerald rounded flex flex-col justify-end p-2">
+<span class="mono text-[8px] text-black uppercase">Vital Emerald</span>
+<span class="mono text-[8px] text-black/50">#50C878</span>
+</div>
+<div class="h-16 bg-nexus-amber rounded flex flex-col justify-end p-2">
+<span class="mono text-[8px] text-black uppercase">Nexus Amber</span>
+<span class="mono text-[8px] text-black/50">#FFBF00</span>
+</div>
+<div class="h-16 bg-background border border-surface-variant rounded flex flex-col justify-end p-2">
+<span class="mono text-[8px] text-white uppercase">OLED Black</span>
+<span class="mono text-[8px] text-white/50">#000000</span>
+</div>
+</div>
+<!-- Typography -->
+<div class="space-y-4 pt-4">
+<div class="border-t border-surface-variant/30 pt-4">
+<div class="mono text-[8px] text-on-surface-variant mb-2">TYPOGRAPHY / INTER</div>
+<h3 class="font-headline-lg text-headline-lg text-text-primary">Display Light 24px</h3>
+</div>
+<div class="border-t border-surface-variant/30 pt-4">
+<div class="mono text-[8px] text-on-surface-variant mb-2">TECHNICAL / MONO</div>
+<p class="mono text-[12px] text-aura-teal tracking-tighter">JetBrains Mono Regular 12px</p>
+</div>
+</div>
+</section>
+<!-- Footer Seal -->
+<footer class="pt-12 text-center">
+<div class="flex justify-center mb-6">
+<span class="material-symbols-outlined text-vital-emerald text-4xl" data-icon="shield" data-weight="fill">shield</span>
+</div>
+<p class="mono text-[9px] text-on-surface-variant uppercase tracking-[0.4em]">Verified Architectural Integrity</p>
+<p class="mono text-[8px] opacity-30 mt-2">© 2024 VERVE SYSTEMS CORP. ALL RIGHTS RESERVED.</p>
+</footer>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 w-full z-50 flex justify-around items-center px-gutter pb-8 h-24 max-w-[300px] mx-auto left-0 right-0 bg-background/80 backdrop-blur-md rounded-t-xl">
+<a class="flex flex-col items-center justify-center text-on-surface-variant opacity-40 hover:text-aura-teal transition-all duration-300" href="#">
+<span class="material-symbols-outlined" data-icon="shield">shield</span>
+</a>
+<a class="flex flex-col items-center justify-center text-vital-emerald scale-110 hover:text-aura-teal transition-all duration-300" href="#">
+<span class="material-symbols-outlined" data-icon="graphic_eq">graphic_eq</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant opacity-40 hover:text-aura-teal transition-all duration-300" href="#">
+<span class="material-symbols-outlined" data-icon="timeline">timeline</span>
+</a>
+</nav>
+</body></html>

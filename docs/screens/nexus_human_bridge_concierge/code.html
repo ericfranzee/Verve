@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Human Bridge</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-surface-variant": "#bdc9c8",
+                        "on-primary": "#003737",
+                        "inverse-primary": "#006a6a",
+                        "on-tertiary-fixed": "#341100",
+                        "error": "#ffb4ab",
+                        "surface-container-highest": "#313635",
+                        "outline": "#879392",
+                        "inverse-surface": "#dfe3e2",
+                        "secondary-fixed": "#83fba5",
+                        "on-primary-fixed": "#002020",
+                        "on-background": "#dfe3e2",
+                        "tertiary-fixed": "#ffdbcb",
+                        "surface-bright": "#353a3a",
+                        "primary": "#76d6d5",
+                        "outline-variant": "#3e4949",
+                        "on-secondary-container": "#003115",
+                        "primary-container": "#008080",
+                        "secondary": "#66dd8b",
+                        "surface": "#101414",
+                        "secondary-fixed-dim": "#66dd8b",
+                        "surface-container-low": "#181c1c",
+                        "on-error-container": "#ffdad6",
+                        "surface-container-high": "#262b2b",
+                        "tertiary-container": "#a96039",
+                        "inverse-on-surface": "#2c3131",
+                        "tertiary-fixed-dim": "#ffb692",
+                        "on-primary-fixed-variant": "#004f4f",
+                        "aura-teal": "#008080",
+                        "on-primary-container": "#e3fffe",
+                        "background": "#000000",
+                        "on-error": "#690005",
+                        "on-tertiary-container": "#fff9f7",
+                        "primary-fixed-dim": "#76d6d5",
+                        "vital-emerald": "#50C878",
+                        "on-secondary-fixed": "#00210c",
+                        "error-container": "#93000a",
+                        "surface-container": "#1c2020",
+                        "primary-fixed": "#93f2f2",
+                        "secondary-container": "#25a55a",
+                        "tertiary": "#ffb692",
+                        "surface-container-lowest": "#0a0f0f",
+                        "surface-dim": "#101414",
+                        "on-tertiary": "#552000",
+                        "on-secondary-fixed-variant": "#005227",
+                        "text-primary": "#FFFFFF",
+                        "on-secondary": "#003919",
+                        "on-surface": "#dfe3e2",
+                        "surface-tint": "#76d6d5",
+                        "on-tertiary-fixed-variant": "#733512",
+                        "surface-variant": "#313635"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "1rem",
+                        "lg": "2rem",
+                        "xl": "3rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "container-max": "300px",
+                        "gutter": "1rem",
+                        "title-margin-top": "2rem",
+                        "tagline-margin-top": "0.5rem",
+                        "section-gap": "3rem"
+                    },
+                    "fontFamily": {
+                        "headline-lg": ["Inter"],
+                        "brand-title": ["Inter"],
+                        "body-md": ["Inter"],
+                        "brand-tagline": ["Inter"],
+                        "label-sm": ["Inter"],
+                        "mono": ["JetBrains Mono", "monospace"]
+                    },
+                    "fontSize": {
+                        "headline-lg": ["24px", { "lineHeight": "32px", "fontWeight": "300" }],
+                        "brand-title": ["32px", { "lineHeight": "1.2", "letterSpacing": "0.5rem", "fontWeight": "300" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "brand-tagline": ["12.8px", { "lineHeight": "1.5", "letterSpacing": "0.2rem", "fontWeight": "400" }],
+                        "label-sm": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05rem", "fontWeight": "500" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { background-color: #000000; color: #FFFFFF; }
+        .amber-glow {
+            box-shadow: inset 0 20px 40px -20px rgba(255, 191, 0, 0.15);
+        }
+        .nexus-border {
+            border: 8px solid rgba(0, 128, 128, 0.3); /* Aura Teal */
+            border-radius: 2rem;
+        }
+        .mono-text {
+            font-family: 'JetBrains Mono', monospace;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="min-h-screen flex flex-col items-center justify-start amber-glow overflow-x-hidden pt-8 pb-24 px-gutter">
+<!-- TopAppBar equivalent (Custom for this view) -->
+<header class="w-full max-w-container-max flex justify-between items-center mb-8">
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer">arrow_back</span>
+<h1 class="font-brand-title text-brand-title text-primary tracking-[0.5rem] uppercase text-center text-[16px]">HUMAN BRIDGE</h1>
+<span class="material-symbols-outlined text-on-surface-variant opacity-0">more_vert</span> <!-- Spacer -->
+</header>
+<main class="w-full max-w-container-max flex-1 flex flex-col gap-6">
+<!-- Nexus Lead Profile -->
+<div class="flex flex-col items-center justify-center gap-3">
+<div class="w-20 h-20 rounded-full overflow-hidden border-2 border-primary-container relative">
+<img alt="Nexus Lead Profile" class="w-full h-full object-cover" data-alt="A highly detailed, professional portrait of a confident male logistics coordinator set against a pure black background. The lighting is cinematic and dramatic, casting soft, cool teal highlights on his face to match the app's dark mode aesthetic. He wears a sleek, minimalist dark uniform. The overall mood is serious, competent, and technologically advanced, fitting a high-end delivery service." src="https://lh3.googleusercontent.com/aida-public/AB6AXuByZYCW9XeeOtv8a2cB_gQ9agVmFlEPkoBArQYI7SaZqYArzcG8aN6jasYG2MlcJ16uGymAZXF1Fj1s8fXY6mdWBnFAJZPXhC9pdqXsVhk6x3hoZZhrgmhnp5trCOk2xb5W77CMqAHPB4Rpop-2bOSitPuL5iw29FTMhaVf-do4Olwc8NHh0zzjqgZDSUxu-9H-tub0aHB-SBL_Z3B-m3u8cYj5UqTmDkkpDjLPALGyNfy2uczst9qHfad5y55Ghgut29DW10ipXfit"/>
+<div class="absolute bottom-1 right-1 w-4 h-4 bg-[#FFBF00] rounded-full border-2 border-black"></div>
+</div>
+<div class="text-center">
+<h2 class="mono-text text-[14px] font-medium text-text-primary uppercase tracking-wider">CHUKS - LEKKI HUB</h2>
+<div class="flex items-center justify-center gap-2 mt-1">
+<span class="w-2 h-2 rounded-full bg-[#FFBF00] animate-pulse"></span>
+<p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-widest">Verifying Connection</p>
+</div>
+</div>
+</div>
+<!-- Conversation Stream -->
+<div class="flex flex-col gap-4 mt-6">
+<!-- Aura Message -->
+<div class="flex flex-col items-start max-w-[85%]">
+<div class="flex items-center gap-2 mb-1">
+<span class="material-symbols-outlined text-primary text-[16px]">smart_toy</span>
+<span class="font-label-sm text-[10px] text-primary uppercase tracking-widest">Aura System</span>
+</div>
+<div class="bg-surface-variant rounded-2xl rounded-tl-sm p-4 border border-surface-bright">
+<p class="mono-text text-[13px] text-on-surface leading-relaxed">The last batch of tomatoes doesn't look great. I'm bringing in Chuks to resolve this.</p>
+</div>
+</div>
+<!-- Chuks Message -->
+<div class="flex flex-col items-end max-w-[85%] self-end mt-2">
+<div class="flex items-center gap-2 mb-1">
+<span class="font-label-sm text-[10px] text-[#FFBF00] uppercase tracking-widest">Lead Agent</span>
+<span class="material-symbols-outlined text-[#FFBF00] text-[16px]">support_agent</span>
+</div>
+<div class="bg-surface-container rounded-2xl rounded-tr-sm p-4 border border-outline-variant">
+<p class="mono-text text-[13px] text-text-primary leading-relaxed">Hi! I'm looking at the crate now. We have some organic cherry tomatoes instead—would you like those at no extra cost?</p>
+</div>
+</div>
+</div>
+<!-- Resolution Controls -->
+<div class="flex gap-3 mt-8">
+<button class="flex-1 bg-surface-variant text-text-primary border border-outline-variant rounded-full py-3 px-4 mono-text text-[12px] uppercase tracking-wider text-center hover:bg-surface-bright transition-colors">
+                Cancel Item
+            </button>
+<button class="flex-1 bg-primary-container text-on-primary-container rounded-full py-3 px-4 mono-text text-[12px] uppercase tracking-wider text-center font-medium hover:opacity-90 transition-opacity">
+                Confirm Swap
+            </button>
+</div>
+</main>
+<!-- Hybrid Input Bar -->
+<div class="fixed bottom-0 left-0 right-0 w-full flex justify-center bg-background border-t border-surface-variant p-4 pb-8">
+<div class="w-full max-w-container-max flex items-center gap-3">
+<div class="flex-1 bg-surface-container-low rounded-full px-4 py-3 border border-outline-variant flex items-center">
+<input class="bg-transparent border-none outline-none text-text-primary mono-text text-[13px] w-full placeholder-on-surface-variant focus:ring-0" placeholder="Type response..." type="text"/>
+</div>
+<button class="w-12 h-12 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center flex-shrink-0 hover:scale-95 transition-transform">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">mic</span>
+</button>
+</div>
+</div>
+</body></html>

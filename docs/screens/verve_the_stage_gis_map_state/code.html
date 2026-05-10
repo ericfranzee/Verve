@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "secondary-container": "#25a55a",
+                    "surface-dim": "#101414",
+                    "background": "#000000",
+                    "primary-fixed": "#93f2f2",
+                    "error": "#ffb4ab",
+                    "on-primary-container": "#e3fffe",
+                    "on-tertiary": "#552000",
+                    "on-primary": "#003737",
+                    "surface-container": "#1c2020",
+                    "surface-variant": "#313635",
+                    "surface": "#101414",
+                    "on-secondary-fixed-variant": "#005227",
+                    "tertiary": "#ffb692",
+                    "on-tertiary-container": "#fff9f7",
+                    "on-background": "#dfe3e2",
+                    "on-error-container": "#ffdad6",
+                    "on-primary-fixed-variant": "#004f4f",
+                    "secondary-fixed": "#83fba5",
+                    "primary-fixed-dim": "#76d6d5",
+                    "outline-variant": "#3e4949",
+                    "on-secondary": "#003919",
+                    "surface-container-highest": "#313635",
+                    "secondary-fixed-dim": "#66dd8b",
+                    "inverse-on-surface": "#2c3131",
+                    "on-tertiary-fixed": "#341100",
+                    "inverse-surface": "#dfe3e2",
+                    "primary-container": "#008080",
+                    "on-secondary-container": "#003115",
+                    "on-tertiary-fixed-variant": "#733512",
+                    "tertiary-fixed-dim": "#ffb692",
+                    "tertiary-container": "#a96039",
+                    "inverse-primary": "#006a6a",
+                    "on-error": "#690005",
+                    "surface-container-lowest": "#0a0f0f",
+                    "outline": "#879392",
+                    "surface-container-high": "#262b2b",
+                    "secondary": "#66dd8b",
+                    "text-primary": "#FFFFFF",
+                    "surface-bright": "#353a3a",
+                    "surface-tint": "#76d6d5",
+                    "on-secondary-fixed": "#00210c",
+                    "surface-container-low": "#181c1c",
+                    "primary": "#76d6d5",
+                    "vital-emerald": "#50C878",
+                    "on-surface": "#dfe3e2",
+                    "tertiary-fixed": "#ffdbcb",
+                    "on-surface-variant": "#bdc9c8",
+                    "aura-teal": "#008080",
+                    "on-primary-fixed": "#002020",
+                    "error-container": "#93000a"
+            },
+            "borderRadius": {
+                    "DEFAULT": "1rem",
+                    "lg": "2rem",
+                    "xl": "3rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "container-max": "300px",
+                    "section-gap": "3rem",
+                    "tagline-margin-top": "0.5rem",
+                    "gutter": "1rem",
+                    "title-margin-top": "2rem"
+            },
+            "fontFamily": {
+                    "brand-tagline": ["Inter"],
+                    "label-sm": ["Inter"],
+                    "brand-title": ["Inter"],
+                    "headline-lg": ["Inter"],
+                    "body-md": ["Inter"]
+            },
+            "fontSize": {
+                    "brand-tagline": ["12.8px", {"lineHeight": "1.5", "letterSpacing": "0.2rem", "fontWeight": "400"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05rem", "fontWeight": "500"}],
+                    "brand-title": ["32px", {"lineHeight": "1.2", "letterSpacing": "0.5rem", "fontWeight": "300"}],
+                    "headline-lg": ["24px", {"lineHeight": "32px", "fontWeight": "300"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            background-color: #000000;
+            color: #dfe3e2;
+            overflow-x: hidden;
+        }
+        .gis-canvas-gradient {
+            background: radial-gradient(circle at center, #101414 0%, #000000 100%);
+        }
+        .pulse-wave {
+            stroke-dasharray: 1000;
+            stroke-dashoffset: 1000;
+            animation: dash 5s linear infinite;
+        }
+        @keyframes dash {
+            to { stroke-dashoffset: 0; }
+        }
+        .nexus-glow {
+            box-shadow: 0 0 15px 2px rgba(80, 200, 120, 0.4);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="font-body-md text-body-md antialiased">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 flex justify-center items-center h-16 px-gutter bg-background transition-opacity duration-500">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-2xl" data-icon="bubble_chart">bubble_chart</span>
+<h1 class="font-brand-title text-brand-title text-primary tracking-[0.5rem]">VERVE</h1>
+</div>
+</header>
+<main class="flex flex-col items-center w-full min-h-screen">
+<!-- Morphing Viewport: The GIS Canvas (Top 60%) -->
+<section class="relative w-full h-[530px] gis-canvas-gradient flex flex-col items-center justify-center overflow-hidden">
+<!-- Custom Vector Map Container -->
+<div class="absolute inset-0 w-full h-full opacity-60">
+<img alt="Minimalist dark mode map layout" class="w-full h-full object-cover grayscale invert contrast-125" data-alt="A high-end, minimalist dark mode vector map of a coastal city like Lagos. The aesthetic is absolute black with thin, subtle charcoal grey lines for roads. The composition is clean and utilitarian, emphasizing spatial clarity. Faint glows of amber and crimson light emanate from specific road segments, suggesting heavy traffic flow. The lighting is low-key and architectural, maintaining a premium OLED-optimized atmosphere." data-location="Lagos, Nigeria" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBdjNEWfUdgiwQuy-2qz8pLlWFQjkI8pPxJTjkt7MEWzDjIUdPU-NJPmVulbjpVpdBOHd40N4r618W7RvFEUgSK1oPC64GfMZFFpzDkpdV538zMo1X8E0ATEQ0IlwR0UD0uDuB9IT5CqtzKsiWLKr5ucjgoHfKYhM2kpmryfRB4TzIxR3WfVPyoPDqNTzkWwUfOGH8XPZ9Ps-5HeGQ52HW-zHqUrx0OCS8rA2Vf1i32c7CUQB-JIuy_4fEnwsKO2tx2gAVcUVzg_XE-"/>
+</div>
+<!-- Route and Indicators Layer -->
+<svg class="absolute inset-0 w-full h-full pointer-events-none" fill="none" viewbox="0 0 400 800">
+<!-- The Route Line -->
+<path class="opacity-50" d="M 200 600 Q 150 450 250 350 T 200 150" stroke="#008080" stroke-linecap="round" stroke-width="4"></path>
+<path class="opacity-20 blur-sm" d="M 200 600 Q 150 450 250 350 T 200 150" stroke="#008080" stroke-linecap="round" stroke-width="8"></path>
+<!-- Traffic Heatmap Nodes -->
+<circle class="opacity-40" cx="220" cy="400" fill="url(#trafficGradientAmber)" r="15"></circle>
+<circle class="opacity-30" cx="230" cy="380" fill="url(#trafficGradientRed)" r="10"></circle>
+<defs>
+<radialgradient id="trafficGradientAmber">
+<stop offset="0%" stop-color="#FFBF00"></stop>
+<stop offset="100%" stop-color="#FFBF00" stop-opacity="0"></stop>
+</radialgradient>
+<radialgradient id="trafficGradientRed">
+<stop offset="0%" stop-color="#FF0000"></stop>
+<stop offset="100%" stop-color="#FF0000" stop-opacity="0"></stop>
+</radialgradient>
+</defs>
+</svg>
+<!-- Floating Map Overlays -->
+<div class="relative w-full h-full max-w-container-max mx-auto">
+<!-- The Hub (Start) -->
+<div class="absolute bottom-[20%] left-1/2 -translate-x-1/2 flex flex-col items-center animate-pulse">
+<div class="w-10 h-10 rounded-full border-4 border-aura-teal flex items-center justify-center bg-background">
+<span class="material-symbols-outlined text-aura-teal text-xl" data-icon="bubble_chart">bubble_chart</span>
+</div>
+</div>
+<!-- The Rider (Moving) -->
+<div class="absolute top-[40%] right-[10%] flex flex-col items-center">
+<div class="w-8 h-8 flex items-center justify-center text-vital-emerald rotate-[-45deg]">
+<span class="material-symbols-outlined text-3xl font-bold" data-icon="navigation" style="font-variation-settings: 'FILL' 1;">navigation</span>
+</div>
+</div>
+<!-- User Location (Destination) -->
+<div class="absolute top-[15%] left-1/2 -translate-x-1/2 flex flex-col items-center">
+<div class="w-3 h-3 bg-text-primary rounded-full ring-4 ring-text-primary/20"></div>
+</div>
+<!-- ETA Badge -->
+<div class="absolute top-20 right-4 px-4 py-2 bg-surface-container rounded-lg border border-outline-variant/30 backdrop-blur-md">
+<p class="font-label-sm text-label-sm text-text-primary uppercase tracking-widest">ETA: 14 MINS</p>
+</div>
+</div>
+</section>
+<!-- Sentinel Zone (Bottom 40%) -->
+<section class="flex flex-col items-center justify-between w-full h-[353px] bg-background pt-12 pb-24 px-gutter max-w-container-max mx-auto text-center">
+<!-- Aura Breathing Wave -->
+<div class="w-full flex justify-center items-center mb-8">
+<svg class="w-full max-w-[200px]" viewbox="0 0 200 40">
+<path class="opacity-30" d="M 0 20 Q 50 20 100 20 Q 150 20 200 20" stroke="#008080" stroke-linecap="round" stroke-width="2"></path>
+<path class="opacity-20 blur-sm" d="M 0 20 C 50 15, 75 25, 100 20 S 150 15, 200 20" fill="none" stroke="#008080" stroke-linecap="round" stroke-width="8"></path>
+<!-- The Nexus -->
+<circle class="nexus-glow" cx="100" cy="20" fill="#50C878" r="4"></circle>
+</svg>
+</div>
+<div class="space-y-6">
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+                    The rider has left the <span class="text-aura-teal font-medium">Lekki Hub</span>. I've accounted for the traffic on the Third Mainland Bridge—estimated arrival in 14 minutes.
+                </p>
+<div class="flex justify-center gap-12 mt-4">
+<div class="flex flex-col items-center gap-1 opacity-60">
+<span class="material-symbols-outlined text-aura-teal" data-icon="shield">shield</span>
+<span class="text-[10px] uppercase tracking-widest text-on-surface-variant font-label-sm">Secure</span>
+</div>
+<div class="flex flex-col items-center gap-1">
+<span class="material-symbols-outlined text-vital-emerald" data-icon="vital_signs" style="font-variation-settings: 'FILL' 1;">vital_signs</span>
+<span class="text-[10px] uppercase tracking-widest text-vital-emerald font-label-sm">Active</span>
+</div>
+</div>
+</div>
+<!-- Vault and Pulse Quick Access -->
+<div class="flex justify-between w-full mt-auto pt-8">
+<button class="w-12 h-12 flex items-center justify-center rounded-full border border-outline-variant hover:border-aura-teal transition-colors">
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="lock">lock</span>
+</button>
+<button class="w-12 h-12 flex items-center justify-center rounded-full border border-outline-variant hover:border-aura-teal transition-colors">
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="settings_input_antenna">settings_input_antenna</span>
+</button>
+</div>
+</section>
+</main>
+<!-- BottomNavBar (Fulfillment Status - Mapping Timeline) -->
+<nav class="fixed bottom-0 w-full z-50 flex justify-around items-center px-gutter pb-8 h-24 max-w-[300px] mx-auto left-0 right-0 bg-background/80 backdrop-blur-md rounded-t-xl">
+<!-- Shield Tab -->
+<div class="flex flex-col items-center justify-center text-on-surface-variant opacity-40 hover:text-aura-teal transition-all duration-300">
+<span class="material-symbols-outlined text-2xl" data-icon="shield">shield</span>
+</div>
+<!-- Graphic Eq Tab -->
+<div class="flex flex-col items-center justify-center text-on-surface-variant opacity-40 hover:text-aura-teal transition-all duration-300">
+<span class="material-symbols-outlined text-2xl" data-icon="graphic_eq">graphic_eq</span>
+</div>
+<!-- Timeline Tab (Active Mapping to Fulfillment) -->
+<div class="flex flex-col items-center justify-center text-vital-emerald scale-110 active:scale-125 transition-transform duration-300 ease-out">
+<span class="material-symbols-outlined text-2xl" data-icon="timeline" style="font-variation-settings: 'FILL' 1;">timeline</span>
+</div>
+</nav>
+</body></html>

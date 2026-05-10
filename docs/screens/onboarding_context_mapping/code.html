@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&amp;family=JetBrains+Mono:wght@400&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .pulse-wave {
+            stroke-dasharray: 1000;
+            stroke-dashoffset: 0;
+        }
+        .ledger-mono {
+            font-family: 'JetBrains Mono', monospace;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-variant": "#313635",
+                        "inverse-primary": "#006a6a",
+                        "on-background": "#dfe3e2",
+                        "on-tertiary-fixed-variant": "#733512",
+                        "inverse-on-surface": "#2c3131",
+                        "surface-container-high": "#262b2b",
+                        "surface": "#101414",
+                        "primary-fixed-dim": "#76d6d5",
+                        "aura-teal": "#008080",
+                        "surface-dim": "#101414",
+                        "text-primary": "#FFFFFF",
+                        "tertiary-container": "#a96039",
+                        "error-container": "#93000a",
+                        "on-tertiary-container": "#fff9f7",
+                        "on-secondary-fixed": "#00210c",
+                        "on-primary": "#003737",
+                        "tertiary-fixed": "#ffdbcb",
+                        "tertiary-fixed-dim": "#ffb692",
+                        "secondary": "#66dd8b",
+                        "secondary-container": "#25a55a",
+                        "surface-tint": "#76d6d5",
+                        "surface-container-low": "#181c1c",
+                        "inverse-surface": "#dfe3e2",
+                        "error": "#ffb4ab",
+                        "outline": "#879392",
+                        "on-error-container": "#ffdad6",
+                        "primary-fixed": "#93f2f2",
+                        "on-primary-fixed": "#002020",
+                        "vital-emerald": "#50C878",
+                        "on-tertiary-fixed": "#341100",
+                        "outline-variant": "#3e4949",
+                        "on-secondary": "#003919",
+                        "surface-container": "#1c2020",
+                        "secondary-fixed": "#83fba5",
+                        "tertiary": "#ffb692",
+                        "surface-container-highest": "#313635",
+                        "on-primary-container": "#e3fffe",
+                        "secondary-fixed-dim": "#66dd8b",
+                        "background": "#000000",
+                        "on-secondary-fixed-variant": "#005227",
+                        "primary-container": "#008080",
+                        "on-error": "#690005",
+                        "on-surface-variant": "#bdc9c8",
+                        "surface-bright": "#353a3a",
+                        "on-surface": "#dfe3e2",
+                        "primary": "#76d6d5",
+                        "on-tertiary": "#552000",
+                        "on-primary-fixed-variant": "#004f4f",
+                        "on-secondary-container": "#003115",
+                        "surface-container-lowest": "#0a0f0f"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "1rem",
+                        "lg": "2rem",
+                        "xl": "3rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "tagline-margin-top": "0.5rem",
+                        "title-margin-top": "2rem",
+                        "section-gap": "3rem",
+                        "container-max": "300px",
+                        "gutter": "1rem"
+                    },
+                    "fontFamily": {
+                        "brand-tagline": ["Inter"],
+                        "body-md": ["Inter"],
+                        "label-sm": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "brand-title": ["Inter"]
+                    },
+                    "fontSize": {
+                        "brand-tagline": ["12.8px", {"lineHeight": "1.5", "letterSpacing": "0.2rem", "fontWeight": "400"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05rem", "fontWeight": "500"}],
+                        "headline-lg": ["24px", {"lineHeight": "32px", "fontWeight": "300"}],
+                        "brand-title": ["32px", {"lineHeight": "1.2", "letterSpacing": "0.5rem", "fontWeight": "300"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-surface font-body-md selection:bg-aura-teal/30">
+<!-- TopAppBar Navigation Shell -->
+<header class="fixed top-0 w-full z-50 flex justify-center items-center h-16 px-gutter bg-background transition-opacity duration-500">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-primary text-2xl" data-icon="bubble_chart">bubble_chart</span>
+<h1 class="font-brand-title text-brand-title text-primary tracking-[0.5rem]">VERVE</h1>
+</div>
+</header>
+<main class="min-h-screen flex flex-col items-center pt-24 pb-32 px-gutter">
+<div class="w-full max-w-[300px] flex flex-col items-center">
+<!-- Aura Wave Interface (The Pulse) -->
+<div class="w-full h-24 mb-title-margin-top flex items-center justify-center relative">
+<svg class="w-full overflow-visible" viewbox="0 0 300 60">
+<path class="pulse-wave" d="M0 30 Q75 10 150 30 T300 30" fill="none" stroke="#008080" stroke-linecap="round" stroke-width="8"></path>
+<!-- Nexus Core -->
+<circle class="animate-pulse" cx="150" cy="35" fill="#50C878" r="6"></circle>
+</svg>
+</div>
+<!-- Aura Voice Context -->
+<section class="text-center mb-section-gap">
+<p class="font-headline-lg text-headline-lg text-on-surface leading-relaxed italic">
+                    "I'm ready to learn your rhythm. Where shall we anchor your first provisioning event?"
+                </p>
+</section>
+<!-- Cognitive Preferences Ledger -->
+<section class="w-full flex flex-col gap-8">
+<div class="flex justify-between items-end border-b border-surface-variant pb-2">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-widest">Cognitive Preferences</span>
+<span class="font-label-sm text-label-sm text-primary">03 / 12</span>
+</div>
+<div class="flex flex-col gap-6 w-full">
+<!-- Preference Item 1 -->
+<button class="flex flex-col items-start w-full group transition-all duration-300">
+<div class="flex justify-between w-full items-center mb-1">
+<span class="ledger-mono text-primary text-[14px] tracking-tighter">[DIETARY]</span>
+<span class="font-label-sm text-label-sm text-surface-variant uppercase">Pending</span>
+</div>
+<div class="w-full h-[8px] bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-surface-variant w-1/4 group-hover:bg-aura-teal transition-colors"></div>
+</div>
+</button>
+<!-- Preference Item 2 -->
+<button class="flex flex-col items-start w-full group transition-all duration-300">
+<div class="flex justify-between w-full items-center mb-1">
+<span class="ledger-mono text-primary text-[14px] tracking-tighter">[FULFILLMENT HUB]</span>
+<span class="font-label-sm text-label-sm text-surface-variant uppercase">Pending</span>
+</div>
+<div class="w-full h-[8px] bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-surface-variant w-1/6 group-hover:bg-aura-teal transition-colors"></div>
+</div>
+</button>
+<!-- Preference Item 3 -->
+<button class="flex flex-col items-start w-full group transition-all duration-300">
+<div class="flex justify-between w-full items-center mb-1">
+<span class="ledger-mono text-primary text-[14px] tracking-tighter">[PAYMENT CASCADE]</span>
+<span class="font-label-sm text-label-sm text-surface-variant uppercase">Pending</span>
+</div>
+<div class="w-full h-[8px] bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-surface-variant w-1/3 group-hover:bg-aura-teal transition-colors"></div>
+</div>
+</button>
+</div>
+</section>
+<!-- Interaction Prompt -->
+<div class="mt-section-gap w-full flex justify-center">
+<button class="border-2 border-aura-teal px-8 py-3 rounded-full group hover:bg-aura-teal transition-all duration-500">
+<span class="font-label-sm text-label-sm text-text-primary uppercase tracking-[0.2rem]">Initiate Sync</span>
+</button>
+</div>
+</div>
+</main>
+<!-- Contextual Decorative Imagery (Subtle) -->
+<div class="fixed inset-0 pointer-events-none opacity-20 z-[-1] overflow-hidden">
+<img alt="" class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full object-cover mix-blend-overlay grayscale" data-alt="A macro photograph of fluid, dark viscous liquid moving in a rhythmic, organic wave pattern. The lighting is low-key, highlighting subtle textures of the liquid's surface against an absolute black background. The overall aesthetic is minimalist and serene, mirroring a boutique digital environment with deep shadows and sophisticated, atmospheric dimming in tones of charcoal and obsidian." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCbTC4HIOeWDOudrJyul9T_AR53-xhmqpYWcrRHa1AtT8mJHdZsB4d2xyx5IsYS0auNYJM_pbo8VhMfrICXpPXfhrCTz8jWgPNQqgvSoPN5pFBiTiDT4v-urTmuqJ8JrxzjI4pLCevGFDMBUktgkSU5e6zwupVlUtKK4xoRTYMqSsZYgKC66zdiWmFqgv0FIQmccHg1pCnPR-qjh9rt1iT_E_yZaReCLV3sLObCSSN9Qtq8zLcr9_jBmlHcwNBWyAAOfExsId7Vn5eV"/>
+</div>
+</body></html>

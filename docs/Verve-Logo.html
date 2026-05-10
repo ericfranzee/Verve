@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verve Logo Concept</title>
+    <style>
+        body {
+            background-color: #000000; /* True black background for OLED/Premium feel */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            color: #ffffff;
+            flex-direction: column;
+        }
+
+        .logo-container {
+            width: 300px;
+            height: 300px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .brand-text {
+            margin-top: 2rem;
+            font-size: 2rem;
+            font-weight: 300;
+            letter-spacing: 0.5rem;
+            color: #ffffff;
+            text-transform: uppercase;
+        }
+
+        .brand-tagline {
+            margin-top: 0.5rem;
+            font-size: 0.8rem;
+            font-weight: 400;
+            letter-spacing: 0.2rem;
+            color: #008080; /* Aura Teal */
+            text-transform: uppercase;
+        }
+
+        /* The SVG Styling */
+        .verve-svg {
+            width: 100%;
+            height: 100%;
+            overflow: visible;
+        }
+
+        .pulse-path {
+            fill: none;
+            stroke: #008080; /* Aura Teal */
+            stroke-width: 8;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+        
+        .pulse-core {
+            fill: #50C878; /* Vital Emerald for the center 'completion' dot */
+        }
+    </style>
+</head>
+<body>
+
+    <div class="logo-container">
+        <!-- 
+            Verve Logo Concept: "The Pulse & The Valley"
+            Meaning: 
+            1. The outer shape forms an abstract 'V' for Verve.
+            2. The line is continuous, representing the "Breathing Wave" (Aura VUI).
+            3. The dip represents the "Valley" of cognitive load (we take the burden).
+            4. The central dot represents the "Nexus" - the physical hub and the outcome (Vitality).
+        -->
+        <svg class="verve-svg" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+            <!-- The Continuous Aura Wave forming a 'V' -->
+            <path class="pulse-path" d="M 20 80 Q 50 80, 70 120 L 100 170 L 130 120 Q 150 80, 180 80" />
+            
+            <!-- The Nexus/Vitality Core -->
+            <circle class="pulse-core" cx="100" cy="110" r="12" />
+        </svg>
+    </div>
+
+    <div class="brand-text">VERVE</div>
+    <div class="brand-tagline">Life, Provisioned.</div>
+
+</body>
+</html>

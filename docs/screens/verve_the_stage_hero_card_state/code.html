@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>VERVE - The Stage</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "secondary-container": "#25a55a",
+                    "surface-dim": "#101414",
+                    "background": "#000000",
+                    "primary-fixed": "#93f2f2",
+                    "error": "#ffb4ab",
+                    "on-primary-container": "#e3fffe",
+                    "on-tertiary": "#552000",
+                    "on-primary": "#003737",
+                    "surface-container": "#1c2020",
+                    "surface-variant": "#313635",
+                    "surface": "#101414",
+                    "on-secondary-fixed-variant": "#005227",
+                    "tertiary": "#ffb692",
+                    "on-tertiary-container": "#fff9f7",
+                    "on-background": "#dfe3e2",
+                    "on-error-container": "#ffdad6",
+                    "on-primary-fixed-variant": "#004f4f",
+                    "secondary-fixed": "#83fba5",
+                    "primary-fixed-dim": "#76d6d5",
+                    "outline-variant": "#3e4949",
+                    "on-secondary": "#003919",
+                    "surface-container-highest": "#313635",
+                    "secondary-fixed-dim": "#66dd8b",
+                    "inverse-on-surface": "#2c3131",
+                    "on-tertiary-fixed": "#341100",
+                    "inverse-surface": "#dfe3e2",
+                    "primary-container": "#008080",
+                    "on-secondary-container": "#003115",
+                    "on-tertiary-fixed-variant": "#733512",
+                    "tertiary-fixed-dim": "#ffb692",
+                    "tertiary-container": "#a96039",
+                    "inverse-primary": "#006a6a",
+                    "on-error": "#690005",
+                    "surface-container-lowest": "#0a0f0f",
+                    "outline": "#879392",
+                    "surface-container-high": "#262b2b",
+                    "secondary": "#66dd8b",
+                    "text-primary": "#FFFFFF",
+                    "surface-bright": "#353a3a",
+                    "surface-tint": "#76d6d5",
+                    "on-secondary-fixed": "#00210c",
+                    "surface-container-low": "#181c1c",
+                    "primary": "#76d6d5",
+                    "vital-emerald": "#50C878",
+                    "on-surface": "#dfe3e2",
+                    "tertiary-fixed": "#ffdbcb",
+                    "on-surface-variant": "#bdc9c8",
+                    "aura-teal": "#008080",
+                    "on-primary-fixed": "#002020",
+                    "error-container": "#93000a"
+            },
+            "borderRadius": {
+                    "DEFAULT": "1rem",
+                    "lg": "2rem",
+                    "xl": "3rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "container-max": "300px",
+                    "section-gap": "3rem",
+                    "tagline-margin-top": "0.5rem",
+                    "gutter": "1rem",
+                    "title-margin-top": "2rem"
+            },
+            "fontFamily": {
+                    "brand-tagline": ["Inter"],
+                    "label-sm": ["Inter"],
+                    "brand-title": ["Inter"],
+                    "headline-lg": ["Inter"],
+                    "body-md": ["Inter"]
+            },
+            "fontSize": {
+                    "brand-tagline": ["12.8px", {"lineHeight": "1.5", "letterSpacing": "0.2rem", "fontWeight": "400"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05rem", "fontWeight": "500"}],
+                    "brand-title": ["32px", {"lineHeight": "1.2", "letterSpacing": "0.5rem", "fontWeight": "300"}],
+                    "headline-lg": ["24px", {"lineHeight": "32px", "fontWeight": "300"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            background-color: #000000;
+            color: #dfe3e2;
+            font-family: 'Inter', sans-serif;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .speaking-wave {
+            stroke-dasharray: 1000;
+            stroke-dashoffset: 0;
+            filter: drop-shadow(0 0 8px rgba(0, 128, 128, 0.4));
+        }
+        .hero-shadow {
+            box-shadow: 0 0 40px rgba(0,0,0,0.8);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="flex flex-col items-center min-h-screen overflow-hidden">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 flex justify-center items-center h-16 px-gutter bg-background">
+<div class="flex items-center justify-center space-x-2">
+<span class="material-symbols-outlined text-primary text-brand-title" data-icon="bubble_chart">bubble_chart</span>
+<h1 class="font-brand-title text-brand-title text-primary tracking-[0.5rem]">VERVE</h1>
+</div>
+</header>
+<!-- Morphing Viewport (Top 60%) -->
+<main class="w-full max-w-[300px] flex-1 flex flex-col justify-center pt-20 pb-8 h-[530px]">
+<div class="relative w-full aspect-[3/4] rounded-lg overflow-hidden hero-shadow bg-surface-container-lowest border border-white/5">
+<img class="absolute inset-0 w-full h-full object-cover opacity-90" data-alt="A high-fidelity macro photograph of a fresh, raw Atlantic salmon fillet resting on a dark slate surface. The lighting is dramatic and premium, highlighting the moist, orange-pink crystalline texture of the fish and its delicate fat lines. The overall aesthetic is ultra-minimalist and boutique, utilizing a color palette of deep blacks and vibrant coral-oranges to create a sense of extreme freshness and organic luxury." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAe457M44rJ5pIZE_s7WgYzQ_YF5C91gkRB5THEImRsTH2UU-TQpqHHRn4wqQY5udGT0KcKYEzl3mxcDmI5EjPPXrs89COkplLHesqjv50iVaeGScJ3CmoJh-pxDlhf-OpU1tz_0ZsDrJ9k-1MWNeLgrJ_6OFacRQvPFNwb1cqDYpGWkYHZSLDLjXe1stnR-AkYso5enILhI4nhoateVMx_ynvYNpstwrySIeo8ZoWIM40VmnyFW6qa1az_xgpJce5zMYGTz5tiRmvT"/>
+<!-- Information Overlays -->
+<div class="absolute inset-0 p-6 flex flex-col justify-between pointer-events-none">
+<!-- Top Left: Price -->
+<div class="self-start">
+<span class="text-white font-brand-title text-headline-lg bg-black/20 backdrop-blur-md px-3 py-1 rounded-sm">₦12,500</span>
+</div>
+<div class="flex flex-col space-y-4">
+<!-- Bottom Left: Origin Tag -->
+<div class="flex flex-col">
+<span class="font-label-sm text-[10px] uppercase tracking-widest text-on-surface-variant opacity-70">Verve Origin</span>
+<span class="font-body-md text-white text-sm">Sourced: 6hrs ago, Lagos Hub</span>
+</div>
+<!-- Bottom Right: Vitality Score -->
+<div class="self-end">
+<div class="flex items-center space-x-2 bg-vital-emerald px-3 py-1.5 rounded-full">
+<span class="material-symbols-outlined text-black text-xs" data-icon="bolt" style="font-variation-settings: 'FILL' 1;">bolt</span>
+<span class="text-black font-label-sm text-[10px] uppercase font-bold tracking-tighter">+High Protein</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Sentinel Zone (Bottom 40%) -->
+<section class="w-full max-w-[300px] h-[353px] flex flex-col items-center justify-start text-center px-4 relative">
+<!-- Aura Spoken Response -->
+<div class="mb-12">
+<p class="font-body-md text-on-surface-variant text-sm leading-relaxed tracking-tight">
+                "I've staged the Salmon. It was sourced fresh from the Lagos Hub just 6 hours ago."
+            </p>
+</div>
+<!-- The Pulse / Aura Breathing Wave (Speaking State) -->
+<div class="w-full flex flex-col items-center mb-24">
+<svg class="w-full h-16" fill="none" viewbox="0 0 300 64" xmlns="http://www.w3.org/2000/svg">
+<path class="speaking-wave" d="M0 32C30 32 45 4 75 4C105 4 120 32 150 32C180 32 195 60 225 60C255 60 270 32 300 32" stroke="#008080" stroke-linecap="round" stroke-width="8"></path>
+<circle class="nexus-core" cx="150" cy="32" fill="#50C878" r="6"></circle>
+</svg>
+</div>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 w-full z-50 flex justify-around items-center px-gutter pb-8 h-24 max-w-[300px] mx-auto left-0 right-0 bg-background/80 backdrop-blur-md rounded-t-xl">
+<div class="flex flex-col items-center justify-center text-on-surface-variant opacity-40 hover:text-aura-teal transition-all duration-300">
+<span class="material-symbols-outlined" data-icon="shield">shield</span>
+</div>
+<!-- Central Active Trigger for Current View -->
+<div class="flex flex-col items-center justify-center text-vital-emerald scale-110 active:scale-125 transition-transform duration-300 ease-out">
+<span class="material-symbols-outlined" data-icon="graphic_eq" style="font-variation-settings: 'FILL' 1;">graphic_eq</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant opacity-40 hover:text-aura-teal transition-all duration-300">
+<span class="material-symbols-outlined" data-icon="timeline">timeline</span>
+</div>
+</nav>
+</section>
+</body></html>

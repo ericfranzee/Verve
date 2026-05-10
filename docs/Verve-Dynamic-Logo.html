@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verve Dynamic Logo & Splash</title>
+    <style>
+        /* Base Reset & Typography */
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100vh;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Container for Dark & Light Themes */
+        .theme-container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        .dark-theme {
+            background-color: #000000;
+            color: #ffffff;
+        }
+
+        .light-theme {
+            background-color: #f8f9fa;
+            color: #1a1a1a;
+            border-top: 1px solid #e0e0e0;
+        }
+
+        /* Branding Text */
+        .brand-text {
+            margin-top: 2rem;
+            font-size: 2rem;
+            font-weight: 300;
+            letter-spacing: 0.5rem;
+            text-transform: uppercase;
+            opacity: 0;
+            animation: fadeInText 1s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+            animation-delay: 2.5s;
+        }
+
+        .brand-tagline {
+            margin-top: 0.5rem;
+            font-size: 0.8rem;
+            font-weight: 400;
+            letter-spacing: 0.2rem;
+            color: #008080;
+            text-transform: uppercase;
+            opacity: 0;
+            animation: fadeInText 1s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+            animation-delay: 2.8s;
+        }
+
+        /* SVG Layout */
+        .logo-container {
+            width: 250px;
+            height: 250px;
+            position: relative;
+        }
+
+        .verve-svg {
+            width: 100%;
+            height: 100%;
+            overflow: visible;
+        }
+
+        /* Animation Logic: The "Aura Flow" to "Nexus Truth"
+           1. The line starts as a flat "breathing" wave (listening).
+           2. It morphs into the "V" shape (understanding/intent).
+           3. The Nexus dot appears and settles (the physical truth/fulfillment).
+        */
+
+        .pulse-path {
+            fill: none;
+            stroke: #008080; /* Aura Teal */
+            stroke-width: 8;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            /* Start as a flat wave, animate to the V */
+            d: path("M 20 100 Q 50 100, 100 100 L 100 100 L 100 100 Q 150 100, 180 100");
+            animation: formVerve 2s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+            animation-delay: 0.5s;
+        }
+
+        .pulse-core {
+            fill: #50C878; /* Vital Emerald */
+            opacity: 0;
+            transform-origin: center;
+            transform: scale(0) translateY(-20px);
+            animation: dropNexus 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+            animation-delay: 2s;
+        }
+
+        /* Theme Specific Adjustments */
+        .light-theme .pulse-path {
+            stroke: #005959; /* Slightly darker teal for light mode contrast */
+        }
+        
+        .light-theme .pulse-core {
+            fill: #3b9b5a; /* Slightly darker emerald for light mode */
+        }
+
+        /* Keyframes */
+        @keyframes formVerve {
+            0% {
+                d: path("M 20 100 Q 50 100, 100 100 L 100 100 L 100 100 Q 150 100, 180 100");
+            }
+            40% {
+                /* Simulating the "thinking" ripple before forming the shape */
+                d: path("M 20 100 Q 50 80, 80 120 L 100 100 L 120 120 Q 150 80, 180 100");
+            }
+            100% {
+                /* The Final V Shape */
+                d: path("M 20 80 Q 50 80, 70 120 L 100 170 L 130 120 Q 150 80, 180 80");
+            }
+        }
+
+        @keyframes dropNexus {
+            0% {
+                opacity: 0;
+                transform: scale(0) translateY(-40px);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+
+        @keyframes fadeInText {
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* Theme Label */
+        .theme-label {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            font-size: 0.7rem;
+            letter-spacing: 0.1rem;
+            opacity: 0.5;
+            text-transform: uppercase;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- DARK THEME SECTION (Primary Brand Environment) -->
+    <div class="theme-container dark-theme">
+        <div class="theme-label">Dark Environment (Primary)</div>
+        <div class="logo-container">
+            <svg class="verve-svg" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                <!-- The Dynamic Wave -->
+                <path class="pulse-path" />
+                <!-- The Nexus Dot -->
+                <circle class="pulse-core" cx="100" cy="110" r="12" />
+            </svg>
+        </div>
+        <div class="brand-text">VERVE</div>
+        <div class="brand-tagline">Life, Provisioned.</div>
+    </div>
+
+    <!-- LIGHT THEME SECTION (Ancillary/Accessibility Environment) -->
+    <div class="theme-container light-theme">
+        <div class="theme-label">Light Environment (Adaptive)</div>
+        <div class="logo-container">
+            <svg class="verve-svg" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                <!-- The Dynamic Wave -->
+                <path class="pulse-path" />
+                <!-- The Nexus Dot -->
+                <circle class="pulse-core" cx="100" cy="110" r="12" />
+            </svg>
+        </div>
+        <div class="brand-text">VERVE</div>
+        <div class="brand-tagline">Life, Provisioned.</div>
+    </div>
+
+    <script>
+        // Optional logic: Restart animation on click to demonstrate the splash screen effect
+        document.querySelectorAll('.theme-container').forEach(container => {
+            container.addEventListener('click', () => {
+                const svg = container.querySelector('.verve-svg');
+                const text = container.querySelector('.brand-text');
+                const tagline = container.querySelector('.brand-tagline');
+                
+                // Force reflow to restart animations
+                svg.style.animation = 'none';
+                text.style.animation = 'none';
+                tagline.style.animation = 'none';
+                
+                svg.offsetHeight; /* trigger reflow */
+                
+                svg.style.animation = null; 
+                text.style.animation = null;
+                tagline.style.animation = null;
+            });
+        });
+    </script>
+</body>
+</html>

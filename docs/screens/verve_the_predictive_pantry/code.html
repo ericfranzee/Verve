@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Verve - Predictive Pantry</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .font-mono-precision { font-family: 'JetBrains Mono', monospace; }
+        .pulse-wave {
+            stroke-dasharray: 1000;
+            stroke-dashoffset: 0;
+        }
+        .tonal-emergence {
+            background: linear-gradient(180deg, rgba(28, 32, 32, 0.4) 0%, rgba(0, 0, 0, 1) 100%);
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "vital-emerald": "#50C878",
+                        "tertiary-fixed": "#ffdbcb",
+                        "secondary": "#66dd8b",
+                        "on-secondary": "#003919",
+                        "surface-container-low": "#181c1c",
+                        "error-container": "#93000a",
+                        "on-background": "#dfe3e2",
+                        "inverse-primary": "#006a6a",
+                        "secondary-fixed": "#83fba5",
+                        "on-tertiary": "#552000",
+                        "on-surface-variant": "#bdc9c8",
+                        "surface-bright": "#353a3a",
+                        "surface-dim": "#101414",
+                        "on-secondary-fixed": "#00210c",
+                        "inverse-surface": "#dfe3e2",
+                        "primary-container": "#008080",
+                        "inverse-on-surface": "#2c3131",
+                        "primary": "#76d6d5",
+                        "on-surface": "#dfe3e2",
+                        "on-error-container": "#ffdad6",
+                        "surface": "#101414",
+                        "surface-container-highest": "#313635",
+                        "error": "#ffb4ab",
+                        "tertiary": "#ffb692",
+                        "secondary-fixed-dim": "#66dd8b",
+                        "on-tertiary-container": "#fff9f7",
+                        "tertiary-container": "#a96039",
+                        "background": "#000000",
+                        "on-primary-fixed-variant": "#004f4f",
+                        "outline": "#879392",
+                        "secondary-container": "#25a55a",
+                        "on-primary": "#003737",
+                        "tertiary-fixed-dim": "#ffb692",
+                        "on-primary-container": "#e3fffe",
+                        "primary-fixed-dim": "#76d6d5",
+                        "on-error": "#690005",
+                        "surface-tint": "#76d6d5",
+                        "surface-container": "#1c2020",
+                        "on-primary-fixed": "#002020",
+                        "surface-variant": "#313635",
+                        "surface-container-lowest": "#0a0f0f",
+                        "surface-container-high": "#262b2b",
+                        "outline-variant": "#3e4949",
+                        "text-primary": "#FFFFFF",
+                        "on-secondary-fixed-variant": "#005227",
+                        "aura-teal": "#008080",
+                        "on-tertiary-fixed": "#341100",
+                        "on-secondary-container": "#003115",
+                        "on-tertiary-fixed-variant": "#733512",
+                        "primary-fixed": "#93f2f2"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "1rem",
+                        "lg": "2rem",
+                        "xl": "3rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "container-max": "300px",
+                        "section-gap": "3rem",
+                        "title-margin-top": "2rem",
+                        "tagline-margin-top": "0.5rem",
+                        "gutter": "1rem"
+                    },
+                    "fontFamily": {
+                        "body-md": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "label-sm": ["Inter"],
+                        "brand-title": ["Inter"],
+                        "brand-tagline": ["Inter"]
+                    },
+                    "fontSize": {
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "headline-lg": ["24px", {"lineHeight": "32px", "fontWeight": "300"}],
+                        "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05rem", "fontWeight": "500"}],
+                        "brand-title": ["32px", {"lineHeight": "1.2", "letterSpacing": "0.5rem", "fontWeight": "300"}],
+                        "brand-tagline": ["12.8px", {"lineHeight": "1.5", "letterSpacing": "0.2rem", "fontWeight": "400"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-surface font-body-md overflow-x-hidden">
+<!-- Top App Bar -->
+<header class="fixed top-0 w-full flex justify-center items-center h-16 px-gutter bg-background z-50">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-primary">bubble_chart</span>
+<h1 class="font-brand-title text-brand-title text-primary tracking-[0.5rem]">VERVE</h1>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="pt-24 pb-32 flex flex-col items-center min-h-screen">
+<div class="w-full max-w-[300px] flex flex-col gap-section-gap">
+<!-- Section: Depleting Forecast -->
+<section class="flex flex-col gap-4">
+<div class="flex flex-col">
+<h2 class="font-label-sm text-label-sm uppercase tracking-widest text-aura-teal">DEPLETING: NEXT 48 HOURS</h2>
+<p class="font-mono-precision text-[10px] text-on-surface-variant opacity-60">ANALYSIS COMPLETE — SYSTEM CONFIDENCE 98%</p>
+</div>
+<!-- Product Item: Milk -->
+<div class="group relative py-6 flex flex-col gap-3 cursor-pointer transition-opacity duration-500 hover:opacity-80">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 flex items-center justify-center bg-surface-container rounded-lg">
+<span class="material-symbols-outlined text-primary text-2xl">water_drop</span>
+</div>
+<div class="flex flex-col">
+<span class="font-mono-precision text-text-primary text-sm">OAT MILK 1L</span>
+<span class="font-label-sm text-[10px] text-error">CRITICAL LOW</span>
+</div>
+</div>
+<span class="font-mono-precision text-text-primary text-sm">10%</span>
+</div>
+<!-- 8px Stroke Status Bar -->
+<div class="h-2 w-full bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-aura-teal w-[10%] rounded-full"></div>
+</div>
+<div class="flex justify-between items-center px-1">
+<span class="font-label-sm text-[9px] text-on-surface-variant uppercase tracking-tighter opacity-40">Tap to draft basket</span>
+<span class="font-label-sm text-[9px] text-on-surface-variant uppercase tracking-tighter opacity-40">Hold for menu</span>
+</div>
+</div>
+<!-- Product Item: Espresso -->
+<div class="group relative py-6 flex flex-col gap-3 cursor-pointer transition-opacity duration-500 hover:opacity-80">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 flex items-center justify-center bg-surface-container rounded-lg">
+<span class="material-symbols-outlined text-primary text-2xl">Coffee</span>
+</div>
+<div class="flex flex-col">
+<span class="font-mono-precision text-text-primary text-sm">ESPRESSO ROAST</span>
+<span class="font-label-sm text-[10px] text-aura-teal">RUNNING OUT TUE</span>
+</div>
+</div>
+<span class="font-mono-precision text-text-primary text-sm">24%</span>
+</div>
+<div class="h-2 w-full bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-aura-teal w-[24%] rounded-full"></div>
+</div>
+</div>
+</section>
+<!-- The Pulse Visual Break -->
+<div class="relative h-24 flex items-center justify-center">
+<svg class="absolute w-full overflow-visible" fill="none" height="60" viewbox="0 0 300 60">
+<path class="pulse-wave" d="M0 30H120C130 30 135 10 150 10C165 10 170 50 180 50C190 50 200 30 300 30" stroke="#008080" stroke-linecap="round" stroke-width="8"></path>
+<circle class="animate-pulse" cx="150" cy="10" fill="#50C878" r="6"></circle>
+</svg>
+</div>
+<!-- Section: Stable -->
+<section class="flex flex-col gap-4">
+<h2 class="font-label-sm text-label-sm uppercase tracking-widest text-on-surface-variant opacity-60">STABLE INVENTORY</h2>
+<!-- Product List (Minimalist) -->
+<div class="flex flex-col gap-px bg-outline-variant/20">
+<div class="bg-background py-4 flex items-center justify-between">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-on-surface-variant opacity-40">egg</span>
+<span class="font-mono-precision text-sm opacity-80">ORGANIC EGGS (12)</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="font-mono-precision text-sm text-vital-emerald">85%</span>
+<span class="w-1.5 h-1.5 rounded-full bg-vital-emerald"></span>
+</div>
+</div>
+<div class="bg-background py-4 flex items-center justify-between">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-on-surface-variant opacity-40">eco</span>
+<span class="font-mono-precision text-sm opacity-80">SPINACH LEAVES</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="font-mono-precision text-sm text-vital-emerald">60%</span>
+<span class="w-1.5 h-1.5 rounded-full bg-vital-emerald"></span>
+</div>
+</div>
+<div class="bg-background py-4 flex items-center justify-between">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-on-surface-variant opacity-40">flatware</span>
+<span class="font-mono-precision text-sm opacity-80">SEA SALT</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="font-mono-precision text-sm text-vital-emerald">92%</span>
+<span class="w-1.5 h-1.5 rounded-full bg-vital-emerald"></span>
+</div>
+</div>
+</div>
+</section>
+<!-- Task Focus CTA -->
+<div class="mt-8 flex flex-col items-center gap-6">
+<button class="w-full py-4 px-6 rounded-full border-[1px] border-aura-teal flex items-center justify-center gap-3 transition-all active:scale-95">
+<span class="material-symbols-outlined text-aura-teal">shopping_cart</span>
+<span class="font-label-sm text-white uppercase tracking-widest">Generate Draft Basket</span>
+</button>
+<button class="font-label-sm text-[10px] text-on-surface-variant uppercase tracking-widest opacity-60 hover:opacity-100 transition-opacity">
+                    Scan New Item Receipt
+                </button>
+</div>
+</div>
+</main>
+<!-- Bottom Navigation Bar -->
+<nav class="fixed bottom-0 w-full z-50 flex justify-around items-center px-gutter pb-8 h-24 max-w-[300px] mx-auto left-0 right-0 bg-background/80 backdrop-blur-md rounded-t-xl">
+<!-- Shield Tab -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant opacity-40 hover:text-aura-teal transition-all duration-300" href="#">
+<span class="material-symbols-outlined">shield</span>
+</a>
+<!-- Graphic EQ (The Pulse Active) -->
+<a class="flex flex-col items-center justify-center text-vital-emerald scale-110 active:scale-125 transition-transform duration-300 ease-out" href="#">
+<span class="material-symbols-outlined" data-weight="fill" style="font-variation-settings: 'FILL' 1;">graphic_eq</span>
+</a>
+<!-- Timeline Tab -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant opacity-40 hover:text-aura-teal transition-all duration-300" href="#">
+<span class="material-symbols-outlined">timeline</span>
+</a>
+</nav>
+</body></html>

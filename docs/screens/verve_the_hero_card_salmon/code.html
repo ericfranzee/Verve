@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary-container": "#a96039",
+                        "on-primary": "#003737",
+                        "outline-variant": "#3e4949",
+                        "on-tertiary": "#552000",
+                        "on-secondary-fixed-variant": "#005227",
+                        "surface-tint": "#76d6d5",
+                        "primary": "#76d6d5",
+                        "tertiary-fixed": "#ffdbcb",
+                        "on-primary-fixed": "#002020",
+                        "inverse-surface": "#dfe3e2",
+                        "on-primary-container": "#e3fffe",
+                        "on-error-container": "#ffdad6",
+                        "on-tertiary-fixed-variant": "#733512",
+                        "surface": "#101414",
+                        "vital-emerald": "#50C878",
+                        "secondary-container": "#25a55a",
+                        "surface-container-high": "#262b2b",
+                        "background": "#000000",
+                        "text-primary": "#FFFFFF",
+                        "surface-dim": "#101414",
+                        "on-primary-fixed-variant": "#004f4f",
+                        "tertiary": "#ffb692",
+                        "secondary": "#66dd8b",
+                        "primary-fixed": "#93f2f2",
+                        "on-surface-variant": "#bdc9c8",
+                        "secondary-fixed": "#83fba5",
+                        "on-error": "#690005",
+                        "on-tertiary-fixed": "#341100",
+                        "on-background": "#dfe3e2",
+                        "on-tertiary-container": "#fff9f7",
+                        "primary-container": "#008080",
+                        "on-secondary-container": "#003115",
+                        "aura-teal": "#008080",
+                        "tertiary-fixed-dim": "#ffb692",
+                        "outline": "#879392",
+                        "surface-container-lowest": "#0a0f0f",
+                        "inverse-primary": "#006a6a",
+                        "surface-container": "#1c2020",
+                        "on-secondary": "#003919",
+                        "surface-container-highest": "#313635",
+                        "error-container": "#93000a",
+                        "surface-variant": "#313635",
+                        "on-surface": "#dfe3e2",
+                        "surface-container-low": "#181c1c",
+                        "primary-fixed-dim": "#76d6d5",
+                        "error": "#ffb4ab",
+                        "surface-bright": "#353a3a",
+                        "inverse-on-surface": "#2c3131",
+                        "on-secondary-fixed": "#00210c",
+                        "secondary-fixed-dim": "#66dd8b"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "1rem",
+                        "lg": "2rem",
+                        "xl": "3rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "container-max": "300px",
+                        "title-margin-top": "2rem",
+                        "tagline-margin-top": "0.5rem",
+                        "gutter": "1rem",
+                        "section-gap": "3rem"
+                    },
+                    "fontFamily": {
+                        "brand-tagline": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "body-md": ["Inter"],
+                        "label-sm": ["Inter"],
+                        "brand-title": ["Inter"]
+                    },
+                    "fontSize": {
+                        "brand-tagline": ["12.8px", {"lineHeight": "1.5", "letterSpacing": "0.2rem", "fontWeight": "400"}],
+                        "headline-lg": ["24px", {"lineHeight": "32px", "fontWeight": "300"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05rem", "fontWeight": "500"}],
+                        "brand-title": ["32px", {"lineHeight": "1.2", "letterSpacing": "0.5rem", "fontWeight": "300"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            background-color: #000000;
+            color: #FFFFFF;
+            -webkit-font-smoothing: antialiased;
+        }
+        .vui-wave-path {
+            stroke-dasharray: 1000;
+            stroke-dashoffset: 0;
+        }
+        .parallax-container {
+            perspective: 1000px;
+        }
+        .parallax-element {
+            transform: translateZ(50px) scale(1.1);
+        }
+        .glow-emerald {
+            filter: drop-shadow(0 0 8px rgba(80, 200, 120, 0.4));
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="flex flex-col items-center justify-start min-h-screen">
+<!-- TopAppBar from JSON -->
+<header class="fixed top-0 w-full flex justify-center items-center w-full h-16 px-gutter bg-background z-50">
+<div class="flex items-center justify-center w-full max-w-[300px] relative">
+<span class="material-symbols-outlined absolute left-0 text-primary" data-icon="bubble_chart">bubble_chart</span>
+<h1 class="font-brand-title text-brand-title text-primary tracking-[0.5rem]">VERVE</h1>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="mt-16 w-full max-w-[300px] flex flex-col items-center space-y-gutter relative h-[calc(100vh-64px)]">
+<!-- The Morphing Viewport (Top 60%) -->
+<section class="w-full h-[60%] relative overflow-visible flex items-center justify-center pt-8">
+<div class="parallax-container relative w-full h-full flex items-center justify-center">
+<!-- Hero Image: Atlantic Salmon -->
+<div class="parallax-element w-full aspect-square rounded-full overflow-hidden border-8 border-aura-teal/20">
+<img alt="Fresh Atlantic Salmon" class="w-full h-full object-cover" data-alt="A cinematic, macro-photography shot of a fresh Atlantic salmon fillet with vibrant orange-pink flesh and delicate white marbling. The fish is glistening with subtle moisture, set against an absolute black background that makes the colors pop. The lighting is focused and dramatic, highlighting the organic texture and premium quality of the seafood. The overall aesthetic is minimalist, clean, and high-fidelity, embodying luxury and vitality." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDhkJ5iFzJNcK4RUDBheVjQyJe3lKyNyru-U5gfIgAnHr8KyGS3JOGDfZEsaBtJGYWS_DaXcafvt8EoGyBI8yZUP3lmRUAKfmlvLPXW1DdXg3fJ2Keg_Oupwxsw294CzshgxeOVAb_bN_GQpp9ubxVyUAfIodwrFANrmjNg8noFv1Tr8qzTdTsgrsMZ27DpO9bbcSdwe1LX7lmxBTe24tKTEXGTzMkpfWyHcmYFT0BKYbXbwKFNbkcmuU1Aijot8xr92-8Dnb7lnaN8"/>
+</div>
+<!-- Info Overlays -->
+<!-- Top Left: Price -->
+<div class="absolute top-4 left-0 bg-black/60 backdrop-blur-md px-3 py-1 rounded-full border border-white/10">
+<span class="font-label-sm text-label-sm text-white tracking-widest">₦12,500</span>
+</div>
+<!-- Bottom Left: Origin Tag -->
+<div class="absolute bottom-12 left-0 max-w-[140px]">
+<p class="font-label-sm text-label-sm text-on-surface-variant leading-tight opacity-80">
+                        Sourced: 6hrs ago,<br/>Lagos Hub
+                    </p>
+</div>
+<!-- Bottom Right: Vitality Score -->
+<div class="absolute bottom-12 right-0 flex items-center space-x-1">
+<div class="w-2 h-2 rounded-full bg-vital-emerald glow-emerald"></div>
+<span class="font-label-sm text-label-sm text-vital-emerald font-bold tracking-tight">+High Protein</span>
+</div>
+</div>
+</section>
+<!-- The Sentinel Zone (Bottom 40%) -->
+<section class="w-full h-[40%] flex flex-col items-center justify-center space-y-8 pb-24">
+<!-- Aura Breathing Wave (Speaking State) -->
+<div class="w-full relative flex items-center justify-center">
+<svg class="w-full h-16 fill-none" viewbox="0 0 300 60">
+<!-- The Wave Path -->
+<path class="vui-wave-path" d="M 0 30 Q 75 10 150 30 T 300 30" stroke="#008080" stroke-linecap="round" stroke-width="8"></path>
+<!-- The Nexus Core -->
+<circle class="glow-emerald" cx="150" cy="30" fill="#50C878" r="12"></circle>
+</svg>
+</div>
+<!-- Ancillary Controls -->
+<div class="flex justify-between items-center w-full px-8 opacity-60">
+<div class="flex flex-col items-center space-y-1">
+<span class="material-symbols-outlined text-on-surface-variant text-[24px]" data-icon="vault">Vault</span>
+<span class="font-label-sm text-[10px] uppercase tracking-[0.2em]">Vault</span>
+</div>
+<div class="flex flex-col items-center space-y-1">
+<span class="material-symbols-outlined text-on-surface-variant text-[24px]" data-icon="pulse">Pulse</span>
+<span class="font-label-sm text-[10px] uppercase tracking-[0.2em]">Metrics</span>
+</div>
+</div>
+</section>
+</main>
+<!-- BottomNavBar from JSON -->
+<nav class="fixed bottom-0 w-full z-50 flex justify-around items-center px-gutter pb-8 h-24 max-w-[300px] mx-auto left-0 right-0 bg-background/80 backdrop-blur-md rounded-t-xl">
+<button class="flex flex-col items-center justify-center text-on-surface-variant opacity-40 hover:text-aura-teal transition-all duration-300">
+<span class="material-symbols-outlined" data-icon="shield">shield</span>
+</button>
+<button class="flex flex-col items-center justify-center text-vital-emerald scale-110 hover:text-aura-teal transition-all duration-300">
+<span class="material-symbols-outlined" data-icon="graphic_eq">graphic_eq</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant opacity-40 hover:text-aura-teal transition-all duration-300">
+<span class="material-symbols-outlined" data-icon="timeline">timeline</span>
+</button>
+</nav>
+</body></html>

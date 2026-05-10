@@ -1,0 +1,105 @@
+{
+  "project": "verve",
+  "version": "2.0.0",
+  "description": "Verve Cognitive Commerce Platform — Agentic Build Manifest (Enhanced)",
+  "created_at": "2026-05-10T04:37:00Z",
+  "updated_at": "2026-05-10T12:30:00Z",
+  "docs_root": "docs/",
+  "skills": {
+    "verve-conductor": {
+      "path": ".agents/skills/verve-conductor/SKILL.md",
+      "role": "orchestrator",
+      "description": "Master orchestrator — routes work, enforces gates, tracks metrics and risks"
+    },
+    "verve-planner": {
+      "path": ".agents/skills/verve-planner/SKILL.md",
+      "role": "planner",
+      "description": "Phase/task decomposition with success metrics and 70+ tasks across 4 phases"
+    },
+    "verve-flutter-builder": {
+      "path": ".agents/skills/verve-flutter-builder/SKILL.md",
+      "role": "builder",
+      "layer": "frontend",
+      "description": "Flutter UI, shaders, Bootstrap Dialogue, Trust Ladder UI, Degraded Handshake UI, Verve+ surfaces"
+    },
+    "verve-backend-builder": {
+      "path": ".agents/skills/verve-backend-builder/SKILL.md",
+      "role": "builder",
+      "layer": "backend",
+      "description": "Go Orchestrator (circuit breakers, session recovery), Python Intent Engine (Ambiguity Resolution, Trust Ladder context), Payment Router"
+    },
+    "verve-nexus-builder": {
+      "path": ".agents/skills/verve-nexus-builder/SKILL.md",
+      "role": "builder",
+      "layer": "logistics",
+      "description": "Node.js Nexus API, Rider Pulse App, 10 Chaos Protocols, Bio-Handshake cascade, Fraud detection, Rider safety"
+    },
+    "verve-edge-builder": {
+      "path": ".agents/skills/verve-edge-builder/SKILL.md",
+      "role": "builder",
+      "layer": "edge",
+      "description": "SQLite-VEC, TFLite, Trust Ladder data enforcement, 90-day pruning, corruption recovery"
+    },
+    "verve-verifier": {
+      "path": ".agents/skills/verve-verifier/SKILL.md",
+      "role": "verifier",
+      "description": "Acceptance testing, success metrics validation, chaos protocol testing, failure tolerance checks"
+    },
+    "verve-cognitive-load": {
+      "path": ".agents/skills/verve-cognitive-load/SKILL.md",
+      "role": "governance",
+      "priority": "critical",
+      "description": "MANDATORY: File size limits (300-500 lines), context window management, structural maps, agent reading/writing rules"
+    },
+    "verve-memory": {
+      "path": ".agents/skills/verve-memory/SKILL.md",
+      "role": "state",
+      "description": "Build state, success metrics tracking, chaos test results, risk register, Trust Ladder progress"
+    }
+  },
+  "phases": {
+    "1": {
+      "name": "Invisible Intelligence",
+      "weeks": "1-4",
+      "tasks": 21,
+      "focus": "RAG + Ambiguity Resolution, SQLite-VEC + Trust Ladder enforcement, Circuit breakers, Session recovery, Voice loop <1.2s",
+      "layers": ["go", "python", "flutter", "edge"],
+      "plan_file": ".agents/plans/phase-1-plan.md"
+    },
+    "2": {
+      "name": "Visual Stage",
+      "weeks": "5-8",
+      "tasks": 22,
+      "focus": "Impeller UI, Bootstrap Dialogue, Trust Ladder UI, Emotional State feedback, Verve+ surfaces, Adaptive Fidelity",
+      "layers": ["flutter", "python"],
+      "plan_file": ".agents/plans/phase-2-plan.md"
+    },
+    "3": {
+      "name": "Nexus Pilot",
+      "weeks": "9-14",
+      "tasks": 33,
+      "focus": "Nexus API, 10 Chaos Protocols, Rider Pulse App (SOS/safety/compensation), Bio-Handshake cascade, Observability pipeline, 50 beta deliveries",
+      "layers": ["nodejs", "flutter", "go", "python"],
+      "plan_file": ".agents/plans/phase-3-plan.md"
+    },
+    "4": {
+      "name": "Guardian & Scale",
+      "weeks": "15-20",
+      "tasks": 15,
+      "focus": "Privacy + Trust Ladder display, Circuit breaker verification, Failure tolerance validation, Chaos simulation CI, NDPA audit, Soft launch",
+      "layers": ["flutter", "go", "python", "nodejs"],
+      "plan_file": ".agents/plans/phase-4-plan.md"
+    }
+  },
+  "documents": [
+    "docs/Verve Product Requirements Document.md",
+    "docs/Verve Core Blueprint.md",
+    "docs/Verve System Architecture.md",
+    "docs/Verve Build Strategy & Roadmap.md",
+    "docs/Verve Home Screen Specification.md",
+    "docs/Verve Secondary Screens Specification.md",
+    "docs/Verve Brand & Persona Manual.md",
+    "docs/Verve Guardian Protocol.md",
+    "docs/Verve Nexus Operations Manual.md"
+  ]
+}

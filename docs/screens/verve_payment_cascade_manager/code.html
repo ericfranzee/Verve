@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&amp;family=JetBrains+Mono:wght@300;400;500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            background-color: #000000;
+            color: #dfe3e2;
+            font-family: 'Inter', sans-serif;
+        }
+        .mono {
+            font-family: 'JetBrains Mono', monospace;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "tertiary-container": "#a96039",
+                      "on-primary": "#003737",
+                      "outline-variant": "#3e4949",
+                      "on-tertiary": "#552000",
+                      "on-secondary-fixed-variant": "#005227",
+                      "surface-tint": "#76d6d5",
+                      "primary": "#76d6d5",
+                      "tertiary-fixed": "#ffdbcb",
+                      "on-primary-fixed": "#002020",
+                      "inverse-surface": "#dfe3e2",
+                      "on-primary-container": "#e3fffe",
+                      "on-error-container": "#ffdad6",
+                      "on-tertiary-fixed-variant": "#733512",
+                      "surface": "#101414",
+                      "vital-emerald": "#50C878",
+                      "secondary-container": "#25a55a",
+                      "surface-container-high": "#262b2b",
+                      "background": "#000000",
+                      "text-primary": "#FFFFFF",
+                      "surface-dim": "#101414",
+                      "on-primary-fixed-variant": "#004f4f",
+                      "tertiary": "#ffb692",
+                      "secondary": "#66dd8b",
+                      "primary-fixed": "#93f2f2",
+                      "on-surface-variant": "#bdc9c8",
+                      "secondary-fixed": "#83fba5",
+                      "on-error": "#690005",
+                      "on-tertiary-fixed": "#341100",
+                      "on-background": "#dfe3e2",
+                      "on-tertiary-container": "#fff9f7",
+                      "primary-container": "#008080",
+                      "on-secondary-container": "#003115",
+                      "aura-teal": "#008080",
+                      "tertiary-fixed-dim": "#ffb692",
+                      "outline": "#879392",
+                      "surface-container-lowest": "#0a0f0f",
+                      "inverse-primary": "#006a6a",
+                      "surface-container": "#1c2020",
+                      "on-secondary": "#003919",
+                      "surface-container-highest": "#313635",
+                      "error-container": "#93000a",
+                      "surface-variant": "#313635",
+                      "on-surface": "#dfe3e2",
+                      "surface-container-low": "#181c1c",
+                      "primary-fixed-dim": "#76d6d5",
+                      "error": "#ffb4ab",
+                      "surface-bright": "#353a3a",
+                      "inverse-on-surface": "#2c3131",
+                      "on-secondary-fixed": "#00210c",
+                      "secondary-fixed-dim": "#66dd8b"
+              },
+              "borderRadius": {
+                      "DEFAULT": "1rem",
+                      "lg": "2rem",
+                      "xl": "3rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "section-gap": "3rem",
+                      "title-margin-top": "2rem",
+                      "tagline-margin-top": "0.5rem",
+                      "gutter": "1rem",
+                      "container-max": "300px"
+              },
+              "fontFamily": {
+                      "label-sm": ["Inter"],
+                      "brand-title": ["Inter"],
+                      "brand-tagline": ["Inter"],
+                      "body-md": ["Inter"],
+                      "headline-lg": ["Inter"]
+              },
+              "fontSize": {
+                      "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05rem", "fontWeight": "500"}],
+                      "brand-title": ["32px", {"lineHeight": "1.2", "letterSpacing": "0.5rem", "fontWeight": "300"}],
+                      "brand-tagline": ["12.8px", {"lineHeight": "1.5", "letterSpacing": "0.2rem", "fontWeight": "400"}],
+                      "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                      "headline-lg": ["24px", {"lineHeight": "32px", "fontWeight": "300"}]
+              }
+            },
+          },
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="flex flex-col min-h-screen">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full flex justify-center items-center h-16 px-gutter bg-background z-50">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-primary">bubble_chart</span>
+<h1 class="font-brand-title text-brand-title text-primary tracking-[0.5rem]">VERVE</h1>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="flex-grow pt-24 pb-32 flex flex-col items-center">
+<div class="w-full max-w-[300px] flex flex-col gap-12 px-2">
+<!-- Header Section -->
+<section class="flex flex-col items-center">
+<h2 class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-widest text-center">Payment Cascade</h2>
+<div class="w-16 h-[1px] bg-outline-variant mt-4 opacity-30"></div>
+</section>
+<!-- Routing Priority Section -->
+<section class="flex flex-col gap-6">
+<header class="flex justify-between items-end border-b border-outline-variant pb-2">
+<span class="mono text-[10px] uppercase text-on-surface-variant">Routing Priority</span>
+<span class="mono text-[10px] text-on-surface-variant">AUTO_FAILOVER: ON</span>
+</header>
+<div class="flex flex-col gap-4">
+<!-- Slot 1 (Primary) -->
+<div class="group relative flex items-start gap-4 p-4 rounded-lg bg-surface-container-lowest border border-outline-variant/10 transition-all hover:bg-surface-container">
+<div class="flex flex-col items-center gap-1 mt-1">
+<span class="material-symbols-outlined text-vital-emerald text-[18px]">drag_handle</span>
+<span class="mono text-[9px] text-vital-emerald">01</span>
+</div>
+<div class="flex flex-col gap-1">
+<div class="flex items-center gap-2">
+<span class="mono text-xs font-medium text-white">PAYSTACK</span>
+<span class="w-1.5 h-1.5 rounded-full bg-vital-emerald"></span>
+<span class="mono text-[10px] text-vital-emerald uppercase">Active</span>
+</div>
+<p class="mono text-[11px] text-on-surface leading-tight">GTBank Card **** 4432</p>
+</div>
+</div>
+<!-- Slot 2 (Secondary) -->
+<div class="group relative flex items-start gap-4 p-4 rounded-lg bg-surface-container-lowest border border-outline-variant/10 transition-all hover:bg-surface-container">
+<div class="flex flex-col items-center gap-1 mt-1">
+<span class="material-symbols-outlined text-on-surface-variant text-[18px]">drag_handle</span>
+<span class="mono text-[9px] text-on-surface-variant">02</span>
+</div>
+<div class="flex flex-col gap-1">
+<div class="flex items-center gap-2">
+<span class="mono text-xs font-medium text-white">FLUTTERWAVE</span>
+<span class="mono text-[10px] text-on-surface-variant uppercase">Ready</span>
+</div>
+<p class="mono text-[11px] text-on-surface leading-tight">Zenith Account Transfer</p>
+</div>
+</div>
+<!-- Slot 3 (Tertiary) -->
+<div class="group relative flex items-start gap-4 p-4 rounded-lg bg-surface-container-lowest border border-outline-variant/10 transition-all hover:bg-surface-container">
+<div class="flex flex-col items-center gap-1 mt-1">
+<span class="material-symbols-outlined text-on-surface-variant text-[18px]">drag_handle</span>
+<span class="mono text-[9px] text-on-surface-variant">03</span>
+</div>
+<div class="flex flex-col gap-1">
+<div class="flex items-center gap-2">
+<span class="mono text-xs font-medium text-white">VERVE WALLET</span>
+<span class="mono text-[10px] text-on-surface-variant uppercase">Standby</span>
+</div>
+<p class="mono text-[11px] text-on-surface leading-tight">Balance: ₦45,000</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Pulse Interaction Area (Conceptual) -->
+<div class="flex flex-col items-center justify-center py-8">
+<div class="relative w-full h-12 flex items-center justify-center">
+<!-- The Pulse Wave -->
+<svg class="absolute inset-0 w-full h-full" viewbox="0 0 300 48">
+<path d="M0 24 C50 24, 100 24, 120 24 C135 24, 140 40, 150 40 C160 40, 165 24, 180 24 C200 24, 250 24, 300 24" fill="none" stroke="#008080" stroke-linecap="round" stroke-width="4"></path>
+<circle cx="150" cy="40" fill="#50C878" r="4"></circle>
+</svg>
+</div>
+<p class="mono text-[9px] text-aura-teal uppercase tracking-widest mt-4">System Equilibrium</p>
+</div>
+<!-- Wallet Management Section -->
+<section class="flex flex-col gap-4">
+<header class="flex items-end border-b border-outline-variant pb-2">
+<span class="mono text-[10px] uppercase text-on-surface-variant">Wallet Management</span>
+</header>
+<button class="w-full flex items-center justify-between p-5 rounded-lg bg-aura-teal/5 border-2 border-aura-teal group transition-all active:scale-95">
+<div class="flex flex-col items-start gap-1">
+<span class="mono text-xs font-bold text-white uppercase">Top-Up Verve Wallet</span>
+<span class="mono text-[10px] text-aura-teal">Zero-Friction Checkout</span>
+</div>
+<span class="material-symbols-outlined text-aura-teal group-hover:translate-x-1 transition-transform">add_circle</span>
+</button>
+<div class="flex justify-center p-2">
+<p class="mono text-[9px] text-on-surface-variant opacity-40 text-center max-w-[200px]">Liquidity verified across all nodes in the cascade cluster.</p>
+</div>
+</section>
+</div>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 w-full z-50 flex justify-around items-center px-gutter pb-8 h-24 max-w-[300px] mx-auto left-0 right-0 bg-background/80 backdrop-blur-md rounded-t-xl">
+<!-- Vault Tab (Active) -->
+<button class="flex flex-col items-center justify-center text-vital-emerald scale-110 transition-transform duration-300 ease-out hover:text-aura-teal">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">shield</span>
+<span class="font-label-sm text-label-sm uppercase tracking-widest mt-1">Vault</span>
+</button>
+<!-- Stage Tab (Inactive) -->
+<button class="flex flex-col items-center justify-center text-on-surface-variant opacity-40 transition-all duration-300 hover:opacity-100 hover:text-aura-teal">
+<span class="material-symbols-outlined">graphic_eq</span>
+<span class="font-label-sm text-label-sm uppercase tracking-widest mt-1">Stage</span>
+</button>
+<!-- Pulse Tab (Inactive) -->
+<button class="flex flex-col items-center justify-center text-on-surface-variant opacity-40 transition-all duration-300 hover:opacity-100 hover:text-aura-teal">
+<span class="material-symbols-outlined">timeline</span>
+<span class="font-label-sm text-label-sm uppercase tracking-widest mt-1">Pulse</span>
+</button>
+</nav>
+</body></html>

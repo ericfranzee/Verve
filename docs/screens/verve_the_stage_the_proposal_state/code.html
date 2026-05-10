@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "secondary-container": "#25a55a",
+                    "surface-dim": "#101414",
+                    "background": "#000000",
+                    "primary-fixed": "#93f2f2",
+                    "error": "#ffb4ab",
+                    "on-primary-container": "#e3fffe",
+                    "on-tertiary": "#552000",
+                    "on-primary": "#003737",
+                    "surface-container": "#1c2020",
+                    "surface-variant": "#313635",
+                    "surface": "#101414",
+                    "on-secondary-fixed-variant": "#005227",
+                    "tertiary": "#ffb692",
+                    "on-tertiary-container": "#fff9f7",
+                    "on-background": "#dfe3e2",
+                    "on-error-container": "#ffdad6",
+                    "on-primary-fixed-variant": "#004f4f",
+                    "secondary-fixed": "#83fba5",
+                    "primary-fixed-dim": "#76d6d5",
+                    "outline-variant": "#3e4949",
+                    "on-secondary": "#003919",
+                    "surface-container-highest": "#313635",
+                    "secondary-fixed-dim": "#66dd8b",
+                    "inverse-on-surface": "#2c3131",
+                    "on-tertiary-fixed": "#341100",
+                    "inverse-surface": "#dfe3e2",
+                    "primary-container": "#008080",
+                    "on-secondary-container": "#003115",
+                    "on-tertiary-fixed-variant": "#733512",
+                    "tertiary-fixed-dim": "#ffb692",
+                    "tertiary-container": "#a96039",
+                    "inverse-primary": "#006a6a",
+                    "on-error": "#690005",
+                    "surface-container-lowest": "#0a0f0f",
+                    "outline": "#879392",
+                    "surface-container-high": "#262b2b",
+                    "secondary": "#66dd8b",
+                    "text-primary": "#FFFFFF",
+                    "surface-bright": "#353a3a",
+                    "surface-tint": "#76d6d5",
+                    "on-secondary-fixed": "#00210c",
+                    "surface-container-low": "#181c1c",
+                    "primary": "#76d6d5",
+                    "vital-emerald": "#50C878",
+                    "on-surface": "#dfe3e2",
+                    "tertiary-fixed": "#ffdbcb",
+                    "on-surface-variant": "#bdc9c8",
+                    "aura-teal": "#008080",
+                    "on-primary-fixed": "#002020",
+                    "error-container": "#93000a"
+            },
+            "borderRadius": {
+                    "DEFAULT": "1rem",
+                    "lg": "2rem",
+                    "xl": "3rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "container-max": "300px",
+                    "section-gap": "3rem",
+                    "tagline-margin-top": "0.5rem",
+                    "gutter": "1rem",
+                    "title-margin-top": "2rem"
+            },
+            "fontFamily": {
+                    "brand-tagline": ["Inter"],
+                    "label-sm": ["Inter"],
+                    "brand-title": ["Inter"],
+                    "headline-lg": ["Inter"],
+                    "body-md": ["Inter"]
+            },
+            "fontSize": {
+                    "brand-tagline": ["12.8px", {"lineHeight": "1.5", "letterSpacing": "0.2rem", "fontWeight": "400"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05rem", "fontWeight": "500"}],
+                    "brand-title": ["32px", {"lineHeight": "1.2", "letterSpacing": "0.5rem", "fontWeight": "300"}],
+                    "headline-lg": ["24px", {"lineHeight": "32px", "fontWeight": "300"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .pulse-wave {
+            stroke-dasharray: 1000;
+            stroke-dashoffset: 0;
+        }
+        .tonal-surface {
+            background-color: #121212;
+        }
+        .perspective-container {
+            perspective: 1000px;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background font-body-md min-h-screen flex flex-col overflow-hidden">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-[60] flex justify-center items-center h-16 px-gutter bg-background transition-opacity duration-500">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary" data-icon="bubble_chart">bubble_chart</span>
+<h1 class="font-brand-title text-brand-title text-primary tracking-[0.5rem]">VERVE</h1>
+</div>
+</header>
+<!-- Main Canvas: Morphing Viewport -->
+<main class="flex-grow flex flex-col items-center pt-24 px-4 overflow-hidden">
+<div class="w-full max-w-[300px] flex flex-col items-center flex-grow">
+<!-- Hero Cards Stack -->
+<div class="relative w-full h-[400px] perspective-container mt-8 flex justify-center items-center">
+<!-- Card 3 (Back) - Almonds -->
+<div class="absolute w-[240px] h-[320px] rounded-lg overflow-hidden transform -translate-y-8 -translate-x-4 rotate-[-6deg] opacity-40 z-10 border-[0.5px] border-white/10">
+<img alt="Almonds" class="w-full h-full object-cover" data-alt="Macro photography of raw organic almonds arranged artistically on a dark, matte surface. The lighting is low-key and dramatic, emphasizing the textures of the nut shells. The scene is set in an OLED black environment with subtle teal highlights reflecting off the surface, creating a high-end, premium wellness aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDSIbV7F2-xCoPH3Vn7EgobRxWmZHRiD5lkTnx7Q1AMA6zRGk_PPYoy7f6WQfrniIG6uPWYbjWuh7DylL2WMKZoT-A8EEO8AyC8VV7pgI553d8adN609iPdyMu6euylXjr3KGF-83IXfRWn7soukjHdT1URP8c03kb7ssqcJtfccM34kJOPBn2Mz75OV9uJzjzJy2_57aKoeseQ3IP-3HGOmvy04SXbSeQuCdbB-PspSpQatiCLhTOrND2fu_ApT0hkvXE9XvpTyehZ"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
+</div>
+<!-- Card 2 (Middle) - Avocado -->
+<div class="absolute w-[260px] h-[340px] rounded-lg overflow-hidden transform -translate-y-4 translate-x-4 rotate-[4deg] opacity-60 z-20 border-[0.5px] border-white/10">
+<img alt="Avocado" class="w-full h-full object-cover" data-alt="A sliced ripe avocado showcasing its smooth, creamy green flesh and dark pit. The fruit is presented in a minimalist, architectural style against a true black background. Soft, atmospheric dimming creates a sense of depth, while the vibrant green of the avocado acts as a natural splash of color in the boutique minimalist setting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA7Oj4kCrkVL5RRnzgMAdqFr5w7UeNSFtw_EhGl_HViBLO-OwX8HHX5OeO-nXy7usUcfZ7YCZw61YLVeN196PbFI5kkDjSBGPy4xn9B8kMB7AonvOVbTlIEpi_43OKJ0hsNnmPwCn9DS19V7By2fNmQVaH9zVaoCVNDBR3xPbpJq-mFNxsWDLtM4SV3AUlBtBG1qKvBUQ5tSSakHJCwLdW4sR6WZ61U4xmHmBkeyTcTwAjKFA9emeLi3arsFdBtndxgirbIpKwW9XeU"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
+</div>
+<!-- Card 1 (Front Active) - Organic Spinach -->
+<div class="absolute w-[280px] h-[360px] rounded-lg overflow-hidden transform translate-y-0 z-30 shadow-2xl border-[0.5px] border-white/20">
+<img alt="Organic Spinach" class="w-full h-full object-cover" data-alt="Crisp, fresh organic spinach leaves captured with high-resolution detail. The leaves are vibrant green and slightly dewy, set against an absolute black void. The lighting is sophisticated and focused, highlighting the organic veins of the leaves. The overall mood is serene and life-affirming, aligning with a premium health and vitality brand identity." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDLfmw5NcoqtA32kDFiqliqLDlqWyva6Hk-K3OX1wSQMcunanL4KnffzheSGbFEUjanQbB9Tflk8r5YDmerAeVmN9U1dxQSfIIg1iZmTIW2wHkAya6ss8fMRsHyE711Oi-KgHbfziUc0h3p1eJ1ZBpTtFLt2T2UTXMW-3pCxUq2Z3al-6DacgpDHzy-xqyMVaBBB8AX1UruLzSbweVa4jXPpnfQv8jUk-180AuJcZEOnoJMX1leyK8aS9QYM0apy0t7X0AW426A85Xl"/>
+<!-- Overlays -->
+<div class="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black/90 p-6 flex flex-col justify-between">
+<div class="flex justify-between items-start">
+<div class="bg-black/60 backdrop-blur-md px-3 py-1 rounded-full border border-white/10">
+<span class="font-body-md text-white font-bold tracking-wider">₦2,800</span>
+</div>
+<span class="material-symbols-outlined text-aura-teal" data-icon="shield">shield</span>
+</div>
+<div class="flex flex-col gap-2 items-end">
+<div class="bg-vital-emerald px-4 py-1.5 rounded-full flex items-center gap-1.5">
+<span class="w-2 h-2 rounded-full bg-white animate-pulse"></span>
+<span class="font-label-sm text-black font-bold uppercase tracking-tighter">+Iron &amp; Fiber</span>
+</div>
+<h2 class="text-white font-headline-lg font-light tracking-widest mt-2">ORGANIC SPINACH</h2>
+</div>
+</div>
+</div>
+</div>
+<!-- Bundle Title -->
+<div class="mt-8 text-center">
+<span class="font-label-sm text-on-surface-variant uppercase tracking-[0.3rem]">Active Suggestion</span>
+<p class="font-headline-lg text-primary mt-1">Keto Dinner Bundle</p>
+</div>
+</div>
+</main>
+<!-- Sentinel Zone -->
+<section class="w-full max-w-[300px] mx-auto pb-32 pt-4 px-4 flex flex-col items-center">
+<!-- Aura Speaking Wave -->
+<div class="w-full flex justify-center mb-8 h-12 relative">
+<svg class="w-full h-full overflow-visible" viewbox="0 0 300 40">
+<path class="pulse-wave" d="M0 20 Q 75 40, 150 20 T 300 20" fill="none" stroke="#008080" stroke-linecap="round" stroke-width="8"></path>
+<circle class="nexus-core shadow-[0_0_15px_rgba(80,200,120,0.8)]" cx="150" cy="20" fill="#50C878" r="8"></circle>
+</svg>
+</div>
+<!-- AI Caption & Tooltip -->
+<div class="relative w-full flex flex-col items-center">
+<p class="font-body-md text-on-surface text-center leading-relaxed italic opacity-90">
+                "I've assembled a 15-minute Keto dinner. Suggested the Spinach because you mentioned wanting more greens on Monday."
+            </p>
+<!-- Guardian Shield Tooltip -->
+<div class="mt-4 flex items-center gap-2 bg-surface-container-high px-4 py-3 rounded-xl border border-aura-teal/30">
+<span class="material-symbols-outlined text-aura-teal text-[18px]" data-icon="shield" style="font-variation-settings: 'FILL' 1;">shield</span>
+<span class="font-label-sm text-on-surface-variant tracking-normal">Suggested because you blocked carbs on Monday.</span>
+</div>
+</div>
+</section>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 w-full z-50 flex justify-around items-center px-gutter pb-8 h-24 max-w-[300px] mx-auto left-0 right-0 bg-background/80 backdrop-blur-md rounded-t-xl">
+<!-- Vault Icon -->
+<button class="flex flex-col items-center justify-center text-on-surface-variant opacity-40 hover:text-aura-teal transition-all duration-300">
+<span class="material-symbols-outlined text-[28px]" data-icon="shield">shield</span>
+</button>
+<!-- Pulse Icon (Active) -->
+<button class="flex flex-col items-center justify-center text-vital-emerald scale-110 active:scale-125 transition-transform duration-300 ease-out">
+<span class="material-symbols-outlined text-[32px]" data-icon="graphic_eq" style="font-variation-settings: 'FILL' 1;">graphic_eq</span>
+</button>
+<!-- Timeline Icon -->
+<button class="flex flex-col items-center justify-center text-on-surface-variant opacity-40 hover:text-aura-teal transition-all duration-300">
+<span class="material-symbols-outlined text-[28px]" data-icon="timeline">timeline</span>
+</button>
+</nav>
+</body></html>
