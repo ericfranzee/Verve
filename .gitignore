@@ -1,0 +1,49 @@
+# Python
+venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+services/intent-engine/venv/
+
+# Node.js
+node_modules/
+dist/
+
+# Go
+services/orchestrator/orchestrator
+
+# Mac OS
+.DS_Store
+
+# Flutter Tests Output
+test-results/
+coverage/
+
+# Assets
+apps/mobile/assets/fonts/Inter/*.ttf
+apps/mobile/assets/fonts/JetBrainsMono/*.ttf
+
+# Mac OS
+.DS_Store
+
+# Flutter Cache
+.dart_tool/
+
+# Python Tests Output
+.pytest_cache/
+
+# Python Tests Output
+.pytest_cache/
+
+# Python Tests Output
+.pytest_cache/
+
+# Flutter caching
+.dart_tool/
+
+# Node.js
+node_modules/
+
+# Node Build Output
+services/nexus-api/dist/
