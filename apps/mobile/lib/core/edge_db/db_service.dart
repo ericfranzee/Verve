@@ -30,7 +30,23 @@ class EdgeDbService {
         await db.execute(EdgeDbSchema.createMemoriesTable);
       },
     );
-    print("EdgeDbService: Database initialized.");
+
+    // P1-T16: DB Corruption recovery PRAGMA integrity_check
+    final result = await _db!.rawQuery("PRAGMA integrity_check");
+    final isOk = result.isNotEmpty && result.first.values.first == 'ok';
+
+    if (!isOk) {
+      // Basic corruption handler
+      // Real implementation would reach out to cloud backup before DB wipe
+      await deleteDatabase(path);
+      _db = await openDatabase(
+        path,
+        version: 1,
+        onCreate: (db, version) async {
+          await db.execute(EdgeDbSchema.createMemoriesTable);
+        },
+      );
+    }
   }
 
   Future<void> saveMemory({
@@ -56,7 +72,6 @@ class EdgeDbService {
       },
       conflictAlgorithm: ConflictAlgorithm.replace,
     );
-    print("EdgeDbService: Saved memory $id");
   }
 
   Future<List<MemoryResult>> queryMemories({
@@ -67,8 +82,6 @@ class EdgeDbService {
   }) async {
     if (_db == null) throw Exception("DB not initialized");
 
-    // Fallback stub for VEC similarity until sqlite-vec native is compiled in
-    // This performs standard retrieval with Trust Level gating.
     final List<Map<String, dynamic>> maps = await _db!.query(
       EdgeDbSchema.memoriesTable,
       where: 'trust_level_required <= ? AND archived = 0',
@@ -76,12 +89,11 @@ class EdgeDbService {
       limit: topK,
     );
 
-    print("EdgeDbService: Queried memories for trust level $currentTrustLevel");
     return List.generate(maps.length, (i) {
       return MemoryResult(
         id: maps[i]['id'] as String,
         contentText: maps[i]['content_text'] as String,
-        score: 1.0, // Stub score
+        score: 1.0, // Stub score without VEC search
       );
     });
   }
@@ -93,7 +105,6 @@ class EdgeDbService {
       where: 'id = ?',
       whereArgs: [id],
     );
-    print("EdgeDbService: Deleted memory $id");
   }
 
   Future<void> pruneExpiredMemories() async {
@@ -107,6 +118,5 @@ class EdgeDbService {
       where: 'created_at < ? AND reinforcement_count = 0',
       whereArgs: [ninetyDaysAgo],
     );
-    print("EdgeDbService: Pruned expired memories");
   }
 }

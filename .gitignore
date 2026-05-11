@@ -12,3 +12,14 @@ dist/
 
 # Go
 services/orchestrator/orchestrator
+
+# Mac OS
+.DS_Store
+
+# Flutter Tests Output
+test-results/
+coverage/
+
+# Assets
+apps/mobile/assets/fonts/Inter/*.ttf
+apps/mobile/assets/fonts/JetBrainsMono/*.ttf
