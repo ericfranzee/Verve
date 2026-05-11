@@ -22,6 +22,13 @@ services/orchestrator/orchestrator
 
 # Flutter caching
 .dart_tool/
+apps/mobile/.dart_tool/
+apps/mobile/ios/Pods/
+apps/mobile/ios/.symlinks/
+apps/mobile/ios/Flutter/Flutter.framework/
+apps/mobile/ios/Flutter/Flutter.podspec
+apps/mobile/android/.gradle
+apps/mobile/build/
 
 # Assets
 apps/mobile/assets/fonts/Inter/*.ttf
