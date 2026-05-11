@@ -161,22 +161,22 @@
         {
           "id": "P2-T08",
           "name": "Breathing Wave GLSL shader",
-          "status": "pending"
+          "status": "completed"
         },
         {
           "id": "P2-T09",
           "name": "Pre-compile shaders via Impeller",
-          "status": "pending"
+          "status": "completed"
         },
         {
           "id": "P2-T10",
           "name": "Haptic feedback system",
-          "status": "pending"
+          "status": "completed"
         },
         {
           "id": "P2-T11",
           "name": "Auditory cues",
-          "status": "pending"
+          "status": "completed"
         },
         {
           "id": "P2-T12",
@@ -196,22 +196,22 @@
         {
           "id": "P2-T15",
           "name": "Bootstrap Dialogue screen",
-          "status": "pending"
+          "status": "completed"
         },
         {
           "id": "P2-T16",
           "name": "Neighborhood Starter Basket screen",
-          "status": "pending"
+          "status": "completed"
         },
         {
           "id": "P2-T17",
           "name": "Trust Ladder display in Guardian Vault",
-          "status": "pending"
+          "status": "completed"
         },
         {
           "id": "P2-T18",
           "name": "Emotional State visual feedback",
-          "status": "pending"
+          "status": "completed"
         },
         {
           "id": "P2-T19",

@@ -35,3 +35,9 @@ apps/mobile/assets/fonts/JetBrainsMono/*.ttf
 
 # Python Tests Output
 .pytest_cache/
+
+# Python Tests Output
+.pytest_cache/
+
+# Flutter caching
+.dart_tool/

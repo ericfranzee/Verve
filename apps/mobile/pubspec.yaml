@@ -18,6 +18,8 @@ dependencies:
   flutter_secure_storage: ^10.1.0
   encrypt: ^5.0.3
   google_fonts: ^8.1.0
+  flutter_vibrate: ^1.4.0
+  just_audio: ^0.10.5
 
 dev_dependencies:
   flutter_test:
@@ -26,3 +28,5 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+  shaders:
+    - shaders/breathing_wave.frag
