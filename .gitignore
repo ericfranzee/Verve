@@ -44,3 +44,6 @@ apps/mobile/assets/fonts/JetBrainsMono/*.ttf
 
 # Node.js
 node_modules/
+
+# Node Build Output
+services/nexus-api/dist/
