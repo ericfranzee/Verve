@@ -15,7 +15,7 @@ export async function chargeWallet(userId: string, amount: number): Promise<{ su
 
         if (balance >= amount) {
             // Deduct balance
-            await redis.decrByFloat(`wallet:${userId}:balance`, amount);
+            await redis.incrByFloat(`wallet:${userId}:balance`, -amount);
             console.log(`[Verve Wallet] Charged successfully. New balance: ₦${balance - amount}`);
             return { success: true, transactionId: `wal_${Date.now()}` };
         } else {
