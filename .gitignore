@@ -41,3 +41,6 @@ apps/mobile/assets/fonts/JetBrainsMono/*.ttf
 
 # Flutter caching
 .dart_tool/
+
+# Node.js
+node_modules/
