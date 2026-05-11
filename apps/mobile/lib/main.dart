@@ -1,18 +1,35 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+
 import 'features/memory/memory_manager.dart';
 import 'core/edge_db/db_service.dart';
 import 'core/encryption/encryption_service.dart';
+import 'core/theme/verve_theme.dart';
+import 'features/viewport/morphing_viewport.dart';
+
+// Provide global services through Riverpod
+final dbServiceProvider = Provider<EdgeDbService>((ref) => EdgeDbService());
+final encryptionServiceProvider = Provider<EncryptionService>((ref) => EncryptionService());
+
+final memoryManagerProvider = Provider<MemoryManager>((ref) {
+  return MemoryManager(ref.read(dbServiceProvider), ref.read(encryptionServiceProvider));
+});
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  final dbService = EdgeDbService();
-  final encryptionService = EncryptionService();
-  final memoryManager = MemoryManager(dbService, encryptionService);
+  // Create a container so we can initialize services before runApp
+  final container = ProviderContainer();
 
+  final memoryManager = container.read(memoryManagerProvider);
   await memoryManager.initialize();
 
-  runApp(const VerveApp());
+  runApp(
+    UncontrolledProviderScope(
+      container: container,
+      child: const VerveApp(),
+    ),
+  );
 }
 
 class VerveApp extends StatelessWidget {
@@ -22,29 +39,9 @@ class VerveApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Verve',
-      theme: ThemeData.dark().copyWith(
-        scaffoldBackgroundColor: Colors.black,
-        colorScheme: ColorScheme.fromSeed(
-          seedColor: const Color(0xFF008080), // Aura Teal
-          brightness: Brightness.dark,
-        ),
-      ),
-      home: const VoidScreen(),
-    );
-  }
-}
-
-class VoidScreen extends StatelessWidget {
-  const VoidScreen({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const Scaffold(
-      body: Center(
-        child: Text(
-          "Verve - The Void",
-          style: TextStyle(color: Color(0xFF008080), fontSize: 24),
-        ),
+      theme: VerveTheme.darkTheme,
+      home: const Scaffold(
+        body: MorphingViewport(),
       ),
     );
   }
