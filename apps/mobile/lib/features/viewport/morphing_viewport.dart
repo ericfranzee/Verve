@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../core/theme/verve_theme.dart';
+import 'widgets/hero_card.dart';
+import 'widgets/proposal_card.dart';
 
 enum ViewportState { voidState, heroCard, proposal }
 
@@ -33,7 +35,9 @@ class MorphingViewport extends ConsumerWidget {
         Expanded(
           flex: 6,
           child: AnimatedSwitcher(
-            duration: const Duration(milliseconds: 300),
+            duration: const Duration(milliseconds: 400),
+            switchInCurve: Curves.easeOutCubic,
+            switchOutCurve: Curves.easeInCubic,
             child: _buildViewportContent(state),
           ),
         ),
@@ -69,32 +73,14 @@ class MorphingViewport extends ConsumerWidget {
           ),
         );
       case ViewportState.heroCard:
-        return Container(
-          key: const ValueKey('hero'),
-          color: VerveTokens.backgroundBlack,
-          child: Center(
-            child: Card(
-              color: VerveTokens.auraTeal.withValues(alpha: 0.2),
-              child: const Padding(
-                padding: EdgeInsets.all(32.0),
-                child: Text("Hero Card (Product)", style: TextStyle(color: Colors.white, fontSize: 24)),
-              ),
-            ),
-          ),
+        return const HeroCard(
+          key: ValueKey('hero'),
+          title: "Provisioning Initialized", // Ideally fed by SynapsePayload Metadata
         );
       case ViewportState.proposal:
-        return Container(
-          key: const ValueKey('proposal'),
-          color: VerveTokens.backgroundBlack,
-          child: Center(
-            child: Card(
-              color: VerveTokens.nexusAmber.withValues(alpha: 0.2),
-              child: const Padding(
-                padding: EdgeInsets.all(32.0),
-                child: Text("Proposal (Bundle)", style: TextStyle(color: Colors.white, fontSize: 24)),
-              ),
-            ),
-          ),
+        return const ProposalCard(
+          key: ValueKey('proposal'),
+          title: "Neighborhood Starter Bundle",
         );
     }
   }

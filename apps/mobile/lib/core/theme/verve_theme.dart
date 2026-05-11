@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class VerveTokens {
   static const Color auraTeal = Color(0xFF008080);
@@ -19,10 +20,10 @@ class VerveTheme {
         secondary: VerveTokens.nexusAmber,
         tertiary: VerveTokens.vitalEmerald,
       ),
-      textTheme: const TextTheme(
-        displayLarge: TextStyle(fontFamily: 'Inter', fontWeight: FontWeight.bold, color: Colors.white),
-        bodyLarge: TextStyle(fontFamily: 'Inter', color: Colors.white),
-        bodyMedium: TextStyle(fontFamily: 'JetBrains Mono', color: Colors.white70), // For data
+      textTheme: TextTheme(
+        displayLarge: GoogleFonts.inter(fontWeight: FontWeight.bold, color: Colors.white),
+        bodyLarge: GoogleFonts.inter(color: Colors.white),
+        bodyMedium: GoogleFonts.jetBrainsMono(color: Colors.white70), // For data
       ),
     );
   }

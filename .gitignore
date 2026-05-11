@@ -23,3 +23,15 @@ coverage/
 # Assets
 apps/mobile/assets/fonts/Inter/*.ttf
 apps/mobile/assets/fonts/JetBrainsMono/*.ttf
+
+# Mac OS
+.DS_Store
+
+# Flutter Cache
+.dart_tool/
+
+# Python Tests Output
+.pytest_cache/
+
+# Python Tests Output
+.pytest_cache/

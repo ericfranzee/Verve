@@ -141,22 +141,22 @@
         {
           "id": "P2-T04",
           "name": "Intent Engine UI-Metadata",
-          "status": "pending"
+          "status": "completed"
         },
         {
           "id": "P2-T05",
           "name": "Audio-Metadata Sync Listener",
-          "status": "pending"
+          "status": "completed"
         },
         {
           "id": "P2-T06",
           "name": "Hero Card state",
-          "status": "pending"
+          "status": "completed"
         },
         {
           "id": "P2-T07",
           "name": "Proposal state",
-          "status": "pending"
+          "status": "completed"
         },
         {
           "id": "P2-T08",
