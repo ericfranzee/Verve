@@ -181,17 +181,17 @@
         {
           "id": "P2-T12",
           "name": "Network monitoring isolate",
-          "status": "pending"
+          "status": "completed"
         },
         {
           "id": "P2-T13",
           "name": "Adaptive Fidelity Engine",
-          "status": "pending"
+          "status": "completed"
         },
         {
           "id": "P2-T14",
           "name": "TTS bitrate downgrade",
-          "status": "pending"
+          "status": "completed"
         },
         {
           "id": "P2-T15",
@@ -216,22 +216,22 @@
         {
           "id": "P2-T19",
           "name": "Connection-degraded UI states",
-          "status": "pending"
+          "status": "completed"
         },
         {
           "id": "P2-T20",
           "name": "Verve+ subscription card",
-          "status": "pending"
+          "status": "completed"
         },
         {
           "id": "P2-T21",
           "name": "Verve+ natural nudge logic",
-          "status": "pending"
+          "status": "completed"
         },
         {
           "id": "P2-T22",
           "name": "Cold Start Pantry",
-          "status": "pending"
+          "status": "completed"
         }
       ]
     },

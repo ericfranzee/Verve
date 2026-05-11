@@ -4,11 +4,13 @@ import '../../../core/theme/verve_theme.dart';
 class ProposalCard extends StatelessWidget {
   final String title;
   final List<String> items;
+  final bool isLowFidelity;
 
   const ProposalCard({
     super.key,
     required this.title,
     this.items = const ["Item 1", "Item 2", "Item 3"],
+    this.isLowFidelity = false,
   });
 
   @override
@@ -19,18 +21,19 @@ class ProposalCard extends StatelessWidget {
         alignment: Alignment.center,
         children: [
           // Background Card (Z-index layering simulation)
-          Positioned(
-            top: -20,
-            child: Container(
-              width: 280,
-              height: 400,
-              decoration: BoxDecoration(
-                color: VerveTokens.nexusAmber.withValues(alpha: 0.05),
-                borderRadius: BorderRadius.circular(24),
-                border: Border.all(color: VerveTokens.nexusAmber.withValues(alpha: 0.2)),
+          if (!isLowFidelity)
+            Positioned(
+              top: -20,
+              child: Container(
+                width: 280,
+                height: 400,
+                decoration: BoxDecoration(
+                  color: VerveTokens.nexusAmber.withValues(alpha: 0.05),
+                  borderRadius: BorderRadius.circular(24),
+                  border: Border.all(color: VerveTokens.nexusAmber.withValues(alpha: 0.2)),
+                ),
               ),
             ),
-          ),
 
           // Foreground Card
           Container(
@@ -39,8 +42,8 @@ class ProposalCard extends StatelessWidget {
             decoration: BoxDecoration(
               color: VerveTokens.backgroundBlack,
               borderRadius: BorderRadius.circular(24),
-              border: Border.all(color: VerveTokens.nexusAmber.withValues(alpha: 0.6)),
-              boxShadow: [
+              border: Border.all(color: VerveTokens.nexusAmber.withValues(alpha: isLowFidelity ? 1.0 : 0.6)),
+              boxShadow: isLowFidelity ? null : [
                 BoxShadow(
                   color: VerveTokens.nexusAmber.withValues(alpha: 0.15),
                   blurRadius: 30,
