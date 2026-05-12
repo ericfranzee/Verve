@@ -72,6 +72,7 @@ class EdgeDbService {
       },
       conflictAlgorithm: ConflictAlgorithm.replace,
     );
+    print("EdgeDbService: Saved memory $id");
   }
 
   Future<List<MemoryResult>> queryMemories({
@@ -105,6 +106,7 @@ class EdgeDbService {
       where: 'id = ?',
       whereArgs: [id],
     );
+    print("EdgeDbService: Deleted memory $id");
   }
 
   Future<void> pruneExpiredMemories() async {
