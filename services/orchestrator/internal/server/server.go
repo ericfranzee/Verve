@@ -4,6 +4,7 @@ import (
 	"log"
 	"net/http"
 	"os"
+	"strings"
 	"time"
 
 	"github.com/ericfranzee/Verve/services/orchestrator/internal/circuit"
@@ -16,7 +17,23 @@ import (
 
 var upgrader = websocket.Upgrader{
 	CheckOrigin: func(r *http.Request) bool {
-		return true // Allow all for development
+		origin := r.Header.Get("Origin")
+		if origin == "" {
+			return true // Non-browser requests allowed
+		}
+
+		allowedOriginsEnv := os.Getenv("ALLOWED_ORIGINS")
+		if allowedOriginsEnv == "" {
+			return true // Default open for development if not set, though ideally it should be restrictive
+		}
+
+		allowedOrigins := strings.Split(allowedOriginsEnv, ",")
+		for _, allowed := range allowedOrigins {
+			if strings.TrimSpace(allowed) == origin {
+				return true
+			}
+		}
+		return false
 	},
 }
 
