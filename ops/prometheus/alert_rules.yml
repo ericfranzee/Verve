@@ -45,3 +45,21 @@ groups:
         annotations:
           summary: "Service Crashes Detected"
           description: "One or more core services have crashed."
+
+      - alert: CircuitBreakerTripped
+        expr: rate(circuit_breaker_trips_total[5m]) > 0
+        for: 1m
+        labels:
+          severity: critical
+        annotations:
+          summary: "Circuit Breaker Tripped"
+          description: "One or more circuit breakers (e.g. intentBreaker) have transitioned to OPEN state."
+
+      - alert: APIRequestFallback
+        expr: rate(api_request_fallback_total[5m]) > 10
+        for: 2m
+        labels:
+          severity: warning
+        annotations:
+          summary: "High API Request Fallback Rate"
+          description: "A high number of API requests are triggering fallback behaviors."

@@ -89,19 +89,19 @@
         {
           "id": "P4-T10",
           "name": "Geo-fenced soft launch",
-          "status": "pending",
+          "status": "completed",
           "layer": "all"
         },
         {
           "id": "P4-T11",
           "name": "Circuit breaker verification",
-          "status": "pending",
+          "status": "completed",
           "layer": "go"
         },
         {
           "id": "P4-T12",
           "name": "Failure tolerance monitoring",
-          "status": "pending",
+          "status": "completed",
           "layer": "all"
         },
         {

@@ -31,6 +31,16 @@ const List<BanZone> mockBanZones = [
   )
 ];
 
+// P4-T10: Wuse II (Zone Alpha) bounds constraint
+const BanZone allowedZone = BanZone(
+  name: 'Wuse II (Zone Alpha)',
+  bounds: [
+    Location(9.06, 7.46),
+    Location(9.09, 7.49),
+  ],
+);
+
+
 class RouteSafetyStatus {
   final bool isSafe;
   final String? reason;
@@ -61,6 +71,15 @@ class RouteEnforcementEngine {
         if (zone.contains(point)) {
           return RouteSafetyStatus(isSafe: false, reason: "Route intersects restricted motorcycle ban zone: \${zone.name}.");
         }
+      }
+    }
+
+
+    // 4. Geo-fenced soft launch constraint (P4-T10)
+    for (var point in routePath) {
+      if (point.lat < allowedZone.bounds[0].lat || point.lat > allowedZone.bounds[1].lat ||
+          point.lng < allowedZone.bounds[0].lng || point.lng > allowedZone.bounds[1].lng) {
+        return const RouteSafetyStatus(isSafe: false, reason: "Out of bounds: Active provisioning is restricted to Wuse II (Zone Alpha).");
       }
     }
 
