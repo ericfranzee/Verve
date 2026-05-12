@@ -77,13 +77,13 @@
         {
           "id": "P4-T08",
           "name": "Penetration testing of Go Orchestrator",
-          "status": "pending",
+          "status": "completed",
           "layer": "go"
         },
         {
           "id": "P4-T09",
           "name": "NDPA compliance audit",
-          "status": "pending",
+          "status": "completed",
           "layer": "all"
         },
         {
