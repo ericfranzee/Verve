@@ -65,13 +65,13 @@
         {
           "id": "P4-T06",
           "name": "Purge Protocol",
-          "status": "pending",
+          "status": "completed",
           "layer": "flutter+go+python"
         },
         {
           "id": "P4-T07",
           "name": "Nexus Lead dashboard (web app)",
-          "status": "pending",
+          "status": "completed",
           "layer": "nodejs"
         },
         {
