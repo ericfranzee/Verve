@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nexus Lead Dashboard</title>
+    <style>
+        body { font-family: 'JetBrains Mono', monospace; background-color: #000; color: #FFF; padding: 20px; }
+        h1 { color: #FFBF00; }
+        .card { background-color: #111; padding: 20px; border-radius: 8px; margin-bottom: 20px; border: 1px solid #333; }
+        .btn { background-color: #50C878; color: #000; border: none; padding: 10px 15px; border-radius: 5px; cursor: pointer; margin-right: 10px; margin-bottom: 10px; font-weight: bold; }
+        .btn-danger { background-color: #FF0000; color: #FFF; }
+        .btn-warning { background-color: #FFBF00; color: #000; }
+    </style>
+</head>
+<body>
+
+    <h1>Nexus Lead Operations Dashboard</h1>
+
+    <div class="card">
+        <h2>Active Hub Status</h2>
+        <p>Hub: <strong>Wuse II (Zone Alpha)</strong></p>
+        <p>Active Orders: <strong>14</strong></p>
+        <p>Available Riders: <strong>6 / 10</strong></p>
+        <p>Temperature Alert: <span style="color: #50C878;">Normal</span></p>
+    </div>
+
+    <div class="card">
+        <h2>Trigger Chaos Protocols</h2>
+        <button class="btn btn-warning" onclick="triggerChaos('spoilage_swap')">Spoilage Swap</button>
+        <button class="btn btn-warning" onclick="triggerChaos('traffic_gridlock')">Gridlock Alert</button>
+        <button class="btn btn-danger" onclick="triggerChaos('power_grid_failure')">Power Grid Failure</button>
+        <button class="btn btn-danger" onclick="triggerChaos('rider_device_failure')">Rider Device Failure</button>
+        <button class="btn btn-warning" onclick="triggerChaos('user_not_home')">User Not Home</button>
+        <button class="btn btn-danger" onclick="triggerChaos('fleet_immobilization')">Fleet Immobilization</button>
+        <button class="btn btn-danger" onclick="triggerChaos('hub_flooding')">Hub Flooding</button>
+        <button class="btn btn-danger" onclick="triggerChaos('coordinated_fraud')">Fraud Velocity Lock</button>
+        <button class="btn btn-warning" onclick="triggerChaos('picker_walkout')">Picker Walkout</button>
+        <button class="btn btn-warning" onclick="triggerChaos('holiday_surge')">National Holiday Surge</button>
+    </div>
+
+    <script>
+        function triggerChaos(protocol) {
+            alert("Chaos protocol triggered: " + protocol + "\nIn a real implementation, this would hit the GraphQL or REST API to trigger the event.");
+            // e.g. fetch('/api/chaos', { method: 'POST', body: JSON.stringify({ protocol }) })
+        }
+    </script>
+</body>
+</html>

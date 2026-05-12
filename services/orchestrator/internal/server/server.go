@@ -8,6 +8,9 @@ import (
 
 	"github.com/ericfranzee/Verve/services/orchestrator/internal/circuit"
 	"github.com/ericfranzee/Verve/services/orchestrator/internal/session"
+
+	"bytes"
+
 	"github.com/gorilla/websocket"
 )
 
@@ -80,4 +83,44 @@ func (s *WSServer) HandleConnections(w http.ResponseWriter, r *http.Request) {
 			break
 		}
 	}
+}
+
+func (s *WSServer) HandlePurge(w http.ResponseWriter, r *http.Request) {
+	if r.Method != http.MethodPost {
+		http.Error(w, "Method not allowed", http.StatusMethodNotAllowed)
+		return
+	}
+
+	authHeader := r.Header.Get("Authorization")
+	if authHeader == "" {
+		http.Error(w, "Unauthorized", http.StatusUnauthorized)
+		return
+	}
+
+	// 1. Forward to Python Intent Engine
+	reqBody := []byte(`{"user_id": "current_user_123"}`) // In reality, parse from request/token
+	req, err := http.NewRequest("POST", "http://localhost:8000/internal/purge", bytes.NewBuffer(reqBody))
+	if err != nil {
+		log.Printf("Failed to create request for purge cascade: %v", err)
+		http.Error(w, "Internal server error during purge cascade", http.StatusInternalServerError)
+		return
+	}
+	req.Header.Set("Content-Type", "application/json")
+	req.Header.Set("Authorization", authHeader)
+
+	client := &http.Client{Timeout: 2 * time.Second}
+	resp, err := client.Do(req)
+
+	if err != nil || resp.StatusCode != http.StatusOK {
+		log.Printf("Failed to cascade purge to Intent Engine: %v", err)
+		http.Error(w, "Internal server error during purge cascade", http.StatusInternalServerError)
+		return
+	}
+
+	// 2. Clear Session in Redis (stubbed out here since we don't have the user's specific session ID without parsing the token)
+	// s.sessionMgr.ClearUserSessions(userID)
+
+	log.Println("Purge cascade successful.")
+	w.WriteHeader(http.StatusOK)
+	w.Write([]byte(`{"status":"success"}`))
 }

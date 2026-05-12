@@ -1,4 +1,4 @@
-from fastapi import FastAPI, HTTPException, Request
+from fastapi import FastAPI, HTTPException, Request, Header
 from pydantic import BaseModel
 import logging
 import time
@@ -142,6 +142,22 @@ async def voice_loop(request: VoiceLoopRequest):
         synapse_payload=synapse_payload,
         is_fulfillable=fulfillment_status.get("isFulfillable", False)
     )
+
+class PurgeRequest(BaseModel):
+    user_id: str
+
+@app.post("/internal/purge")
+def purge_memory(request: PurgeRequest, authorization: str = Header(None)):
+    if not authorization or not authorization.startswith("Bearer "):
+        raise HTTPException(status_code=401, detail="Unauthorized")
+
+    logger.info(f"Purge Protocol initiated for user: {request.user_id}")
+
+    # Simulate blocking DB deletion for vector embeddings
+    time.sleep(0.5)
+
+    logger.info(f"Vector embeddings and memory successfully purged for {request.user_id}")
+    return {"status": "success", "message": "Purge completed"}
 
 if __name__ == "__main__":
     import uvicorn

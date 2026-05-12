@@ -1,5 +1,6 @@
 import './tracing';
 import express from 'express';
+import path from 'path';
 import { ApolloServer } from 'apollo-server-express';
 import { typeDefs } from './schema/typeDefs';
 import { resolvers } from './resolvers';
@@ -24,6 +25,9 @@ async function startServer() {
 
   await server.start();
   server.applyMiddleware({ app: app as any });
+
+  // Serve Nexus Lead Dashboard
+  app.use('/dashboard', express.static(path.join(__dirname, '../src/dashboard')));
 
   const PORT = process.env.PORT || 4000;
   app.listen(PORT, () => {
