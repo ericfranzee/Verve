@@ -1,4 +1,5 @@
 from fastapi import FastAPI, HTTPException, Request
+from fastapi.concurrency import run_in_threadpool
 from pydantic import BaseModel
 import logging
 import time
@@ -49,7 +50,7 @@ async def health_check():
     return {"status": "healthy"}
 
 @app.post("/api/v1/infer", response_model=InferenceResponse)
-async def infer_intent(request: InferenceRequest):
+def infer_intent(request: InferenceRequest):
     logger.info(f"Received inference request: {request.intent}")
 
     resolved_temporal = temporal_resolver.resolve(request.intent)
@@ -67,13 +68,14 @@ async def infer_intent(request: InferenceRequest):
 @app.post("/api/v1/transcribe")
 async def transcribe_audio(request: Request):
     body = await request.body()
-    result = whisper_transcriber.transcribe(body)
+    # P1-T11: Offload blocking transcription to threadpool to avoid event loop starvation.
+    result = await run_in_threadpool(whisper_transcriber.transcribe, body)
     if result["confidence"] < 0.60:
         raise HTTPException(status_code=400, detail="Low confidence transcription. Please repeat.")
     return result
 
 @app.post("/api/v1/voice_loop", response_model=VoiceLoopResponse)
-async def voice_loop(request: VoiceLoopRequest):
+def voice_loop(request: VoiceLoopRequest):
     """
     P1-T12: Complete round-trip loop.
     P1-T13: Optimized round-trip latency (<1.2s P95).
