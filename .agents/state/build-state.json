@@ -53,13 +53,13 @@
         {
           "id": "P4-T04",
           "name": "Payment Cascade Manager screen",
-          "status": "pending",
+          "status": "completed",
           "layer": "flutter"
         },
         {
           "id": "P4-T05",
           "name": "Human Bridge escalation overlay",
-          "status": "pending",
+          "status": "completed",
           "layer": "flutter"
         },
         {
