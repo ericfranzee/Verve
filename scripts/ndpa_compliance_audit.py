@@ -44,12 +44,12 @@ def main():
                         all_violations.extend(violations)
 
     if all_violations:
-        print("🚨 NDPA Compliance Violations Found:")
+        print("FAIL: NDPA Compliance Violations Found:")
         for v in all_violations:
             print(v)
         sys.exit(1)
     else:
-        print("✅ NDPA Compliance Audit Passed: No plaintext PII leaks detected.")
+        print("PASS: NDPA Compliance Audit Passed: No plaintext PII leaks detected.")
 
 if __name__ == "__main__":
     main()
