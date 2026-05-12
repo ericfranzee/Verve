@@ -2,11 +2,49 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../core/theme/verve_theme.dart';
-import '../memory/memory_manager.dart';
 import '../../main.dart'; // To access providers
 
+class TrustLevelNotifier extends Notifier<int> {
+  @override
+  int build() => 1;
+}
+
 // Assuming Trust Level is globally available, we stub it here for UI purposes
-final trustLevelProvider = StateProvider<int>((ref) => 1);
+final trustLevelProvider = NotifierProvider<TrustLevelNotifier, int>(() => TrustLevelNotifier());
+
+class LedgerNotifier extends Notifier<List<Map<String, String>>> {
+  @override
+  List<Map<String, String>> build() => [
+    {
+      "timestamp": "08-MAY-26 14:20",
+      "category": "DIETARY",
+      "context": "Prefers Plantain over Yam"
+    },
+    {
+      "timestamp": "09-MAY-26 08:15",
+      "category": "ROUTINE",
+      "context": "Orders Milk every 5 days"
+    },
+    {
+      "timestamp": "10-MAY-26 19:30",
+      "category": "PREFERENCE",
+      "context": "Requests low-sodium options"
+    }
+  ];
+
+  void removeAt(int index) {
+    final newState = List<Map<String, String>>.from(state);
+    newState.removeAt(index);
+    state = newState;
+  }
+
+  void clear() {
+    state = [];
+  }
+}
+
+// Stub for intimate ledger items
+final ledgerProvider = NotifierProvider<LedgerNotifier, List<Map<String, String>>>(() => LedgerNotifier());
 
 class GuardianVaultScreen extends ConsumerWidget {
   const GuardianVaultScreen({super.key});
@@ -25,10 +63,14 @@ class GuardianVaultScreen extends ConsumerWidget {
         padding: const EdgeInsets.all(24.0),
         children: [
           _buildTrustLadderHeader(context, trustLevel),
-          const SizedBox(height: 40),
+          const SizedBox(height: 32),
+          _buildIdentityBlock(context),
+          const SizedBox(height: 32),
           _buildDataAccessBreakdown(context, trustLevel),
+          const SizedBox(height: 32),
+          _buildIntimateLedger(context, ref),
           const SizedBox(height: 60),
-          _buildPurgeButton(context, ref),
+          _buildPurgeKillSwitch(context, ref),
         ],
       ),
     );
@@ -63,6 +105,46 @@ class GuardianVaultScreen extends ConsumerWidget {
           Text("Level $trustLevel: $title", style: Theme.of(context).textTheme.displayLarge?.copyWith(fontSize: 24)),
           const SizedBox(height: 8),
           Text(desc, style: Theme.of(context).textTheme.bodyLarge),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildIdentityBlock(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.all(20),
+      decoration: BoxDecoration(
+        color: Colors.white.withValues(alpha: 0.05),
+        borderRadius: BorderRadius.circular(12),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text("IDENTITY (KYC) STATUS", style: Theme.of(context).textTheme.bodyMedium?.copyWith(color: Colors.white54)),
+          const SizedBox(height: 12),
+          Row(
+            children: [
+              const Icon(Icons.verified_user, color: VerveTokens.listeningCyan),
+              const SizedBox(width: 12),
+              Expanded(
+                child: Text(
+                  "BVN: ***-****-1234",
+                  style: Theme.of(context).textTheme.bodyMedium?.copyWith(color: Colors.white, fontSize: 16),
+                ),
+              ),
+              Container(
+                padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                decoration: BoxDecoration(
+                  color: VerveTokens.listeningCyan.withValues(alpha: 0.2),
+                  borderRadius: BorderRadius.circular(4),
+                ),
+                child: Text(
+                  "VERIFIED",
+                  style: Theme.of(context).textTheme.bodyMedium?.copyWith(color: VerveTokens.listeningCyan, fontWeight: FontWeight.bold),
+                ),
+              ),
+            ],
+          ),
         ],
       ),
     );
@@ -108,27 +190,113 @@ class GuardianVaultScreen extends ConsumerWidget {
     );
   }
 
-  Widget _buildPurgeButton(BuildContext context, WidgetRef ref) {
-    return ElevatedButton.icon(
-      icon: const Icon(Icons.delete_forever),
-      label: const Text("PURGE ALL MEMORIES"),
-      style: ElevatedButton.styleFrom(
-        backgroundColor: Colors.red.shade900.withValues(alpha: 0.2),
-        foregroundColor: Colors.red.shade300,
-        padding: const EdgeInsets.symmetric(vertical: 20),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(12),
-          side: BorderSide(color: Colors.red.shade900),
-        ),
-      ),
-      onPressed: () async {
-        final manager = ref.read(memoryManagerProvider);
-        await manager.purgeProtocol();
-        ref.read(trustLevelProvider.notifier).state = 0;
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text("Guardian Purge Protocol Complete.")),
+  Widget _buildIntimateLedger(BuildContext context, WidgetRef ref) {
+    final ledgerItems = ref.watch(ledgerProvider);
+
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text("INTIMATE LEDGER", style: Theme.of(context).textTheme.bodyMedium?.copyWith(color: Colors.white54)),
+        const SizedBox(height: 16),
+        if (ledgerItems.isEmpty)
+          Text("No memories recorded.", style: Theme.of(context).textTheme.bodyMedium?.copyWith(color: Colors.white54))
+        else
+          ListView.builder(
+            shrinkWrap: true,
+            physics: const NeverScrollableScrollPhysics(),
+            itemCount: ledgerItems.length,
+            itemBuilder: (context, index) {
+              final item = ledgerItems[index];
+              return Dismissible(
+                key: Key(item['timestamp']! + item['context']!),
+                direction: DismissDirection.endToStart,
+                onDismissed: (direction) {
+                  ref.read(ledgerProvider.notifier).removeAt(index);
+                },
+                background: Container(
+                  color: Colors.red.shade900,
+                  alignment: Alignment.centerRight,
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  child: const Icon(Icons.delete, color: Colors.white),
+                ),
+                child: Container(
+                  padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 8),
+                  decoration: BoxDecoration(
+                    border: Border(bottom: BorderSide(color: Colors.white.withValues(alpha: 0.1))),
+                  ),
+                  child: Text(
+                    "[${item['timestamp']}] - [${item['category']}] - [${item['context']}]",
+                    style: Theme.of(context).textTheme.bodyMedium?.copyWith(color: Colors.white70, fontSize: 13),
+                  ),
+                ),
+              );
+            },
+          ),
+      ],
+    );
+  }
+
+  Widget _buildPurgeKillSwitch(BuildContext context, WidgetRef ref) {
+    return Dismissible(
+      key: const Key("purge_switch"),
+      direction: DismissDirection.startToEnd,
+      confirmDismiss: (direction) async {
+        return await showDialog(
+          context: context,
+          builder: (context) => AlertDialog(
+            backgroundColor: VerveTokens.backgroundBlack,
+            title: const Text("Confirm Purge", style: TextStyle(color: Colors.white)),
+            content: const Text(
+              "This will destroy all local vectors and wipe Aura's memory. This action cannot be undone.",
+              style: TextStyle(color: Colors.white70),
+            ),
+            actions: [
+              TextButton(
+                onPressed: () => Navigator.of(context).pop(false),
+                child: const Text("CANCEL", style: TextStyle(color: Colors.white70)),
+              ),
+              TextButton(
+                onPressed: () => Navigator.of(context).pop(true),
+                child: const Text("PURGE", style: TextStyle(color: Colors.red)),
+              ),
+            ],
+          ),
         );
       },
+      onDismissed: (direction) async {
+        final manager = ref.read(memoryManagerProvider);
+        await manager.purgeProtocol();
+        ref.read(ledgerProvider.notifier).clear();
+        if (context.mounted) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(content: Text("Guardian Purge Protocol Complete.")),
+          );
+        }
+      },
+      background: Container(
+        decoration: BoxDecoration(
+          color: Colors.red.shade900,
+          borderRadius: BorderRadius.circular(12),
+        ),
+        alignment: Alignment.centerLeft,
+        padding: const EdgeInsets.symmetric(horizontal: 20),
+        child: const Icon(Icons.warning, color: Colors.white),
+      ),
+      child: Container(
+        width: double.infinity,
+        padding: const EdgeInsets.symmetric(vertical: 20),
+        decoration: BoxDecoration(
+          color: Colors.transparent,
+          borderRadius: BorderRadius.circular(12),
+          border: Border.all(color: VerveTokens.nexusAmber),
+        ),
+        child: const Center(
+          child: Text(
+            "[ SLIDE RIGHT TO INITIATE TOTAL CONTEXT PURGE ]",
+            style: TextStyle(color: VerveTokens.nexusAmber, fontWeight: FontWeight.bold, letterSpacing: 1.2),
+          ),
+        ),
+      ),
     );
   }
 }

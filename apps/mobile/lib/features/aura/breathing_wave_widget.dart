@@ -84,16 +84,16 @@ class _WavePainter extends CustomPainter {
 
   @override
   void paint(Canvas canvas, Size size) {
-    final paint = Paint()
-      ..shader = program.fragmentShader()
-        ..setFloat(0, size.width)
-        ..setFloat(1, size.height)
-        ..setFloat(2, time)
-        ..setFloat(3, waveColor.r)
-        ..setFloat(4, waveColor.g)
-        ..setFloat(5, waveColor.b)
-        ..setFloat(6, intensity);
+    final shader = program.fragmentShader();
+    shader.setFloat(0, size.width);
+    shader.setFloat(1, size.height);
+    shader.setFloat(2, time);
+    shader.setFloat(3, waveColor.r);
+    shader.setFloat(4, waveColor.g);
+    shader.setFloat(5, waveColor.b);
+    shader.setFloat(6, intensity);
 
+    final paint = Paint()..shader = shader;
     canvas.drawRect(Offset.zero & size, paint);
   }
 

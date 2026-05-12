@@ -32,21 +32,96 @@
       "status": "in_progress",
       "weeks": "15-20",
       "tasks": [
-        { "id": "P4-T01", "name": "Guardian Vault screen", "status": "pending", "layer": "flutter" },
-        { "id": "P4-T02", "name": "Predictive Pantry screen", "status": "pending", "layer": "flutter" },
-        { "id": "P4-T03", "name": "Semantic History screen", "status": "pending", "layer": "flutter" },
-        { "id": "P4-T04", "name": "Payment Cascade Manager screen", "status": "pending", "layer": "flutter" },
-        { "id": "P4-T05", "name": "Human Bridge escalation overlay", "status": "pending", "layer": "flutter" },
-        { "id": "P4-T06", "name": "Purge Protocol", "status": "pending", "layer": "flutter+go+python" },
-        { "id": "P4-T07", "name": "Nexus Lead dashboard (web app)", "status": "pending", "layer": "nodejs" },
-        { "id": "P4-T08", "name": "Penetration testing of Go Orchestrator", "status": "pending", "layer": "go" },
-        { "id": "P4-T09", "name": "NDPA compliance audit", "status": "pending", "layer": "all" },
-        { "id": "P4-T10", "name": "Geo-fenced soft launch", "status": "pending", "layer": "all" },
-        { "id": "P4-T11", "name": "Circuit breaker verification", "status": "pending", "layer": "go" },
-        { "id": "P4-T12", "name": "Failure tolerance monitoring", "status": "pending", "layer": "all" },
-        { "id": "P4-T13", "name": "Chaos protocol CI", "status": "pending", "layer": "nodejs" },
-        { "id": "P4-T14", "name": "Degraded handshake verification", "status": "pending", "layer": "flutter+nodejs" },
-        { "id": "P4-T15", "name": "Risk register review", "status": "pending", "layer": "all" }
+        {
+          "id": "P4-T01",
+          "name": "Guardian Vault screen",
+          "status": "completed",
+          "layer": "flutter"
+        },
+        {
+          "id": "P4-T02",
+          "name": "Predictive Pantry screen",
+          "status": "completed",
+          "layer": "flutter"
+        },
+        {
+          "id": "P4-T03",
+          "name": "Semantic History screen",
+          "status": "completed",
+          "layer": "flutter"
+        },
+        {
+          "id": "P4-T04",
+          "name": "Payment Cascade Manager screen",
+          "status": "pending",
+          "layer": "flutter"
+        },
+        {
+          "id": "P4-T05",
+          "name": "Human Bridge escalation overlay",
+          "status": "pending",
+          "layer": "flutter"
+        },
+        {
+          "id": "P4-T06",
+          "name": "Purge Protocol",
+          "status": "pending",
+          "layer": "flutter+go+python"
+        },
+        {
+          "id": "P4-T07",
+          "name": "Nexus Lead dashboard (web app)",
+          "status": "pending",
+          "layer": "nodejs"
+        },
+        {
+          "id": "P4-T08",
+          "name": "Penetration testing of Go Orchestrator",
+          "status": "pending",
+          "layer": "go"
+        },
+        {
+          "id": "P4-T09",
+          "name": "NDPA compliance audit",
+          "status": "pending",
+          "layer": "all"
+        },
+        {
+          "id": "P4-T10",
+          "name": "Geo-fenced soft launch",
+          "status": "pending",
+          "layer": "all"
+        },
+        {
+          "id": "P4-T11",
+          "name": "Circuit breaker verification",
+          "status": "pending",
+          "layer": "go"
+        },
+        {
+          "id": "P4-T12",
+          "name": "Failure tolerance monitoring",
+          "status": "pending",
+          "layer": "all"
+        },
+        {
+          "id": "P4-T13",
+          "name": "Chaos protocol CI",
+          "status": "pending",
+          "layer": "nodejs"
+        },
+        {
+          "id": "P4-T14",
+          "name": "Degraded handshake verification",
+          "status": "pending",
+          "layer": "flutter+nodejs"
+        },
+        {
+          "id": "P4-T15",
+          "name": "Risk register review",
+          "status": "pending",
+          "layer": "all"
+        }
       ]
     }
   },
