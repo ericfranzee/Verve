@@ -1,0 +1,60 @@
+version: '3.8'
+
+services:
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: verve-prometheus
+    volumes:
+      - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+      - ./prometheus/alert_rules.yml:/etc/prometheus/alert_rules.yml
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+    ports:
+      - "9090:9090"
+    networks:
+      - verve-observability
+
+  grafana:
+    image: grafana/grafana:latest
+    container_name: verve-grafana
+    ports:
+      - "3000:3000"
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=admin
+    depends_on:
+      - prometheus
+      - loki
+    networks:
+      - verve-observability
+
+  loki:
+    image: grafana/loki:latest
+    container_name: verve-loki
+    ports:
+      - "3100:3100"
+    command: -config.file=/etc/loki/local-config.yaml
+    networks:
+      - verve-observability
+
+  promtail:
+    image: grafana/promtail:latest
+    container_name: verve-promtail
+    volumes:
+      - /var/log:/var/log
+    command: -config.file=/etc/promtail/config.yml
+    networks:
+      - verve-observability
+
+  jaeger:
+    image: jaegertracing/all-in-one:latest
+    container_name: verve-jaeger
+    ports:
+      - "16686:16686"
+      - "4317:4317" # OTLP gRPC
+      - "4318:4318" # OTLP HTTP
+    networks:
+      - verve-observability
+
+networks:
+  verve-observability:
+    driver: bridge
