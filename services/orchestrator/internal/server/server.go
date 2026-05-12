@@ -10,28 +10,31 @@ import (
 	"github.com/gorilla/websocket"
 )
 
-var upgrader = websocket.Upgrader{
-	CheckOrigin: func(r *http.Request) bool {
-		return true // Allow all for development
-	},
-}
-
 type WSServer struct {
 	clients map[*websocket.Conn]bool
 	sessionMgr *session.SessionManager
 	intentBreaker *circuit.CircuitBreaker
+	allowedOrigins []string
+	upgrader websocket.Upgrader
 }
 
-func NewWSServer() *WSServer {
-	return &WSServer{
+func NewWSServer(allowedOrigins []string) *WSServer {
+	s := &WSServer{
 		clients: make(map[*websocket.Conn]bool),
 		sessionMgr: session.NewSessionManager(),
 		intentBreaker: circuit.NewCircuitBreaker("IntentEngine", 5, time.Minute, 30*time.Second),
+		allowedOrigins: allowedOrigins,
 	}
+
+	s.upgrader = websocket.Upgrader{
+		CheckOrigin: s.checkOrigin,
+	}
+
+	return s
 }
 
 func (s *WSServer) HandleConnections(w http.ResponseWriter, r *http.Request) {
-	ws, err := upgrader.Upgrade(w, r, nil)
+	ws, err := s.upgrader.Upgrade(w, r, nil)
 	if err != nil {
 		log.Printf("Upgrade error: %v", err)
 		return
