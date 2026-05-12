@@ -1,14 +1,35 @@
+# Node.js
+node_modules/
+
+# Node Build Output
+services/nexus-api/dist/
+
 # Python
 venv/
 __pycache__/
 *.pyc
 *.pyo
 *.pyd
-services/intent-engine/venv/
 
-# Node.js
-node_modules/
-dist/
+# Python Tests Output
+.pytest_cache/
 
 # Go
 services/orchestrator/orchestrator
+
+# Mac OS
+.DS_Store
+
+# Flutter caching
+.dart_tool/
+apps/mobile/.dart_tool/
+apps/mobile/ios/Pods/
+apps/mobile/ios/.symlinks/
+apps/mobile/ios/Flutter/Flutter.framework/
+apps/mobile/ios/Flutter/Flutter.podspec
+apps/mobile/android/.gradle
+apps/mobile/build/
+
+# Assets
+apps/mobile/assets/fonts/Inter/*.ttf
+apps/mobile/assets/fonts/JetBrainsMono/*.ttf

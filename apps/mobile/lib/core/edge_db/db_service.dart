@@ -1,4 +1,6 @@
 import 'dart:typed_data';
+import 'package:sqflite/sqflite.dart';
+import 'package:path/path.dart';
 
 import 'schema.dart';
 
@@ -15,15 +17,36 @@ class MemoryResult {
 }
 
 class EdgeDbService {
-  // Stub for the actual SQLite-VEC instance
-  bool _isInitialized = false;
+  Database? _db;
 
   Future<void> initializeDatabase() async {
-    // 1. Open encrypted database (stub)
-    // 2. Execute PRAGMA integrity_check
-    // 3. Create tables if not exists
-    _isInitialized = true;
-    print("EdgeDbService: Database initialized.");
+    final dbPath = await getDatabasesPath();
+    final path = join(dbPath, 'verve_edge.db');
+
+    _db = await openDatabase(
+      path,
+      version: 1,
+      onCreate: (db, version) async {
+        await db.execute(EdgeDbSchema.createMemoriesTable);
+      },
+    );
+
+    // P1-T16: DB Corruption recovery PRAGMA integrity_check
+    final result = await _db!.rawQuery("PRAGMA integrity_check");
+    final isOk = result.isNotEmpty && result.first.values.first == 'ok';
+
+    if (!isOk) {
+      // Basic corruption handler
+      // Real implementation would reach out to cloud backup before DB wipe
+      await deleteDatabase(path);
+      _db = await openDatabase(
+        path,
+        version: 1,
+        onCreate: (db, version) async {
+          await db.execute(EdgeDbSchema.createMemoriesTable);
+        },
+      );
+    }
   }
 
   Future<void> saveMemory({
@@ -33,9 +56,22 @@ class EdgeDbService {
     required String category,
     int trustLevelRequired = 0,
   }) async {
-    if (!_isInitialized) throw Exception("DB not initialized");
-    // Stub: INSERT INTO verve_memories ...
-    print("EdgeDbService: Saved memory $id");
+    if (_db == null) throw Exception("DB not initialized");
+    await _db!.insert(
+      EdgeDbSchema.memoriesTable,
+      {
+        'id': id,
+        'embedding': embedding.buffer.asUint8List(),
+        'content_text': contentText,
+        'category': category,
+        'trust_level_required': trustLevelRequired,
+        'created_at': DateTime.now().toIso8601String(),
+        'archived': 0,
+        'reinforcement_count': 0,
+        'temporal_weight': 1.0,
+      },
+      conflictAlgorithm: ConflictAlgorithm.replace,
+    );
   }
 
   Future<List<MemoryResult>> queryMemories({
@@ -44,21 +80,43 @@ class EdgeDbService {
     int topK = 5,
     double minTemporalWeight = 0.3,
   }) async {
-    if (!_isInitialized) throw Exception("DB not initialized");
-    // Stub: SELECT ... FROM verve_memories WHERE trust_level_required <= currentTrustLevel ...
-    print("EdgeDbService: Queried memories for trust level $currentTrustLevel");
-    return [];
+    if (_db == null) throw Exception("DB not initialized");
+
+    final List<Map<String, dynamic>> maps = await _db!.query(
+      EdgeDbSchema.memoriesTable,
+      where: 'trust_level_required <= ? AND archived = 0',
+      whereArgs: [currentTrustLevel],
+      limit: topK,
+    );
+
+    return List.generate(maps.length, (i) {
+      return MemoryResult(
+        id: maps[i]['id'] as String,
+        contentText: maps[i]['content_text'] as String,
+        score: 1.0, // Stub score without VEC search
+      );
+    });
   }
 
   Future<void> deleteMemory(String id) async {
-    if (!_isInitialized) throw Exception("DB not initialized");
-    // Stub: DELETE FROM verve_memories WHERE id = ...
-    print("EdgeDbService: Deleted memory $id");
+    if (_db == null) throw Exception("DB not initialized");
+    await _db!.delete(
+      EdgeDbSchema.memoriesTable,
+      where: 'id = ?',
+      whereArgs: [id],
+    );
   }
 
   Future<void> pruneExpiredMemories() async {
-    if (!_isInitialized) throw Exception("DB not initialized");
-    // Stub: Archive memories > 90 days old with 0 reinforcement to cloud
-    print("EdgeDbService: Pruned expired memories");
+    if (_db == null) throw Exception("DB not initialized");
+
+    // Archive memories older than 90 days with 0 reinforcement
+    final ninetyDaysAgo = DateTime.now().subtract(const Duration(days: 90)).toIso8601String();
+    await _db!.update(
+      EdgeDbSchema.memoriesTable,
+      {'archived': 1},
+      where: 'created_at < ? AND reinforcement_count = 0',
+      whereArgs: [ninetyDaysAgo],
+    );
   }
 }

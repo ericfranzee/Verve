@@ -1,0 +1,47 @@
+groups:
+  - name: verve_alerts
+    rules:
+      - alert: HighLlmLatency
+        expr: histogram_quantile(0.95, sum(rate(llm_inference_duration_seconds_bucket[5m])) by (le)) > 2.0
+        for: 2m
+        labels:
+          severity: warning
+        annotations:
+          summary: "High LLM Inference Latency"
+          description: "P95 LLM inference latency is above 2.0 seconds for the last 5 minutes."
+
+      - alert: HighWebSocketErrorRate
+        expr: rate(ws_connections_errors_total[5m]) > 10
+        for: 2m
+        labels:
+          severity: critical
+        annotations:
+          summary: "High WebSocket Error Rate"
+          description: "WebSocket connection errors exceed 10 per second over 5 minutes."
+
+      - alert: PaymentCascadeDepthExceeded
+        expr: rate(payment_cascade_depth_total{depth="4"}[5m]) > 5
+        for: 2m
+        labels:
+          severity: critical
+        annotations:
+          summary: "Payment Cascade Exhaustion"
+          description: "Payment cascade is hitting depth 4 (failure) more than 5 times per second."
+
+      - alert: HighPoFDesync
+        expr: rate(pof_desync_events_total[5m]) > 20
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: "High PoF Desync Rate"
+          description: "Probability of Fulfillment (PoF) desync events are occurring frequently."
+
+      - alert: ServiceCrashes
+        expr: rate(service_crashes_total[5m]) > 0
+        for: 1m
+        labels:
+          severity: critical
+        annotations:
+          summary: "Service Crashes Detected"
+          description: "One or more core services have crashed."

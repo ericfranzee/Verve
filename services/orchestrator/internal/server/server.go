@@ -3,6 +3,7 @@ package server
 import (
 	"log"
 	"net/http"
+	"os"
 	"time"
 
 	"github.com/ericfranzee/Verve/services/orchestrator/internal/circuit"
@@ -23,9 +24,13 @@ type WSServer struct {
 }
 
 func NewWSServer() *WSServer {
+	redisAddr := os.Getenv("REDIS_ADDR")
+	if redisAddr == "" {
+		redisAddr = "localhost:6379"
+	}
 	return &WSServer{
 		clients: make(map[*websocket.Conn]bool),
-		sessionMgr: session.NewSessionManager(),
+		sessionMgr: session.NewSessionManager(redisAddr),
 		intentBreaker: circuit.NewCircuitBreaker("IntentEngine", 5, time.Minute, 30*time.Second),
 	}
 }
