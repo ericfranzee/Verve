@@ -1,0 +1,18 @@
+name: Chaos Protocol CI
+on: [push, pull_request]
+
+jobs:
+  chaos_simulation:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+      - name: Install dependencies
+        working-directory: services/nexus-api
+        run: npm ci
+      - name: Run Chaos Tests
+        working-directory: services/nexus-api
+        run: npm run test:chaos
