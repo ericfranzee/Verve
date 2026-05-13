@@ -10,6 +10,7 @@ Go Orchestrator internal modules handling circuit breaking, redis session state 
 | circuit/ | Contains `breaker.go` (and tests) providing the closed/open/half-open Circuit Breaker implementation |
 | session/ | Contains `manager.go` managing concurrent state mapping directly connected to a Redis backend |
 | server/ | Contains `server.go` which links circuit, session, and WS routing |
+| sync/ | Contains `reconcile.go` for reconciling local Edge intent state with Cloud state post-reconnection |
 
 ## Data Flow
 Flutter Client -> WS /server/ -> [session] (Recovery) -> [circuit] (Proxy downstream to Intent Engine)

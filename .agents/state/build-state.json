@@ -130,9 +130,9 @@
       "status": "in_progress",
       "weeks": "21-26",
       "tasks": [
-        { "id": "P5-T01", "name": "Edge SLM Integrator", "status": "pending", "layer": "flutter" },
-        { "id": "P5-T02", "name": "Offline Intent Queue", "status": "pending", "layer": "flutter" },
-        { "id": "P5-T03", "name": "Hybrid State Sync Engine", "status": "pending", "layer": "go+flutter" },
+        { "id": "P5-T01", "name": "Edge SLM Integrator", "status": "completed", "layer": "flutter" },
+        { "id": "P5-T02", "name": "Offline Intent Queue", "status": "completed", "layer": "flutter" },
+        { "id": "P5-T03", "name": "Hybrid State Sync Engine", "status": "completed", "layer": "go+flutter" },
         { "id": "P5-T04", "name": "Wearable UI Companion", "status": "pending", "layer": "flutter" },
         { "id": "P5-T05", "name": "Automotive UI", "status": "pending", "layer": "flutter" },
         { "id": "P5-T06", "name": "Spatial Depletion Horizon", "status": "pending", "layer": "flutter" },

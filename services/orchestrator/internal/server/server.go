@@ -9,6 +9,7 @@ import (
 
 	"github.com/ericfranzee/Verve/services/orchestrator/internal/circuit"
 	"github.com/ericfranzee/Verve/services/orchestrator/internal/session"
+	"github.com/ericfranzee/Verve/services/orchestrator/internal/sync"
 
 	"bytes"
 
@@ -41,6 +42,7 @@ type WSServer struct {
 	clients map[*websocket.Conn]bool
 	sessionMgr *session.SessionManager
 	intentBreaker *circuit.CircuitBreaker
+	reconciler *sync.Reconciler
 }
 
 func NewWSServer() *WSServer {
@@ -52,6 +54,7 @@ func NewWSServer() *WSServer {
 		clients: make(map[*websocket.Conn]bool),
 		sessionMgr: session.NewSessionManager(redisAddr),
 		intentBreaker: circuit.NewCircuitBreaker("IntentEngine", 5, time.Minute, 30*time.Second),
+		reconciler: sync.NewReconciler(),
 	}
 }
 
@@ -84,6 +87,28 @@ func (s *WSServer) HandleConnections(w http.ResponseWriter, r *http.Request) {
 		}
 
 		log.Printf("Received message: %v", msg)
+
+		// Check if it's a sync message
+		if action, ok := msg["action"].(string); ok && action == "sync" {
+			edgeState, _ := msg["edge_state"].(map[string]interface{})
+			// Stub cloud state retrieval (would normally fetch from DB/Redis)
+			cloudState := make(map[string]interface{})
+
+			mergedState := s.reconciler.ReconcileIntents(edgeState, cloudState)
+
+			response := map[string]interface{}{
+				"action": "sync_complete",
+				"merged_state": mergedState,
+			}
+			err = ws.WriteJSON(response)
+			if err != nil {
+				log.Printf("Write error: %v", err)
+				ws.Close()
+				delete(s.clients, ws)
+				break
+			}
+			continue
+		}
 
 		// Stub intent engine call through circuit breaker
 		_, _ = s.intentBreaker.Execute(func() (interface{}, error) {
