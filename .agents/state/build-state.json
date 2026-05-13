@@ -29,7 +29,7 @@
     },
     "4": {
       "name": "Guardian & Scale",
-      "status": "in_progress",
+      "status": "completed",
       "weeks": "15-20",
       "tasks": [
         {
@@ -122,7 +122,8 @@
           "status": "completed",
           "layer": "all"
         }
-      ]
+      ],
+      "completed_at": "2026-05-13T01:00:00Z"
     }
   },
   "decision_log": [
