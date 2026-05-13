@@ -142,9 +142,9 @@
         { "id": "P5-T10", "name": "Prometheus AI Monitor", "status": "completed", "layer": "nodejs" },
         { "id": "P5-T11", "name": "Autonomous Gridlock Resolution", "status": "completed", "layer": "nodejs" },
         { "id": "P5-T12", "name": "Rider AI Copilot", "status": "completed", "layer": "python+nodejs" },
-        { "id": "P5-T13", "name": "Autonomous Provisioning Engine", "status": "pending", "layer": "nodejs" },
-        { "id": "P5-T14", "name": "Smart Contract Ledger", "status": "pending", "layer": "nodejs" },
-        { "id": "P5-T15", "name": "Trust Level 4 Gate", "status": "pending", "layer": "all" },
+        { "id": "P5-T13", "name": "Autonomous Provisioning Engine", "status": "completed", "layer": "nodejs" },
+        { "id": "P5-T14", "name": "Smart Contract Ledger", "status": "completed", "layer": "nodejs" },
+        { "id": "P5-T15", "name": "Trust Level 4 Gate", "status": "completed", "layer": "all" },
         { "id": "P5-T16", "name": "Phase 5 Penetration Testing", "status": "pending", "layer": "go+flutter" },
         { "id": "P5-T17", "name": "Mesh Network Load Test", "status": "pending", "layer": "nodejs" },
         { "id": "P5-T18", "name": "National Rollout Configuration", "status": "pending", "layer": "all" }
