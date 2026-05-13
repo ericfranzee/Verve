@@ -1,161 +1,72 @@
 {
   "project": "verve",
-  "version": "2.0.0",
-  "created_at": "2026-05-10T04:37:00Z",
-  "last_checkpoint": "2026-05-12T11:00:00Z",
-  "current_phase": 5,
-  "current_phase_name": "Holographic Ecosystem & Next-Gen Deployments",
+  "version": "3.0.0",
+  "created_at": "2026-05-13T16:00:00Z",
+  "last_checkpoint": "2026-05-13T16:00:00Z",
+  "current_phase": 0,
+  "current_phase_name": "Foundation & Infrastructure",
+  "audit_note": "Full audit performed 2026-05-13. All prior phase completions were based on stub/mock files, not functional implementations. Build state reset to reflect actual operational status.",
   "phases": {
-    "1": {
-      "name": "Invisible Intelligence",
-      "status": "completed",
+    "0": {
+      "name": "Foundation & Infrastructure",
+      "status": "not_started",
       "weeks": "1-4",
-      "completed_at": "2026-05-11T02:00:00Z",
-      "task_count": 21
+      "description": "Real database, auth, navigation, environment setup — the missing foundation layer",
+      "tasks": []
+    },
+    "1": {
+      "name": "Invisible Intelligence (Redo)",
+      "status": "scaffolded_only",
+      "weeks": "5-8",
+      "description": "Real voice capture, real Whisper transcription, real LLM, real RAG pipeline",
+      "prior_status": "Stubs existed: Go WebSocket skeleton, Python FastAPI skeleton, mock Whisper/RAG classes",
+      "tasks": []
     },
     "2": {
-      "name": "Visual Stage",
-      "status": "completed",
-      "weeks": "5-8",
-      "completed_at": "2026-05-11T15:00:00Z",
-      "task_count": 22
+      "name": "Visual Stage (Redo)",
+      "status": "scaffolded_only",
+      "weeks": "9-12",
+      "description": "Wire breathing wave shader, implement real Morphing Viewport transitions, real Visual Synapse",
+      "prior_status": "Stubs existed: MorphingViewport shows static text only, GLSL shader file exists but unwired",
+      "tasks": []
     },
     "3": {
-      "name": "Nexus Pilot",
-      "status": "completed",
-      "weeks": "9-14",
-      "completed_at": "2026-05-12T10:40:00Z",
-      "task_count": 33
+      "name": "Nexus Pilot (Redo)",
+      "status": "scaffolded_only",
+      "weeks": "13-18",
+      "description": "Real Nexus API with PostgreSQL, real payment integration, real rider app, real Bio-Handshake",
+      "prior_status": "Stubs existed: Apollo Server skeleton, 10 chaos protocol stubs (~1KB each), mock payment cascade",
+      "tasks": []
     },
     "4": {
-      "name": "Guardian & Scale",
-      "status": "completed",
-      "weeks": "15-20",
-      "tasks": [
-        {
-          "id": "P4-T01",
-          "name": "Guardian Vault screen",
-          "status": "completed",
-          "layer": "flutter"
-        },
-        {
-          "id": "P4-T02",
-          "name": "Predictive Pantry screen",
-          "status": "completed",
-          "layer": "flutter"
-        },
-        {
-          "id": "P4-T03",
-          "name": "Semantic History screen",
-          "status": "completed",
-          "layer": "flutter"
-        },
-        {
-          "id": "P4-T04",
-          "name": "Payment Cascade Manager screen",
-          "status": "completed",
-          "layer": "flutter"
-        },
-        {
-          "id": "P4-T05",
-          "name": "Human Bridge escalation overlay",
-          "status": "completed",
-          "layer": "flutter"
-        },
-        {
-          "id": "P4-T06",
-          "name": "Purge Protocol",
-          "status": "completed",
-          "layer": "flutter+go+python"
-        },
-        {
-          "id": "P4-T07",
-          "name": "Nexus Lead dashboard (web app)",
-          "status": "completed",
-          "layer": "nodejs"
-        },
-        {
-          "id": "P4-T08",
-          "name": "Penetration testing of Go Orchestrator",
-          "status": "completed",
-          "layer": "go"
-        },
-        {
-          "id": "P4-T09",
-          "name": "NDPA compliance audit",
-          "status": "completed",
-          "layer": "all"
-        },
-        {
-          "id": "P4-T10",
-          "name": "Geo-fenced soft launch",
-          "status": "completed",
-          "layer": "all"
-        },
-        {
-          "id": "P4-T11",
-          "name": "Circuit breaker verification",
-          "status": "completed",
-          "layer": "go"
-        },
-        {
-          "id": "P4-T12",
-          "name": "Failure tolerance monitoring",
-          "status": "completed",
-          "layer": "all"
-        },
-        {
-          "id": "P4-T13",
-          "name": "Chaos protocol CI",
-          "status": "completed",
-          "layer": "nodejs"
-        },
-        {
-          "id": "P4-T14",
-          "name": "Degraded handshake verification",
-          "status": "completed",
-          "layer": "flutter+nodejs"
-        },
-        {
-          "id": "P4-T15",
-          "name": "Risk register review",
-          "status": "completed",
-          "layer": "all"
-        }
-      ],
-      "completed_at": "2026-05-13T01:00:00Z"
+      "name": "Guardian & Scale (Redo)",
+      "status": "scaffolded_only",
+      "weeks": "19-22",
+      "description": "Real Guardian Vault with SQLCipher, real purge protocol, NDPA compliance, admin panel",
+      "prior_status": "Stubs existed: Guardian Vault widget stub, purge endpoint with sleep(0.5)",
+      "tasks": []
     },
     "5": {
-      "name": "Holographic Ecosystem & Next-Gen Deployments",
-      "status": "completed",
-      "weeks": "21-26",
-      "tasks": [
-        { "id": "P5-T01", "name": "Edge SLM Integrator", "status": "completed", "layer": "flutter" },
-        { "id": "P5-T02", "name": "Offline Intent Queue", "status": "completed", "layer": "flutter" },
-        { "id": "P5-T03", "name": "Hybrid State Sync Engine", "status": "completed", "layer": "go+flutter" },
-        { "id": "P5-T04", "name": "Wearable UI Companion", "status": "completed", "layer": "flutter" },
-        { "id": "P5-T05", "name": "Automotive UI", "status": "completed", "layer": "flutter" },
-        { "id": "P5-T06", "name": "Spatial Depletion Horizon", "status": "completed", "layer": "flutter" },
-        { "id": "P5-T07", "name": "Dynamic Hub Splitter", "status": "completed", "layer": "nodejs" },
-        { "id": "P5-T08", "name": "Synchronized Dispatch Engine", "status": "completed", "layer": "nodejs" },
-        { "id": "P5-T09", "name": "Inter-Hub Transfer Protocol", "status": "completed", "layer": "nodejs" },
-        { "id": "P5-T10", "name": "Prometheus AI Monitor", "status": "completed", "layer": "nodejs" },
-        { "id": "P5-T11", "name": "Autonomous Gridlock Resolution", "status": "completed", "layer": "nodejs" },
-        { "id": "P5-T12", "name": "Rider AI Copilot", "status": "completed", "layer": "python+nodejs" },
-        { "id": "P5-T13", "name": "Autonomous Provisioning Engine", "status": "completed", "layer": "nodejs" },
-        { "id": "P5-T14", "name": "Smart Contract Ledger", "status": "completed", "layer": "nodejs" },
-        { "id": "P5-T15", "name": "Trust Level 4 Gate", "status": "completed", "layer": "all" },
-        { "id": "P5-T16", "name": "Phase 5 Penetration Testing", "status": "completed", "layer": "go+flutter" },
-        { "id": "P5-T17", "name": "Mesh Network Load Test", "status": "completed", "layer": "nodejs" },
-        { "id": "P5-T18", "name": "National Rollout Configuration", "status": "completed", "layer": "all" }
-      ],
-      "completed_at": "2026-05-13T10:00:00Z"
+      "name": "Holographic Ecosystem",
+      "status": "not_started",
+      "weeks": "23-26",
+      "description": "Edge AI, ambient computing, multi-node routing, autonomous agents — requires Phases 0-4 complete",
+      "prior_status": "Stubs existed: All P5 tasks were empty placeholder files",
+      "tasks": []
     }
+  },
+  "preserved_stubs": {
+    "note": "All prior stub files renamed with _stub suffix to preserve intent reference. Do not delete — they document what needs to be built.",
+    "renamed_at": "2026-05-13T16:00:00Z"
   },
   "decision_log": [
     {
-      "date": "2026-05-12T10:40:00Z",
-      "decision": "Phase 3 marked complete. All branches merged to main. Stale branches to be pruned."
+      "date": "2026-05-13T16:00:00Z",
+      "decision": "AUDIT RESET: Full project audit revealed 109/109 tasks marked complete were stub/mock implementations only. Build state reset to v3.0.0. All phases reset to not_started or scaffolded_only. Stub files preserved with _stub suffix."
+    },
+    {
+      "date": "2026-05-13T16:00:00Z",
+      "decision": "NEW PHASE 0 ADDED: Foundation & Infrastructure phase created to address missing fundamentals — database connectivity, authentication, navigation, environment setup."
     }
   ],
   "artifacts": [],

@@ -1,187 +1,144 @@
 ---
 name: verve-backend-builder
-description: "Use when building the Go Orchestrator (WebSocket, circuit breakers, session recovery) and Python Intent Engine (FastAPI, RAG, Whisper, Ambiguity Resolution, Trust Ladder context, Observability) for Verve."
-category: development
-risk: safe
-source: project
-tags: "[golang, python, fastapi, websocket, circuit-breaker, observability, opentelemetry, rag]"
-date_added: "2026-05-10"
-date_updated: "2026-05-10"
+description: Build real Go Orchestrator, Python Intent Engine, and Node.js Nexus API services with production-grade code, database connections, and test coverage.
 ---
 
-# Verve Backend Builder — Orchestrator & Intelligence
+# Verve Backend Builder Skill
 
 ## Purpose
+You build **real, functional backend services** for Verve. No mocks, no stubs, no hardcoded responses. Every function connects to real databases, real APIs, and real external services.
 
-Build the Go Orchestrator (middleware) and Python Intent Engine (AI brain). This skill covers session management, circuit breakers, crash recovery, PII stripping, Whisper transcription, RAG pipeline, Ambiguity Resolution, Trust Ladder context injection, Observability, and the Payment Cascade Router.
+## Service Ownership
 
-**Note:** The Node.js Nexus API and Rider systems have moved to `verve-nexus-builder`.
+### Go Orchestrator (`services/orchestrator/`)
+**Port:** 8080 | **Role:** WebSocket gateway, session manager, circuit breaker
 
-## When to Use
+**Build Checklist:**
+- [ ] WebSocket upgrade with JWT validation on first message
+- [ ] Session state stored in Redis (not in-memory)
+- [ ] Audio chunk routing to Intent Engine via HTTP
+- [ ] Synapse payload relay from Intent Engine to Flutter client
+- [ ] Order update relay from Nexus API to Flutter client
+- [ ] Bio-Handshake TOTP generation and BLE token management
+- [ ] Circuit breaker for Intent Engine and Nexus API calls
+- [ ] Purge endpoint with cascade (Intent Engine + Nexus API)
+- [ ] Health check with dependency status
+- [ ] OpenTelemetry tracing integration
 
-- Building the Go WebSocket Orchestrator
-- Implementing circuit breaker patterns and crash recovery (Blueprint §5.3-5.4)
-- Building the Python FastAPI Intent Engine (Whisper, RAG, LLM)
-- Implementing Ambiguity Resolution engine (Brand Manual §3.2)
-- Implementing Trust Ladder context injection in RAG prompts (Guardian §5.3)
-- Setting up Observability pipeline (Architecture §7)
-- Building the Payment Cascade Router microservice
-
-## Architecture
-
-```
-[ Flutter Client ] <== WebSocket ==> [ Go Orchestrator ]
-                                           |         |
-                                    (circuit breakers) (Redis snapshots)
-                                           v         v
-                           [ Python Intent Engine ]   [ Payment Router ]
-                                     |
-                              (Trust Ladder context gating)
-                              (Ambiguity Resolution)
-                                     |
-                              [ Nexus API (verve-nexus-builder) ]
-```
-
----
-
-## Component 1: Go Orchestrator
-
-**Language:** Go — max concurrency, low memory
-
-### Project Structure
-
+**File Structure:**
 ```
 services/orchestrator/
-├── cmd/server/main.go
+├── main.go
 ├── internal/
-│   ├── websocket/
-│   │   ├── handler.go          # WS upgrade, read/write loops
-│   │   ├── session.go          # Session state machine
-│   │   └── recovery.go         # Reconnect → Redis restore (Blueprint §5.3)
-│   ├── audio/
-│   │   ├── router.go           # Route PCM to transcription
-│   │   └── confidence.go       # Whisper confidence < 60% → retry (Blueprint §5.3)
-│   ├── synapse/
-│   │   ├── payload.go          # Synapse Payload struct
-│   │   └── builder.go          # Assemble TTS + UI-Metadata
-│   ├── privacy/
-│   │   └── pii_stripper.go     # Remove names, GPS before LLM
+│   ├── server/
+│   │   ├── ws_server.go       # WebSocket handler
+│   │   ├── message_router.go  # Message type dispatcher
+│   │   └── auth.go            # JWT validation
+│   ├── session/
+│   │   ├── manager.go         # Redis-backed session state
+│   │   └── state.go           # Session state types
 │   ├── circuit/
-│   │   └── breaker.go          # Per-service breaker: 5 failures/60s → 30s open (Blueprint §5.4)
-│   ├── observability/
-│   │   ├── tracing.go          # OpenTelemetry OTLP + Jaeger (Architecture §7.3)
-│   │   ├── metrics.go          # Prometheus export (Architecture §7.1)
-│   │   └── health.go           # Component health checks
-│   ├── middleware/
-│   │   ├── tls.go              # TLS 1.3 enforcement
-│   │   └── bandwidth.go        # low_bandwidth_flag
-│   └── state/
-│       └── redis_snapshot.go   # Session state persistence every 5s
+│   │   └── breaker.go         # Circuit breaker state machine
+│   ├── security/
+│   │   ├── origin.go          # CORS origin whitelist
+│   │   └── purge.go           # Purge cascade handler
+│   └── sync/
+│       └── reconciler.go      # Edge-cloud sync
 ├── go.mod
 └── go.sum
 ```
 
-### Key Patterns
+### Python Intent Engine (`services/intent-engine/`)
+**Port:** 8000 | **Role:** Voice transcription, LLM inference, TTS generation
 
-**Circuit Breaker (Blueprint §5.4):** Each downstream service has an independent breaker (5-failure threshold / 60s window). When Intent Engine breaker is open, don't call Nexus (cascade prevention). Client gets cached suggestion fallback.
+**Build Checklist:**
+- [ ] Real Whisper API integration (OpenAI or self-hosted)
+- [ ] Real LLM integration (GPT-4o / GPT-4o-mini via MoE router)
+- [ ] RAG pipeline: prompt builder + temporal resolver + dietary enforcer
+- [ ] Nexus API client for PoF verification
+- [ ] TTS generation (OpenAI TTS or Azure)
+- [ ] Synapse payload construction with timed UI sequences
+- [ ] Purge endpoint for vector memory deletion
+- [ ] Rider AI Copilot alert generation
 
-**Session Recovery (Blueprint §5.3):** Session state snapshotted to Redis every 5s. On WebSocket drop, client reconnects with `session_id`, Orchestrator restores from Redis. User hears: *"Sorry, brief hiccup. Where were we?"*
-
-**Whisper Confidence (Blueprint §5.3):** If confidence < 60%, Aura asks for repeat naturally. After 2 failures, switch to text input. Keyboard icon pulses.
-
-**Session States:** `IDLE → BROWSING → CHECKOUT → TRACKING → DELIVERED`. Any state can escalate to `HUMAN_BRIDGE`. Any disconnect triggers Redis snapshot + exponential backoff reconnect.
-
----
-
-## Component 2: Python Intent Engine
-
-**Framework:** Python + FastAPI
-
-### Project Structure
-
+**File Structure:**
 ```
 services/intent-engine/
 ├── main.py
-├── api/
-│   ├── transcribe.py           # POST /transcribe
-│   ├── intent.py               # POST /intent
-│   └── synapse.py              # POST /synapse
+├── core/
+│   ├── whisper_transcriber.py  # Real Whisper API
+│   ├── moe_router.py           # Model selection logic
+│   ├── tts_engine.py           # Real TTS API
+│   └── nexus_client.py         # GraphQL client to Nexus API
 ├── rag/
-│   ├── prompt_builder.py       # Context + query + constraints
-│   ├── context_retriever.py    # SQLite-VEC or Pinecone
-│   ├── temporal_resolver.py    # "Monday" → date → SKU
-│   └── trust_gate.py           # Filter context by Trust Ladder level (Guardian §5.3)
-├── llm/
-│   ├── router.py               # MoE: simple < 200ms, complex → large model
-│   └── inference.py            # Structured output
-├── persona/
-│   ├── aura.py                 # Linguistic guidelines
-│   ├── ambiguity.py            # Vague intent, contradiction, bridge proposals (Brand §3.2)
-│   └── emotional_state.py      # Execution/Discovery/Precision mode detection
-├── observability/
-│   ├── tracing.py              # OpenTelemetry propagation
-│   └── metrics.py              # Prometheus: latency, confidence, cache hits
-├── models/
-│   └── whisper_ng.py           # Nigerian-tuned Whisper
-└── requirements.txt
+│   ├── prompt_builder.py       # System prompt construction
+│   ├── temporal_resolver.py    # Time-aware intent parsing
+│   ├── dietary_enforcer.py     # Allergen blocklist enforcement
+│   └── ambiguity_resolver.py   # Clarification logic
+├── copilot/
+│   └── alerts.py               # Rider hazard alert generator
+└── tests/
+    ├── test_transcriber.py
+    ├── test_moe_router.py
+    └── test_voice_loop.py
 ```
 
-### Trust Ladder Context Gating (Guardian §5.3)
+### Node.js Nexus API (`services/nexus-api/`)
+**Port:** 4000 | **Role:** GraphQL API, inventory, orders, payments, chaos protocols
 
-Context injection is filtered by the user's current trust level:
-- **Level 0 (Stranger):** Hub popularity data only. No personal context.
-- **Level 1 (Acquaintance):** Recent orders (last 10), basic preferences.
-- **Level 2 (Confidant):** Full dietary profile, household size, depletion model.
-- **Level 3 (Partner):** Everything — voice patterns, address, full anticipatory provisioning.
+**Build Checklist:**
+- [ ] PostgreSQL connection pool (pg + node-pg-migrate)
+- [ ] Redis connection (ioredis)
+- [ ] Full GraphQL schema from `Verve API Contracts.md`
+- [ ] Auth resolvers (register, login, refresh with bcrypt + JWT)
+- [ ] Product CRUD resolvers
+- [ ] Inventory management with PoF scoring
+- [ ] Order lifecycle (create → confirm → pick → dispatch → deliver)
+- [ ] Payment cascade (Paystack → Flutterwave → Wallet → PoD)
+- [ ] 10 Chaos Protocol implementations
+- [ ] Rider management resolvers
+- [ ] Webhook handlers (Paystack, Flutterwave)
+- [ ] Nexus Lead Dashboard (static HTML served via Express)
 
-### Ambiguity Resolution (Brand Manual §3.2)
+## Implementation Standards
 
-- **Vague Intent:** Synthesize day-of-week + weather + time + depletion model → confident proposal. Never ask "Can you be more specific?"
-- **Contradiction:** Propose a bridge between stated desire and behavioral pattern. Never judge.
-- **Emotional State Detection:** Terse → Execution Mode (short, no humor). Exploratory → Discovery Mode. Frustrated → Precision Mode (explicit confirmation).
-- **One-Question Rule:** Max one clarifying question per turn. If still ambiguous, commit to hypothesis.
+### Database Queries
+```typescript
+// CORRECT — parameterized query
+const result = await pool.query('SELECT * FROM products WHERE hub_id = $1 AND status = $2', [hubId, 'in_stock']);
 
-### Aura Persona (Brand Manual §3)
-
-- Partner, not servant. Decisive, not open-ended.
-- Short, information-dense sentences.
-- Dry humor — disabled in Execution Mode.
-- Nigerian English fluent, Pidgin-capable.
-- Anti-Interrogation Rule: propose, don't interrogate.
-
----
-
-## Component 3: Payment Cascade Router
-
-```
-services/pay-router/
-├── src/
-│   ├── index.ts
-│   ├── gateways/
-│   │   ├── paystack.ts         # Primary
-│   │   ├── flutterwave.ts      # Secondary
-│   │   └── wallet.ts           # Tertiary
-│   ├── cascade.ts              # 16s total timeout (PRD §4.4)
-│   └── pod_fallback.ts         # Pay-on-Delivery via Bio-Handshake
+// WRONG — string interpolation
+const result = await pool.query(`SELECT * FROM products WHERE hub_id = '${hubId}'`);
 ```
 
-**Cascade:** Paystack (4s) → Flutterwave (4s) → Wallet (4s) → Pay-on-Delivery. Total 16s max.
+### Error Handling
+```go
+// CORRECT — explicit error handling
+result, err := intentEngine.Infer(ctx, payload)
+if err != nil {
+    if errors.Is(err, ErrTimeout) {
+        breaker.RecordFailure()
+        return fallbackResponse(session), nil
+    }
+    return nil, fmt.Errorf("inference failed: %w", err)
+}
+```
 
----
+### Test Pattern
+Every new function needs a corresponding test:
+```python
+# test_whisper_transcriber.py
+def test_transcribe_returns_text_and_confidence():
+    transcriber = WhisperTranscriber(api_key="test")
+    result = transcriber.transcribe(sample_audio_bytes)
+    assert "text" in result
+    assert "confidence" in result
+    assert result["confidence"] >= 0.0
+```
 
-## Key Constraints
-
-| Metric | Target | Source |
-|--------|--------|--------|
-| Voice-to-intent | < 800ms | PRD §3.1 |
-| Simple intent (MoE fast) | < 200ms | Build Strategy §7.1 |
-| Payment total timeout | 16s all gateways | PRD §4.4 |
-| Round-trip latency | < 1.2s (P95) | Build Strategy §8 |
-| Circuit breaker threshold | 5 failures / 60s | Blueprint §5.4 |
-| Session snapshot interval | Every 5 seconds | Blueprint §5.3 |
-| Whisper confidence floor | 60% | Blueprint §5.3 |
-
-## Dependencies
-
-**Needs:** PCM audio from Flutter, SQLite-VEC vectors from Edge builder, PoF scores from Nexus API
-**Provides:** Synapse Payload to Flutter, trace context to Nexus, payment status, Prometheus metrics
+## Critical Rules
+- **No mock implementations** — if an external API key isn't available, use environment variable checks and skip tests gracefully
+- **Always use parameterized queries** — never interpolate user input into SQL
+- **Always validate JWT** on authenticated endpoints
+- **Always handle timeouts** — 4-second max for payment gateways, 8-second max for LLM calls
+- **Read `_stub` files** for architectural intent before building replacements

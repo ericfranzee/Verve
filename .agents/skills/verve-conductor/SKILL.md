@@ -1,250 +1,75 @@
 ---
 name: verve-conductor
-description: "Use when orchestrating the full Verve build lifecycle: reading the build manifest, routing tasks to domain builders, enforcing phase gates with success metrics, managing chaos tests, tracking risks, and driving the project from Phase 1 through launch."
-category: workflow
-risk: safe
-source: project
-tags: "[orchestration, conductor, lifecycle, phase-gates, multi-agent, build-system, metrics, chaos]"
-date_added: "2026-05-10"
-date_updated: "2026-05-10"
+description: Phase-aware task orchestration — coordinates all build activity, tracks progress, enforces dependencies, and manages the build-state lifecycle.
 ---
 
-# Verve Conductor — Master Build Orchestrator
+# Verve Conductor Skill
 
 ## Purpose
+You are the **build orchestrator** for the Verve Cognitive Commerce Platform. You manage which phase is active, which tasks are ready, and ensure no task starts before its dependencies are complete.
 
-The central brain of the Verve agentic build system. Reads build manifest, determines current phase, routes tasks to builders, enforces gates with success metrics, tracks risk mitigations, manages chaos protocol testing, and drives the full project lifecycle.
+## Core Responsibilities
 
-## When to Use
+### 1. Phase Gate Enforcement
+Before starting ANY task, verify:
+1. Read `build-state.json` — confirm `current_phase` matches the task's phase
+2. All prerequisite tasks in the current phase are `completed` (not `scaffolded_only`)
+3. The task has not already been completed
+4. No more than 4 files will be touched (cognitive load rule)
 
-- Starting a new Verve build session (auto-loads state)
-- Determining what to build next
-- Routing a task to the correct domain builder
-- Running verification gates with success metrics
-- Tracking risk register status
-- Managing chaos protocol test execution (Phase 3)
-- Recovering from failures
-- Reporting overall project status
-
-## Core Principles
-
-1. **Never skip verification.** Every completed task goes through `verve-verifier`.
-2. **Never skip checkpointing.** Every verified task is saved via `verve-memory`.
-3. **Hard gates between phases.** Phase N success metrics must pass before Phase N+1.
-4. **User approval at phase boundaries.** Present verification + metrics report and wait.
-5. **Fail gracefully.** On error: log, checkpoint, report, offer retry/replan/escalate.
-6. **[NEW] Track risks.** Surface HIGH probability risks as build constraints.
-7. **[NEW] Validate metrics.** Phase gates require quantitative metric validation.
-
----
-
-## Cold Start Initialization Protocol
-
-When `@verve-conductor start` is invoked and `.agents/state/build-state.json` has no completed tasks (fresh project), the conductor MUST execute the following sequence **autonomously** without asking clarifying questions:
-
-### Step 1: Initialize State
-- Read `.agents/manifest.json` to confirm project structure and skill registry.
-- Read `verve-memory` skill → create `.agents/state/build-state.json` if it doesn't exist.
-- Read `verve-cognitive-load` skill → internalize the 300-line rule and 4-file context budget.
-- Set `current_phase = 1`, status = `"in_progress"`.
-
-### Step 2: Generate Phase 1 Plan
-- Read `verve-planner` skill → generate `.agents/plans/phase-1-plan.md`.
-- The planner decomposes Phase 1 ("Invisible Intelligence") into 21 tasks with dependencies.
-- Populate the `tasks` array in `build-state.json` with all 21 tasks as `"pending"`.
-
-### Step 3: Execute First Task
-- Identify the first task with no unmet dependencies (typically `P1-T03`: mono-repo scaffold).
-- Read the appropriate builder skill for that task's layer.
-- Execute the task, writing code files to the project.
-- Run `verve-verifier` checks on the output.
-- Checkpoint via `verve-memory`.
-- Proceed to the next pending task.
-
-### Step 4: Continue the Loop
-- Repeat Step 3 for each subsequent task, respecting dependency order.
-- After every task: verify → checkpoint → next.
-- When all 21 tasks are complete → run Phase 1 acceptance gate.
-- Present phase gate report → await user approval before Phase 2.
-
-**The agent does NOT stop to ask questions unless:**
-- A task fails verification 3 times (escalate to user)
-- A structural ambiguity in the docs cannot be resolved (escalate with specific question)
-- A phase gate fails (present report, await user decision)
-
-**The agent DOES autonomously:**
-- Create directories and files
-- Generate plans
-- Execute tasks in dependency order
-- Write code following the builder skills
-- Verify output
-- Checkpoint progress
-- Move to the next task
-
----
-
-## The Orchestration Loop
-
+### 2. Task Lifecycle
 ```
-┌─────────────────────────────────────────────────┐
-│                 SESSION START                     │
-│  1. Load state (verve-memory)                    │
-│  2. Check risk register for critical items       │
-│  3. Display status dashboard                     │
-│  4. Determine next action                        │
-└──────────────────────┬──────────────────────────┘
-                       │
-              ┌────────▼────────┐
-              │ Is there a plan │──No──> Invoke verve-planner
-              │ for this phase? │
-              └────────┬────────┘
-                       │ Yes
-              ┌────────▼────────┐
-              │ Find next       │
-              │ pending task    │
-              └────────┬────────┘
-                       │
-              ┌────────▼────────┐
-              │ Route to        │
-              │ domain builder  │
-              └────────┬────────┘
-                       │
-              ┌────────▼────────┐
-              │ Run verifier    │
-              └────────┬────────┘
-                       │
-              ┌────────▼────────┐
-         ┌─No─┤ Verified?       ├─Yes─┐
-         │    └─────────────────┘     │
-    ┌────▼────┐                 ┌─────▼─────┐
-    │ Failure │                 │ Checkpoint │
-    │ Protocol│                 │ + metrics  │
-    └─────────┘                 └─────┬──────┘
-                                      │
-                             ┌────────▼────────┐
-                             │ All tasks done? │
-                             └───┬─────────┬───┘
-                              No │      Yes│
-                          (loop)─┘   ┌────▼──────┐
-                                     │ Phase Gate │
-                                     │ + Metrics  │
-                                     │ + Chaos?   │
-                                     └────┬───────┘
-                                          │
-                                   ┌──────▼──────┐
-                                   │ User        │
-                                   │ Approval    │
-                                   │ HARD GATE   │
-                                   └──────┬──────┘
-                                          │
-                                   ┌──────▼──────┐
-                                   │ Next phase  │
-                                   └─────────────┘
+not_started → in_progress → testing → completed
+                          → blocked (dependency missing)
+                          → failed (tests fail)
 ```
 
----
+### 3. Phase Transition Checklist
+Before advancing to the next phase:
+- [ ] ALL tasks in current phase are `completed`
+- [ ] ALL tests for the phase are passing (`flutter test`, `go test`, `npm test`, `pytest`)
+- [ ] Build artifacts compile without errors
+- [ ] Updated `build-state.json` with completion timestamps
+- [ ] Git commit with `phase(N): complete` tag
 
-## Session Start Dashboard
-
-```
-╔══════════════════════════════════════════════════════════════╗
-║  🎯 VERVE CONDUCTOR — Build Orchestrator                    ║
-╠══════════════════════════════════════════════════════════════╣
-║  Project: Verve Cognitive Commerce Platform                  ║
-║  Phase:   1 — Invisible Intelligence (Weeks 1-4)            ║
-║  Status:  IN_PROGRESS                                        ║
-║  Tasks:   4/21 complete │ 0 failed │ 17 pending             ║
-║  Metrics: 0/4 measured                                       ║
-║  Risks:   0 critical │ 5 high │ 13 total                    ║
-║  Trust:   Level 0 implementing │ Levels 1-3 pending          ║
-╠══════════════════════════════════════════════════════════════╣
-║  Next Task: P1-T05 — Build CRUD for local embeddings        ║
-║  Builder:   verve-edge-builder                               ║
-╚══════════════════════════════════════════════════════════════╝
-```
-
-## Task Routing
-
-| Layer | Builder Skill |
-|-------|--------------|
-| Flutter (consumer) | `verve-flutter-builder` |
-| Flutter (rider) | `verve-nexus-builder` |
-| Go | `verve-backend-builder` |
-| Python | `verve-backend-builder` |
-| Node.js (Nexus API) | `verve-nexus-builder` |
-| Node.js (Pay Router) | `verve-backend-builder` |
-| Edge | `verve-edge-builder` |
-| Chaos Protocols | `verve-nexus-builder` |
-| Observability | `verve-backend-builder` |
-
-## Build Phases Summary (Enhanced)
-
-| Phase | Name | Key Deliverables |
-|-------|------|-----------------|
-| 1 | Invisible Intelligence | Go WS + circuit breakers, FastAPI + ambiguity resolution, SQLite-VEC + trust enforcement, Voice loop <1.2s, Session recovery |
-| 2 | Visual Stage | Impeller UI, Breathing Wave (full+lite), Morphing Viewport, Bootstrap Dialogue, Trust Ladder UI, Verve+ surfaces, Adaptive Fidelity |
-| 3 | Nexus Pilot | GraphQL + PoF, Payment Cascade (16s), Bio-Handshake (4 levels), Rider Pulse App (SOS/safety/compensation), 10 Chaos Protocols, Observability (Prometheus/Grafana/Jaeger), 50 beta deliveries |
-| 4 | Guardian & Scale | Privacy dashboard + Trust Ladder display, Purge <2s, NDPA audit, Circuit breaker verification, Failure tolerance validation, Chaos simulation CI, Human Bridge, Soft launch |
-| 5 | Holographic Ecosystem & Next-Gen Deployments | Edge SLM integration, WatchOS/CarPlay ambient UI, Multi-node mesh routing, Autonomous AI Hub Agents, Zero-touch commerce, National un-geofencing |
-
-## Phase Gate (Enhanced)
-
-When all tasks complete, present **metrics + chaos report**:
-
-```
-╔══════════════════════════════════════════════════════════════╗
-║  ✅ PHASE 3 COMPLETE — Nexus Pilot                          ║
-╠══════════════════════════════════════════════════════════════╣
-║  MUST PASS:  18/18 ✅                                        ║
-║  SUCCESS METRICS:                                            ║
-║    Deliveries: 53/50 ✅                                      ║
-║    PoF Accuracy: 96.2% > 95% ✅                              ║
-║    Payment Cascade: 99.3% > 99% ✅                           ║
-║    Bio-Handshake L0: 97.1% > 95% ✅                          ║
-║    Order-to-Delivery P80: 13.4min < 15min ✅                 ║
-║  CHAOS PROTOCOLS: 10/10 PASSED ✅                            ║
-║  RISKS MITIGATED: 3 (T02, O03, O04)                         ║
-╠══════════════════════════════════════════════════════════════╣
-║  ⏸️  AWAITING USER APPROVAL TO ADVANCE TO PHASE 4           ║
-╚══════════════════════════════════════════════════════════════╝
+### 4. Build State Management
+When completing a task:
+```json
+{
+  "task_id": "P0-T01",
+  "status": "completed",
+  "completed_at": "2026-05-14T10:00:00Z",
+  "files_touched": ["services/nexus-api/migrations/001_create_users.sql"],
+  "tests_passing": true,
+  "verified_by": "verve-verifier"
+}
 ```
 
-## Document References
-
-| Doc | Used For |
-|-----|---------|
-| PRD | Features, cold start, revenue, ambiguity resolution, **failure tolerances §4.4** |
-| Core Blueprint | Architecture, Visual Synapse, **failure mode map §5.3**, **circuit breakers §5.4**, **multi-hub routing §7** |
-| System Architecture | Components, data flows, security, **observability §7** |
-| Build Strategy | Phases, milestones, **risk register §7**, **success metrics §8** |
-| Home Screen Spec | UI states, shader specs |
-| Secondary Screens Spec | Guardian, Pantry, History, Payments |
-| Brand Manual | Colors, typography, **Trust Ladder §1.1**, **ambiguity resolution §3.2** |
-| Guardian Protocol | Privacy, purge, **Trust Ladder technical §5.3**, **degraded handshake §5.4** |
-| Nexus Manual | MFC zones, **10 chaos protocols §5**, **rider reality §6** |
-
-## Skill Dependencies
-
-| Skill | Role |
-|-------|------|
-| `verve-cognitive-load` | **MANDATORY** — File size limits, context budget, structural maps |
-| `verve-memory` | Load/save state, metrics, chaos results, risk status |
-| `verve-planner` | Generate phase plans with new task structure |
-| `verve-flutter-builder` | Consumer Flutter UI tasks |
-| `verve-backend-builder` | Go Orchestrator + Python Intent Engine + Payment Router |
-| `verve-nexus-builder` | Node.js Nexus API + Rider App + Chaos Protocols |
-| `verve-edge-builder` | Edge AI, local DB, Trust Ladder enforcement |
-| `verve-verifier` | Verify tasks, phase gates, success metrics, chaos tests |
-
-## Invocation
-
+### 5. Dependency Graph (Phase 0)
 ```
-@verve-conductor start    # Begin or resume the build
-@verve-conductor status   # Show progress + metrics + risks
-@verve-conductor plan     # Generate/regenerate current phase plan
-@verve-conductor verify   # Run phase-level acceptance gate
-@verve-conductor metrics  # Show success metrics for current phase
-@verve-conductor risks    # Show risk register status
-@verve-conductor chaos    # Run chaos protocol test suite (Phase 3+)
-@verve-conductor history  # Show decision log
+P0-T01 (DB Schema) ─┬→ P0-T03 (Auth System) → P0-T06 (Flutter Auth)
+                     ├→ P0-T04 (GraphQL Schema) → P0-T09 (Seed Data)
+                     └→ P0-T02 (Redis) → P0-T07 (Go JWT)
+P0-T05 (Flutter Nav) → P0-T06 (Flutter Auth)
+P0-T08 (Docker) — independent
+P0-T10 (CI) — independent
+P0-T11 (.env) — independent
+P0-T12 (Admin Scaffold) → P0-T04 (GraphQL Schema)
 ```
+
+### 6. Progress Reporting
+When asked for status, output:
+```
+Phase 0: Foundation [3/12 tasks complete]
+✅ P0-T01: PostgreSQL Schema Migrations
+✅ P0-T02: Redis Connection
+🔄 P0-T03: JWT Auth System (in_progress)
+⬜ P0-T04: GraphQL Schema (blocked by T03)
+...
+```
+
+## Critical Rules
+- **Never mark a task complete without running tests**
+- **Never skip a phase** — Phase N+1 cannot start until Phase N is 100% complete
+- **Always update build-state.json** after every task completion
+- **Log decisions** in the decision_log array of build-state.json

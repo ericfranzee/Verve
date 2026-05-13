@@ -89,6 +89,14 @@
       "focus": "Privacy + Trust Ladder display, Circuit breaker verification, Failure tolerance validation, Chaos simulation CI, NDPA audit, Soft launch",
       "layers": ["flutter", "go", "python", "nodejs"],
       "plan_file": ".agents/plans/phase-4-plan.md"
+    },
+    "5": {
+      "name": "Holographic Ecosystem & Next-Gen Deployments",
+      "weeks": "21-26",
+      "tasks": 18,
+      "focus": "Edge AI, ambient computing, multi-node routing, autonomous agents, zero-touch commerce",
+      "layers": ["flutter", "go", "python", "nodejs"],
+      "plan_file": ".agents/plans/phase-5-plan.md"
     }
   },
   "documents": [
