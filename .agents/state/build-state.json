@@ -107,19 +107,19 @@
         {
           "id": "P4-T13",
           "name": "Chaos protocol CI",
-          "status": "pending",
+          "status": "completed",
           "layer": "nodejs"
         },
         {
           "id": "P4-T14",
           "name": "Degraded handshake verification",
-          "status": "pending",
+          "status": "completed",
           "layer": "flutter+nodejs"
         },
         {
           "id": "P4-T15",
           "name": "Risk register review",
-          "status": "pending",
+          "status": "completed",
           "layer": "all"
         }
       ]
