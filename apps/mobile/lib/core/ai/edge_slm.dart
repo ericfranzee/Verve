@@ -15,12 +15,29 @@ class EdgeSlmIntegrator {
   /// model files from assets into memory using native APIs.
   Future<void> initializeModel() async {
     try {
+      // P5-T16: Anti-tamper verification. Ensures the quantized weights haven't
+      // been extracted or replaced by a malicious actor before loading.
+      final bool isIntact = await _verifyModelIntegrity();
+      if (!isIntact) {
+         throw Exception("Model integrity check failed. Halting AI operations.");
+      }
+
       final bool result = await _channel.invokeMethod('initializeModel');
       _isModelLoaded = result;
       print("EdgeSlmIntegrator: Initialization ${result ? 'successful' : 'failed'}.");
-    } on PlatformException catch (e) {
-      print("EdgeSlmIntegrator: Failed to initialize model: '${e.message}'.");
+    } catch (e) {
+      print("EdgeSlmIntegrator: Failed to initialize model: '$e'.");
       _isModelLoaded = false; // Fallback to false
+    }
+  }
+
+  Future<bool> _verifyModelIntegrity() async {
+    try {
+       // Calls native Android Play Integrity API / iOS DeviceCheck
+       final bool isSafe = await _channel.invokeMethod('performAttestation');
+       return isSafe;
+    } on PlatformException {
+       return false; // Fail safe
     }
   }
 

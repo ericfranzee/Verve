@@ -45,7 +45,10 @@ export class SyncDispatchEngine {
             };
         });
 
-        console.log(`SyncDispatchEngine: Synchronized ${routes.length} riders to arrive in ${targetArrival}s.`);
+        // Suppress massive logging during load tests
+        if (process.env.NODE_ENV !== 'test') {
+            console.log(`SyncDispatchEngine: Synchronized ${routes.length} riders to arrive in ${targetArrival}s.`);
+        }
         return instructions;
     }
 }
