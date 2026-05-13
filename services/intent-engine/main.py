@@ -1,6 +1,7 @@
 from fastapi import FastAPI, HTTPException, Request, Header
 from pydantic import BaseModel
 import logging
+from copilot.alerts import HazardAlert, generate_copilot_voice_alert
 import time
 import json
 
@@ -158,6 +159,15 @@ def purge_memory(request: PurgeRequest, authorization: str = Header(None)):
 
     logger.info(f"Vector embeddings and memory successfully purged for {request.user_id}")
     return {"status": "success", "message": "Purge completed"}
+
+@app.post("/copilot/alert")
+def copilot_alert(alert: HazardAlert):
+    """
+    P5-T12: Rider AI Copilot
+    Receives alerts from Node.js agent and generates voice alerts for the rider.
+    """
+    return generate_copilot_voice_alert(alert)
+
 
 if __name__ == "__main__":
     import uvicorn
